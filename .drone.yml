@@ -1,0 +1,58 @@
+kind: pipeline
+type: docker
+name: default
+
+clone:
+  disable: true
+
+steps:
+
+- name: clone
+  image: alpine/git
+  commands:
+  - git init --quiet
+  - git remote add origin $DRONE_REMOTE_URL
+  - git fetch --quiet --depth=1 origin "+refs/heads/$DRONE_BRANCH:"
+  - git checkout --quiet $DRONE_COMMIT -b $DRONE_BRANCH
+
+- name: makepkg
+  image: misotolar/makepkg
+  volumes:
+  - name: cache
+    path: /tmp
+  commands:
+  - BUILD_PATH=. makepkg.sh
+  - sudo repo-add export/$DRONE_REPO_NAME.db.tar.gz export/*.pkg.tar.zst
+
+- name: cleanup
+  image: misotolar/makepkg
+  volumes:
+  - name: cache
+    path: /tmp
+  commands:
+  - rm -rf /tmp/build
+  - rm -rf /tmp/tmp.*
+  when:
+    status:
+    - success
+    - failure
+
+- name: publish
+  image: misotolar/drone-rsync
+  settings:
+    source: ./export/
+    remote:
+      from_secret: RSYNC_HOST
+    port:
+      from_secret: RSYNC_PORT
+    username:
+      from_secret: RSYNC_USERNAME
+    password:
+      from_secret: RSYNC_PASSWORD
+    target:
+      from_secret: RSYNC_TARGET
+
+volumes:
+- name: cache
+  host:
+    path: /mnt/cache
