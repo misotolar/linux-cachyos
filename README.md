@@ -11,7 +11,7 @@ Improved [CachyOS Kernel](https://github.com/cachyos/linux-cachyos) with custom 
 - [Per VMA lock](https://lore.kernel.org/lkml/20230109205336.3665937-1-surenb@google.com/T/#ma04517b963591298a9eb76d96d2c453256a4d9ab)
 
 ```
-[linux-zen]
+[linux-cachyos]
 SigLevel = Never
 Server = https://archlinux.sotolar.net/linux-cachyos
 ```
