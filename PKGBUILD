@@ -1,6 +1,6 @@
 
 _major=6.3
-_minor=6
+_minor=7
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="8180543ca95e9353464f90c5f9975add33f5fe01"
+_cachyos="fff0431e2d9ce412df2f947808a5bc389325f8d6"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="229660f0c4cf6efa861c5a58718376453492c9c2"
+_patches="f666e443cec83a73dad4fc41ebe1b997103f75f6"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,9 +36,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('7a6a1f0dfa0bf7f45f9d4a7b409315cf32267850adab4db033a17de0320a24ef'
+sha256sums=('fe369743996c522a7b473e99dcf8f88847bd5cc88546fd3b7a41d9fe5a5b97a9'
             'SKIP'
-            'd7c20a38071edb47464042d63e8ef555cb5906916773bbe8f992bfe4c0a5748e'
+            '9cc9b5270330cd8dd138edea84c039fb20f031ec8b85f9a038cab7a07abf60c7'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '84a343a03454deedf0d08ddfd69c0a8ffe666cba1e28108d795bbb7281298cba'
             '93d8ed2d12194510f91a92afd3d6a99e0a11240f60fbcfa589e860a06eb989ac'
@@ -48,15 +48,13 @@ sha256sums=('7a6a1f0dfa0bf7f45f9d4a7b409315cf32267850adab4db033a17de0320a24ef'
             'f544db22d1ddd9dd482ba552309775671ffb3c712cd43a9fae6fc0152868cc94'
             'd7e2500fe861c78e3087431f2964f4e79eb2cd3588aadff746f9a9e9b5913804'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '307414d755f30d3e4c2ded0eeef658dbf503177002ab8c5d06812ba6e0c97c42'
+            '62a83fce82a80bb2f93e30efbd5e281e591eaf75d8ba1145e696d466b08ec2a7'
             '9d1baeed3f2e8d53e810c58b3ca6374e0683f72fc0365fca11d350aef550239e'
-            'b7af072d612c6607728b093b1521eea50c2eff825f3763c3f49139311e963791'
+            '41899a5f61f4dd1a643ee204f54d747d8306334a52c4d3b251d0a041a3ed02d2'
             '2fff325cf71ecc86dfdd2279460f03bfad42e39e2548ad1009326c0fccaa30e9')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
-              '647F28654894E3BD457199BE38DBBDC86092693E'   # Greg Kroah-Hartman
-              'A2FF3A36AAA56654109064AB19802F8B0D70FC30'   # Jan Alexander Steffens (heftig)
-              'C5ADB4F3FEBBCE27A3E54D7D9AE4078033F8024D')  # Steven Barrett <steven@liquorix.net>
+              '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_USER=$pkgbase
