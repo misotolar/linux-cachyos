@@ -74,35 +74,35 @@ scripts/config \
     -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
 
 ### TCP congestion control
-scripts/config \
-    -d DEFAULT_CUBIC \
-    -d TCP_CONG_BIC \
-    -d TCP_CONG_CUBIC \
-    -d TCP_CONG_WESTWOOD \
-    -d TCP_CONG_HTCP \
-    -d TCP_CONG_HSTCP \
-    -d TCP_CONG_HYBLA \
-    -d TCP_CONG_VEGAS \
-    -d TCP_CONG_NV \
-    -d TCP_CONG_SCALABLE \
-    -d TCP_CONG_LP \
-    -d TCP_CONG_VENO \
-    -d TCP_CONG_YEAH \
-    -d TCP_CONG_ILLINOIS \
-    -d TCP_CONG_DCTCP \
-    -d TCP_CONG_CDG \
-    -d TCP_CONG_BBR \
-    -e TCP_CONG_BBR2 \
-    -e DEFAULT_BBR2 \
-    --set-str DEFAULT_TCP_CONG bbr2
+#scripts/config \
+#    -d DEFAULT_CUBIC \
+#    -d TCP_CONG_BIC \
+#    -d TCP_CONG_CUBIC \
+#    -d TCP_CONG_WESTWOOD \
+#    -d TCP_CONG_HTCP \
+#    -d TCP_CONG_HSTCP \
+#    -d TCP_CONG_HYBLA \
+#    -d TCP_CONG_VEGAS \
+#    -d TCP_CONG_NV \
+#    -d TCP_CONG_SCALABLE \
+#    -d TCP_CONG_LP \
+#    -d TCP_CONG_VENO \
+#    -d TCP_CONG_YEAH \
+#    -d TCP_CONG_ILLINOIS \
+#    -d TCP_CONG_DCTCP \
+#    -d TCP_CONG_CDG \
+#    -d TCP_CONG_BBR \
+#    -e TCP_CONG_BBR2 \
+#    -e DEFAULT_BBR2 \
+#    --set-str DEFAULT_TCP_CONG bbr2
 
 ### BBR2 fix
-scripts/config \
-    -d NET_SCH_FQ_CODEL \
-    -d DEFAULT_FQ_CODEL \
-    -e NET_SCH_FQ \
-    -e DEFAULT_FQ \
-    --set-str DEFAULT_NET_SCH fq
+#scripts/config \
+#    -d NET_SCH_FQ_CODEL \
+#    -d DEFAULT_FQ_CODEL \
+#    -e NET_SCH_FQ \
+#    -e DEFAULT_FQ \
+#    --set-str DEFAULT_NET_SCH fq
 
 ### LRU
 scripts/config \
@@ -192,23 +192,8 @@ scripts/config \
     --set-val ZSTD_COMPRESSION_LEVEL 3 \
     --set-val MODULE_COMPRESS_ZSTD_LEVEL 3
 
-### BPF
-scripts/config \
-    -d BPF_LSM \
-    -d BPF_PRELOAD \
-    -d BPF_STREAM_PARSER \
-    -d BPF_KPROBE_OVERRIDE \
-    -d BPF_LIRC_MODE2 \
-    -d LWTUNNEL_BPF \
-    -d HID_BPF
-
 ### Debug
 scripts/config \
-    -d DEBUG_INFO_BTF \
-    -d DEBUG_INFO_DWARF4 \
-    -d DEBUG_INFO_DWARF5 \
-    -d PAHOLE_HAS_SPLIT_BTF \
-    -d DEBUG_INFO_BTF_MODULES \
     -d SLUB_DEBUG \
     -d PM_DEBUG \
     -d PM_ADVANCED_DEBUG \

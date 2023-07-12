@@ -15,8 +15,9 @@ EXTRA_FIRMWARE=(
     amdgpu/picasso_sdma.bin
     amdgpu/picasso_vcn.bin
     amdgpu/raven_dmcu.bin
+    intel/ibt-20-1-3.ddc
     intel/ibt-20-1-3.sfi
-    iwlwifi-cc-a0-74.ucode
+    iwlwifi-cc-a0-77.ucode
     regulatory.db.p7s
     regulatory.db
 )
@@ -26,9 +27,9 @@ for BLOB in "${EXTRA_FIRMWARE[@]}"; do
     mkdir -p "${EXTRA_FIRMWARE_DIR}/$(dirname ${BLOB})"
     if [ -f "/lib/firmware/${BLOB}" ]; then
         cp -v "/lib/firmware/${BLOB}" "${EXTRA_FIRMWARE_DIR}/${BLOB}"
-    elif [ -f "/lib/firmware/${BLOB}.xz" ]; then
-        cp -v "/lib/firmware/${BLOB}.xz" "${EXTRA_FIRMWARE_DIR}/${BLOB}.xz"
-        xz -d "${EXTRA_FIRMWARE_DIR}/${BLOB}.xz"
+    elif [ -f "/lib/firmware/${BLOB}.zst" ]; then
+        cp -v "/lib/firmware/${BLOB}.zst" "${EXTRA_FIRMWARE_DIR}/${BLOB}.zst"
+        zstd -qd "${EXTRA_FIRMWARE_DIR}/${BLOB}.zst"
     fi
 done
 
@@ -144,10 +145,10 @@ scripts/config \
 scripts/config \
     -e ZRAM \
     -e I2C_PIIX4 \
+    -e I2C_DESIGNWARE_AMDPSP \
     -e INTEL_RAPL \
     -e PERF_EVENTS_INTEL_RAPL \
     -e SENSORS_K10TEMP \
     -e USB_XHCI_PCI_RENESAS \
     -e X86_ACPI_CPUFREQ \
     -d DM_INIT
-
