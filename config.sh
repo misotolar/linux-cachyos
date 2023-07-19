@@ -74,35 +74,35 @@ scripts/config \
     -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
 
 ### TCP congestion control
-#scripts/config \
-#    -d DEFAULT_CUBIC \
-#    -d TCP_CONG_BIC \
-#    -d TCP_CONG_CUBIC \
-#    -d TCP_CONG_WESTWOOD \
-#    -d TCP_CONG_HTCP \
-#    -d TCP_CONG_HSTCP \
-#    -d TCP_CONG_HYBLA \
-#    -d TCP_CONG_VEGAS \
-#    -d TCP_CONG_NV \
-#    -d TCP_CONG_SCALABLE \
-#    -d TCP_CONG_LP \
-#    -d TCP_CONG_VENO \
-#    -d TCP_CONG_YEAH \
-#    -d TCP_CONG_ILLINOIS \
-#    -d TCP_CONG_DCTCP \
-#    -d TCP_CONG_CDG \
-#    -d TCP_CONG_BBR \
-#    -e TCP_CONG_BBR2 \
-#    -e DEFAULT_BBR2 \
-#    --set-str DEFAULT_TCP_CONG bbr2
+scripts/config \
+    -d DEFAULT_CUBIC \
+    -d TCP_CONG_BIC \
+    -d TCP_CONG_CUBIC \
+    -d TCP_CONG_WESTWOOD \
+    -d TCP_CONG_HTCP \
+    -d TCP_CONG_HSTCP \
+    -d TCP_CONG_HYBLA \
+    -d TCP_CONG_VEGAS \
+    -d TCP_CONG_NV \
+    -d TCP_CONG_SCALABLE \
+    -d TCP_CONG_LP \
+    -d TCP_CONG_VENO \
+    -d TCP_CONG_YEAH \
+    -d TCP_CONG_ILLINOIS \
+    -d TCP_CONG_DCTCP \
+    -d TCP_CONG_CDG \
+    -d TCP_CONG_BBR \
+    -e TCP_CONG_BBR2 \
+    -e DEFAULT_BBR2 \
+    --set-str DEFAULT_TCP_CONG bbr2
 
 ### BBR2 fix
-#scripts/config \
-#    -d NET_SCH_FQ_CODEL \
-#    -d DEFAULT_FQ_CODEL \
-#    -e NET_SCH_FQ \
-#    -e DEFAULT_FQ \
-#    --set-str DEFAULT_NET_SCH fq
+scripts/config \
+    -d NET_SCH_FQ_CODEL \
+    -d DEFAULT_FQ_CODEL \
+    -e NET_SCH_FQ \
+    -e DEFAULT_FQ \
+    --set-str DEFAULT_NET_SCH fq
 
 ### LRU
 scripts/config \
