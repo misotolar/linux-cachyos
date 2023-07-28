@@ -27,6 +27,9 @@ for BLOB in "${EXTRA_FIRMWARE[@]}"; do
     mkdir -p "${EXTRA_FIRMWARE_DIR}/$(dirname ${BLOB})"
     if [ -f "/lib/firmware/${BLOB}" ]; then
         cp -v "/lib/firmware/${BLOB}" "${EXTRA_FIRMWARE_DIR}/${BLOB}"
+    elif [ -f "/lib/firmware/${BLOB}.xz" ]; then
+        cp -v "/lib/firmware/${BLOB}.xz" "${EXTRA_FIRMWARE_DIR}/${BLOB}.xz"
+        xz -d "${EXTRA_FIRMWARE_DIR}/${BLOB}.xz"
     elif [ -f "/lib/firmware/${BLOB}.zst" ]; then
         cp -v "/lib/firmware/${BLOB}.zst" "${EXTRA_FIRMWARE_DIR}/${BLOB}.zst"
         zstd -qd "${EXTRA_FIRMWARE_DIR}/${BLOB}.zst"
