@@ -1,7 +1,7 @@
-From 987242d9ff394c741fef52878d05f3a2743245dc Mon Sep 17 00:00:00 2001
+From 353182cde895e140849177aa80a5d094b38180f5 Mon Sep 17 00:00:00 2001
 From: Steven Noonan <steven@uplinklabs.net>
 Date: Wed, 17 Nov 2021 00:26:20 -0800
-Subject: [PATCH 30/37] x86: save/restore TSC counter value during sleep/wake
+Subject: [PATCH 3/7] x86: save/restore TSC counter value during sleep/wake
 
 Signed-off-by: Steven Noonan <steven@uplinklabs.net>
 ---
@@ -11,7 +11,7 @@ Signed-off-by: Steven Noonan <steven@uplinklabs.net>
  3 files changed, 20 insertions(+)
 
 diff --git a/arch/x86/kernel/acpi/sleep.c b/arch/x86/kernel/acpi/sleep.c
-index 3b7f4cdbf2e0..6829d11185f3 100644
+index 1328c221af30..27721cf93ccb 100644
 --- a/arch/x86/kernel/acpi/sleep.c
 +++ b/arch/x86/kernel/acpi/sleep.c
 @@ -102,6 +102,11 @@ int x86_acpi_suspend_lowlevel(void)
@@ -77,5 +77,4 @@ index 02d0ba16ae33..0154ef895960 100644
  
  #ifndef CONFIG_64BIT
 -- 
-2.39.0
-
+2.41.0

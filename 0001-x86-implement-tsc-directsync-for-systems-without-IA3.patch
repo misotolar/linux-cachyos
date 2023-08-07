@@ -1,18 +1,32 @@
+From aa06b010db3c380f5438ee3ea511424afe8f3f51 Mon Sep 17 00:00:00 2001
+From: Steven Noonan <steven@uplinklabs.net>
+Date: Wed, 17 Nov 2021 00:25:26 -0800
+Subject: [PATCH 1/7] x86: implement tsc=directsync for systems without
+ IA32_TSC_ADJUST
+
+Signed-off-by: Steven Noonan <steven@uplinklabs.net>
+---
+ .../admin-guide/kernel-parameters.txt         |  2 +
+ arch/x86/include/asm/tsc.h                    |  1 +
+ arch/x86/kernel/tsc.c                         |  3 ++
+ arch/x86/kernel/tsc_sync.c                    | 48 +++++++++++++++----
+ 4 files changed, 44 insertions(+), 10 deletions(-)
+
 diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index a599e0db1..e7c8531b1 100644
+index f1537cec5f21..e68c82fd121e 100644
 --- a/Documentation/admin-guide/kernel-parameters.txt
 +++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -6446,6 +6446,8 @@
- 			This will be suppressed by an earlier tsc=nowatchdog and
- 			can be overridden by a later tsc=nowatchdog.  A console
- 			message will flag any such suppression or overriding.
+@@ -6469,6 +6469,8 @@
+ 			in situations with strict latency requirements (where
+ 			interruptions from clocksource watchdog are not
+ 			acceptable).
 +			[x86] directsync: attempt to sync the tsc via direct
 +			writes if MSR_IA32_TSC_ADJUST isn't available
- 
- 	tsc_early_khz=  [X86] Skip early TSC calibration and use the given
- 			value instead. Useful when the early TSC frequency discovery
+ 			[x86] recalibrate: force recalibration against a HW timer
+ 			(HPET or PM timer) on systems whose TSC frequency was
+ 			obtained from HW or FW using either an MSR or CPUID(0x15).
 diff --git a/arch/x86/include/asm/tsc.h b/arch/x86/include/asm/tsc.h
-index fbdc3d951..dc7090911 100644
+index fbdc3d951494..dc70909119e8 100644
 --- a/arch/x86/include/asm/tsc.h
 +++ b/arch/x86/include/asm/tsc.h
 @@ -42,6 +42,7 @@ extern unsigned long native_calibrate_tsc(void);
@@ -24,7 +38,7 @@ index fbdc3d951..dc7090911 100644
  extern bool tsc_async_resets;
  #else
 diff --git a/arch/x86/kernel/tsc.c b/arch/x86/kernel/tsc.c
-index 344698852..d00792030 100644
+index 344698852146..d007920309a4 100644
 --- a/arch/x86/kernel/tsc.c
 +++ b/arch/x86/kernel/tsc.c
 @@ -47,6 +47,7 @@ static unsigned int __initdata tsc_early_khz;
@@ -45,7 +59,7 @@ index 344698852..d00792030 100644
  		tsc_force_recalibrate = 1;
  	if (!strcmp(str, "watchdog")) {
 diff --git a/arch/x86/kernel/tsc_sync.c b/arch/x86/kernel/tsc_sync.c
-index 9452dc966..c60cef0f9 100644
+index 9452dc9664b5..4ec41f3744d1 100644
 --- a/arch/x86/kernel/tsc_sync.c
 +++ b/arch/x86/kernel/tsc_sync.c
 @@ -32,6 +32,8 @@ struct tsc_adjust {
@@ -72,18 +86,18 @@ index 9452dc966..c60cef0f9 100644
  	 * Set the maximum number of test runs to
 -	 *  1 if the CPU does not provide the TSC_ADJUST MSR
 -	 *  3 if the MSR is available, so the target can try to adjust
-+	 *  1 if we cannot write MSRs to synchronize TSCs
-+	 *  5 if we can write TSC_ADJUST to compensate
++	 *  3 if we can write TSC_ADJUST to compensate
 +	 *  1000 if we are allowed to write to the TSC MSR to compensate
++	 *  1 if we cannot write MSRs to synchronize TSCs
  	 */
 -	if (!boot_cpu_has(X86_FEATURE_TSC_ADJUST))
 -		atomic_set(&test_runs, 1);
+-	else
 +	if (boot_cpu_has(X86_FEATURE_TSC_ADJUST))
-+		atomic_set(&test_runs, 5);
+ 		atomic_set(&test_runs, 3);
 +	else if (tsc_allow_direct_sync)
 +		atomic_set(&test_runs, 1000);
- 	else
--		atomic_set(&test_runs, 3);
++	else
 +		atomic_set(&test_runs, 1);
  retry:
  	/*
@@ -142,3 +156,5 @@ index 9452dc966..c60cef0f9 100644
  	goto retry;
  
  }
+-- 
+2.41.0

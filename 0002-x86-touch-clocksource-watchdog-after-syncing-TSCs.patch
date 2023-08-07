@@ -1,16 +1,26 @@
+From c9853c95f6398dc1b55342d30c842e983d972640 Mon Sep 17 00:00:00 2001
+From: Steven Noonan <steven@uplinklabs.net>
+Date: Wed, 17 Nov 2021 11:55:18 -0800
+Subject: [PATCH 2/7] x86: touch clocksource watchdog after syncing TSCs
+
+Signed-off-by: Steven Noonan <steven@uplinklabs.net>
+---
+ arch/x86/kernel/smpboot.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
 diff --git a/arch/x86/kernel/smpboot.c b/arch/x86/kernel/smpboot.c
-index 55cad7271..32dee3ce3 100644
+index 483df0427678..5c8ec2e827f3 100644
 --- a/arch/x86/kernel/smpboot.c
 +++ b/arch/x86/kernel/smpboot.c
-@@ -56,6 +56,7 @@
- #include <linux/numa.h>
+@@ -58,6 +58,7 @@
  #include <linux/pgtable.h>
  #include <linux/overflow.h>
-+#include <linux/clocksource.h>
  #include <linux/stackprotector.h>
++#include <linux/clocksource.h>
  
  #include <asm/acpi.h>
-@@ -1444,6 +1445,7 @@ void arch_thaw_secondary_cpus_begin(void)
+ #include <asm/cacheinfo.h>
+@@ -1471,6 +1472,7 @@ void arch_thaw_secondary_cpus_begin(void)
  
  void arch_thaw_secondary_cpus_end(void)
  {
@@ -18,7 +28,7 @@ index 55cad7271..32dee3ce3 100644
  	cache_aps_init();
  }
  
-@@ -1481,6 +1483,8 @@ void __init native_smp_cpus_done(unsigned int max_cpus)
+@@ -1508,6 +1510,8 @@ void __init native_smp_cpus_done(unsigned int max_cpus)
  {
  	pr_debug("Boot done\n");
  
@@ -27,3 +37,5 @@ index 55cad7271..32dee3ce3 100644
  	calculate_max_logical_packages();
  
  	/* XXX for now assume numa-in-package and hybrid don't overlap */
+-- 
+2.41.0

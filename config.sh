@@ -75,7 +75,6 @@ scripts/config \
 
 ### TCP congestion control
 scripts/config \
-    -d DEFAULT_CUBIC \
     -d TCP_CONG_BIC \
     -d TCP_CONG_CUBIC \
     -d TCP_CONG_WESTWOOD \
@@ -91,10 +90,11 @@ scripts/config \
     -d TCP_CONG_ILLINOIS \
     -d TCP_CONG_DCTCP \
     -d TCP_CONG_CDG \
-    -d TCP_CONG_BBR \
-    -e TCP_CONG_BBR2 \
-    -e DEFAULT_BBR2 \
-    --set-str DEFAULT_TCP_CONG bbr2
+    -d TCP_CONG_BBR2 \
+    -e TCP_CONG_BBR \
+    -d DEFAULT_BBR2 \
+    -e DEFAULT_BBR \
+    --set-str DEFAULT_TCP_CONG bbr
 
 ### BBR2 fix
 scripts/config \

@@ -1,19 +1,19 @@
 
 _major=6.4
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="407c148ab2d071dd860057639ee745609a9d4eca"
+_cachyos="3447d67884c2670d1958781eee9e39250ab7c355"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d350e96008abb04cdf640373c3afb05341c1971f"
+_patches="a4e3ee6c55ffec5f6a071df2bdb73b88b921ac28"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,21 +36,21 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('de143cb61dcaa756c05f56ff35144316d810615819518a33e34754f064c4a7d8'
+sha256sums=('c59f34e19e84db30206b9373041abf893f9d8a08765d163586570a5238c458b6'
             'SKIP'
-            '68c4795774cecbc36aaa4067f4896c11bbaf3faafe864d21523a12ddeef8412a'
+            '7633d4f4611644660e7cfeb8895b51a1690c10acfd4c028a37dfd9f4ee73e5e9'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
-            'b565cda3f9318f1015d6d5b94d14ef9e2b6a0d05ae1d377432373465d0c2698a'
+            '073f531863e83939d63eb1240b29dd71a6cd85347093a165b733587342ab1948'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
-            '54f77dca3802a9e1036d20cacbc3356823f038b63b6792225a51cc4b8630fa34'
-            'd65bd6c210896610b54abfad15b86756382d3a1eb48835b6a2e16ea5ea541863'
-            '70472f2ffc33a40796abe7eca9ba5c534fe2b6c035bad1dd13cb6bcd7acd58ab'
-            'f544db22d1ddd9dd482ba552309775671ffb3c712cd43a9fae6fc0152868cc94'
-            'd7e2500fe861c78e3087431f2964f4e79eb2cd3588aadff746f9a9e9b5913804'
+            '57baf245a75f9fd2686d701a496fa7ac095ff0cd27efea5e82987c3d763a9a91'
+            'a31b916982a0def9d167809d7a8044fc5d5441d013b9908449796ea46e37c952'
+            'aae77518f548d6ea4198a2921c9b708fdbb39f778266c9c1e08c831215c121f5'
+            'a8ffaf6a6438be5ea4d76a9cdf918c108eab17f2349363f2baef3dee8885f9ee'
+            '330c5c021b98486d774505cbb6def4084d6b040a66e9bc6e45e72f48a0fa670c'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '97c2d1b5a0bc0e649d51812b37bfbe288ef07ce233839bc3bce8542500c6e304'
-            '6f4e8038f149423fd1e43f5c4cc7ae6dbfa607e3d0297383f0a4644f99862fef'
-            '1916fecc8c19c317fa37a229a0926efb2d779e00bf137d524dec5f34917d34eb'
+            '0e5249f950bfcbf248be23cd2be222072a37b493977758d36df36e737446fe23'
+            '33d74a741d592641e9999e3c87764233a2583554b11a3665c8fcb7e17a537fff'
+            'b1c2ba2fa47538b5421591147eead59890dfa0d2f88574613b7c693ab1551e16'
             '0fc0847f207be6a52b7d853eb5944447253c5f331cc1e762edf06120b34dfb82')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
