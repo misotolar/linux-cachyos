@@ -1,17 +1,17 @@
 
 _major=6.4
-_minor=8
+_minor=9
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="3447d67884c2670d1958781eee9e39250ab7c355"
+_cachyos="e00a3d85f2ad42ebb658191d2c8112267ff30575"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
 _patches="a4e3ee6c55ffec5f6a071df2bdb73b88b921ac28"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
@@ -34,11 +34,13 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-EEVDF.patch'::"$_patches/sched/0001-EEVDF.patch"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
-        '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
+        '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch"
+        '0105-8a9b1f65817e94281ed5922ccee877ab99add71e.patch'::"https://github.com/ClangBuiltLinux/linux/commit/8a9b1f65817e94281ed5922ccee877ab99add71e.patch"
+        '0106-150c42407f87463c27a2459e06845965291d9973.patch'::"https://github.com/ClangBuiltLinux/linux/commit/150c42407f87463c27a2459e06845965291d9973.patch")
 
-sha256sums=('c59f34e19e84db30206b9373041abf893f9d8a08765d163586570a5238c458b6'
+sha256sums=('b8b8a29852b999f337c4e93eff6c91fb7fd2d49a6614cbcbeb6fa171ba55cc9f'
             'SKIP'
-            '7633d4f4611644660e7cfeb8895b51a1690c10acfd4c028a37dfd9f4ee73e5e9'
+            '17472f100b4f4c2b8c67a18a1f7f2d925224489a3da12c3a0962b9e602334069'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '073f531863e83939d63eb1240b29dd71a6cd85347093a165b733587342ab1948'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
@@ -51,7 +53,9 @@ sha256sums=('c59f34e19e84db30206b9373041abf893f9d8a08765d163586570a5238c458b6'
             '0e5249f950bfcbf248be23cd2be222072a37b493977758d36df36e737446fe23'
             '33d74a741d592641e9999e3c87764233a2583554b11a3665c8fcb7e17a537fff'
             'b1c2ba2fa47538b5421591147eead59890dfa0d2f88574613b7c693ab1551e16'
-            '0fc0847f207be6a52b7d853eb5944447253c5f331cc1e762edf06120b34dfb82')
+            '0fc0847f207be6a52b7d853eb5944447253c5f331cc1e762edf06120b34dfb82'
+            'f2d20461beb640ebedf029653c1ed204d675775940f8ebfb7e39406101a03aeb'
+            'ece8084dafbe17c1355cdf5434946d1a04f0c8979f11e16e5db2ef14ac7dd726')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
