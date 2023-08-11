@@ -6,14 +6,14 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="e00a3d85f2ad42ebb658191d2c8112267ff30575"
+_cachyos="f3829c679a64d244c819fa39f5cf67dc2ea5dae4"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="a4e3ee6c55ffec5f6a071df2bdb73b88b921ac28"
+_patches="5993c85d408e6240e93ad7be417fa048feecef2d"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -31,6 +31,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0004-x86-only-restore-TSC-if-we-have-IA32_TSC_ADJUST-or-d.patch'
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
+        '0007-x86-srso-fix-missing-return-thunk.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-EEVDF.patch'::"$_patches/sched/0001-EEVDF.patch"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
@@ -40,7 +41,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
 
 sha256sums=('b8b8a29852b999f337c4e93eff6c91fb7fd2d49a6614cbcbeb6fa171ba55cc9f'
             'SKIP'
-            '17472f100b4f4c2b8c67a18a1f7f2d925224489a3da12c3a0962b9e602334069'
+            '53681a4283e4409e03acb22d5f255600acadb6674900191de446d041f562cbb7'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '073f531863e83939d63eb1240b29dd71a6cd85347093a165b733587342ab1948'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
@@ -50,6 +51,7 @@ sha256sums=('b8b8a29852b999f337c4e93eff6c91fb7fd2d49a6614cbcbeb6fa171ba55cc9f'
             'a8ffaf6a6438be5ea4d76a9cdf918c108eab17f2349363f2baef3dee8885f9ee'
             '330c5c021b98486d774505cbb6def4084d6b040a66e9bc6e45e72f48a0fa670c'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
+            '6f288f8ee8593bb6f3a693072d6d579cf9db295d713f3d8e86a7e869e955644f'
             '0e5249f950bfcbf248be23cd2be222072a37b493977758d36df36e737446fe23'
             '33d74a741d592641e9999e3c87764233a2583554b11a3665c8fcb7e17a537fff'
             'b1c2ba2fa47538b5421591147eead59890dfa0d2f88574613b7c693ab1551e16'
