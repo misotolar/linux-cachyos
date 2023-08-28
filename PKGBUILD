@@ -1,6 +1,6 @@
 
 _major=6.4
-_minor=11
+_minor=12
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="94b748ad29d02e233049fe57d2c85b5c02fd0a50"
+_cachyos="a32beddfdcba91891a8ed1dff6d27d34e962194e"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="61259d210481e076f8ac8c5a0979840428374f88"
+_patches="79901e0df71c4e7427f518188be30f7c128a0b9f"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -31,17 +31,16 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0004-x86-only-restore-TSC-if-we-have-IA32_TSC_ADJUST-or-d.patch'
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
-        '0007-x86-srso-fix-missing-return-thunk.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-EEVDF.patch'::"$_patches/sched/0001-EEVDF.patch"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('546b68b5097d3c0d74722de62aae217729d98e45fbb6bd458b490ac21ea40918'
+sha256sums=('cca91be956fe081f8f6da72034cded96fe35a50be4bfb7e103e354aa2159a674'
             'SKIP'
             '53681a4283e4409e03acb22d5f255600acadb6674900191de446d041f562cbb7'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
-            '073f531863e83939d63eb1240b29dd71a6cd85347093a165b733587342ab1948'
+            '8155805719ea94932c8679360d66431bc853407fa6cba6f6cc8f7781483a4ab1'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
             '57baf245a75f9fd2686d701a496fa7ac095ff0cd27efea5e82987c3d763a9a91'
             'a31b916982a0def9d167809d7a8044fc5d5441d013b9908449796ea46e37c952'
@@ -49,11 +48,10 @@ sha256sums=('546b68b5097d3c0d74722de62aae217729d98e45fbb6bd458b490ac21ea40918'
             'a8ffaf6a6438be5ea4d76a9cdf918c108eab17f2349363f2baef3dee8885f9ee'
             '330c5c021b98486d774505cbb6def4084d6b040a66e9bc6e45e72f48a0fa670c'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '6f288f8ee8593bb6f3a693072d6d579cf9db295d713f3d8e86a7e869e955644f'
-            'eebe252918b7a652c840a1ff17ab64ca020dd7c47ff82312900551251114b4cc'
-            '33d74a741d592641e9999e3c87764233a2583554b11a3665c8fcb7e17a537fff'
+            'd32049662eb194aba50ffe3ffd5d7b038b0a8a720ccd271454723bd741104ccb'
+            '8e401dd2a6f48189ec4af50ea59ba043b9eb658d5ef156ed0acd67ab581323d5'
             '50bba6780896483734e3f9087d6c058c9d9d180b39d1cca96aaaaec9a9913a58'
-            '0fc0847f207be6a52b7d853eb5944447253c5f331cc1e762edf06120b34dfb82')
+            '6e55a6c0e4567f8666e936f1a252e90170577d1a9e628a98fbd5d3f9ea47d237')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
