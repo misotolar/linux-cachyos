@@ -1,7 +1,7 @@
-From 16d3cb08c2068eb11569535ec9c1485a2c94aa2f Mon Sep 17 00:00:00 2001
+From 3ea4e93a7e648cf0ee38d5a3fb8124600bdcedc7 Mon Sep 17 00:00:00 2001
 From: Steven Noonan <steven@uplinklabs.net>
 Date: Wed, 17 Nov 2021 19:42:32 -0800
-Subject: [PATCH 5/7] x86: don't check for random warps if using direct sync
+Subject: [PATCH 5/5] x86: don't check for random warps if using direct sync
 
 There's some overhead in writing/reading MSR_IA32_TSC. We try to account
 for it, but sometimes it under or over estimates the overhead, and we retry
@@ -13,11 +13,11 @@ Signed-off-by: Steven Noonan <steven@uplinklabs.net>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/x86/kernel/tsc_sync.c b/arch/x86/kernel/tsc_sync.c
-index 4ec41f3744d1..e47d6f854020 100644
+index e306313e5e2e..cd508c221bb7 100644
 --- a/arch/x86/kernel/tsc_sync.c
 +++ b/arch/x86/kernel/tsc_sync.c
-@@ -407,7 +407,7 @@ void check_tsc_sync_source(int cpu)
- 		pr_debug("TSC synchronization [CPU#%d -> CPU#%d]: passed\n",
+@@ -392,7 +392,7 @@ static void check_tsc_sync_source(void *__cpu)
+ 		pr_debug("TSC synchronization [CPU#%d -> CPU#%u]: passed\n",
  			smp_processor_id(), cpu);
  
 -	} else if (atomic_dec_and_test(&test_runs) || random_warps) {

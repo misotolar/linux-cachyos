@@ -6,14 +6,14 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="d48c2adc4f85c126606e5a47660b669897e92e3d"
+_cachyos="46487c06957895f61db06743b591962f8e5e7dc1"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="554d9de0280684232f2a328536bc13da1df1cbc8"
+_patches="d7ad912330db2fd59dae38afb49a7cf0646a81cd"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -42,22 +42,21 @@ sha256sums=('7a574bbc20802ea76b52ca7faf07267f72045e861b18915c5272a98c27abf884'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             'a2f203376a5c156eb38ef39ffd2f7bcea3f903c0729d326dee0fcdc5373b4944'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
-            '57baf245a75f9fd2686d701a496fa7ac095ff0cd27efea5e82987c3d763a9a91'
-            'f7a683d64b5820a62adb0fbfbc401aeb070322fb7dc1a85c089349a372d28d73'
-            'aae77518f548d6ea4198a2921c9b708fdbb39f778266c9c1e08c831215c121f5'
-            'a8ffaf6a6438be5ea4d76a9cdf918c108eab17f2349363f2baef3dee8885f9ee'
-            '330c5c021b98486d774505cbb6def4084d6b040a66e9bc6e45e72f48a0fa670c'
+            '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
+            'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
+            'a6c087a8b1efe889663c48a94ad763a2cf20aa587c40b4cc3d2f89c9bce786c0'
+            'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
+            'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
             'c9bfb01e8def7e743255e8599993aa953ea873f8ecebb390fb1682ff0fa2d818'
             '028cb6ad7af536451453fde03316aa3da481726ac39356a1567f4d2670992283'
-            '5831ef8a49f1e77e8fe1515fa4942ce4f1617847a4631f353f62d33deefc899d'
+            '3c1fe46f842d141087b59c6838ec35970be7cc3a2785839e72d32c9971089876'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
-export KBUILD_BUILD_USER=$pkgbase
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 export KBUILD_BUILD_FLAGS=(
     CC=clang
