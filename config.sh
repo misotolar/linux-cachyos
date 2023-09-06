@@ -27,7 +27,7 @@ scripts/config \
     -e HAVE_GCC_PLUGINS \
     -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
 
-### Tick rate
+### Ticks
 scripts/config \
     -d HZ_100 \
     -d HZ_250 \
@@ -37,6 +37,27 @@ scripts/config \
     -d HZ_750 \
     -e "HZ_${_HZ:-500}" \
     --set-val HZ ${_HZ:-500}
+
+### Tickrate
+scripts/config \
+    -d HZ_PERIODIC \
+    -d NO_HZ_IDLE \
+    -d CONTEXT_TRACKING_FORCE \
+    -e NO_HZ_FULL_NODEF \
+    -e NO_HZ_FULL \
+    -e NO_HZ \
+    -e NO_HZ_COMMON \
+    -e CONTEXT_TRACKING
+
+### Preempt
+scripts/config \
+    -e PREEMPT_BUILD \
+    -d PREEMPT_NONE \
+    -d PREEMPT_VOLUNTARY \
+    -e PREEMPT \
+    -e PREEMPT_COUNT \
+    -e PREEMPTION \
+    -e PREEMPT_DYNAMIC
 
 ### NUMA
 scripts/config \
@@ -114,6 +135,11 @@ scripts/config \
 scripts/config \
     -e PER_VMA_LOCK \
     -d PER_VMA_LOCK_STATS
+
+### THP
+scripts/config \
+    -d TRANSPARENT_HUGEPAGE_MADVISE \
+    -e TRANSPARENT_HUGEPAGE_ALWAYS
 
 ### LRNG
 scripts/config \

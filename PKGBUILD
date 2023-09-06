@@ -1,19 +1,19 @@
 
 _major=6.5
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
-_srcdir="linux-$_major"
+_srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="46487c06957895f61db06743b591962f8e5e7dc1"
+_cachyos="fa4eda73dd00e29fad3c98d49a8843d813b1c1fe"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d7ad912330db2fd59dae38afb49a7cf0646a81cd"
+_patches="e5bdd4d180235dfe08cf8d0ee618cfa2cc3116b2"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -23,7 +23,7 @@ license=('GPL2')
 makedepends=('bc' 'clang' 'cpio' 'libelf' 'lld' 'llvm' 'pahole' 'perl' 'python' 'tar' 'xz' 'zstd')
 options=('!strip')
 
-source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
+source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
         '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
         '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
@@ -36,11 +36,11 @@ source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('7a574bbc20802ea76b52ca7faf07267f72045e861b18915c5272a98c27abf884'
+sha256sums=('23765dd44425462cd92adbee52670608fd7f3fd183a83b25ba7a7b4883d0451b'
             'SKIP'
-            '3fb01a413c3c194cbbf1dea4c04d5f50c88921c9dd72ce19261c218537d4740d'
+            'ca77637e27b9dc69a214871aec4f27e9d2523f57c7aae6b9d9e8627acebbf5be'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
-            'a2f203376a5c156eb38ef39ffd2f7bcea3f903c0729d326dee0fcdc5373b4944'
+            '11cd77e1eb319eff7676e6ae297786bd7a0572160c9dc36e48d5bc91c9547c54'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
@@ -48,7 +48,7 @@ sha256sums=('7a574bbc20802ea76b52ca7faf07267f72045e861b18915c5272a98c27abf884'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'c9bfb01e8def7e743255e8599993aa953ea873f8ecebb390fb1682ff0fa2d818'
+            'b1e4478d0e46e68257a7c8b063468bd49fb4001103a3e856a32b0fdb6240fa9f'
             '028cb6ad7af536451453fde03316aa3da481726ac39356a1567f4d2670992283'
             '3c1fe46f842d141087b59c6838ec35970be7cc3a2785839e72d32c9971089876'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
