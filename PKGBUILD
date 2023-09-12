@@ -1,6 +1,6 @@
 
 _major=6.5
-_minor=1
+_minor=2
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="fa4eda73dd00e29fad3c98d49a8843d813b1c1fe"
+_cachyos="b88068ad4e0c80091c2f046572a0cca8d202207d"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e5bdd4d180235dfe08cf8d0ee618cfa2cc3116b2"
+_patches="5e3800a1011978364dc123672edf97a3cdf4c255"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,9 +36,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('23765dd44425462cd92adbee52670608fd7f3fd183a83b25ba7a7b4883d0451b'
+sha256sums=('2027e14057d568ad3ddc100dadf4c8853a49b031270478a61d88f6011572650f'
             'SKIP'
-            'ca77637e27b9dc69a214871aec4f27e9d2523f57c7aae6b9d9e8627acebbf5be'
+            'b672db827fa9b2e3bc6bb3197659c326267f97436a49fe09f2c7f757049596c6'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '11cd77e1eb319eff7676e6ae297786bd7a0572160c9dc36e48d5bc91c9547c54'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
@@ -48,7 +48,7 @@ sha256sums=('23765dd44425462cd92adbee52670608fd7f3fd183a83b25ba7a7b4883d0451b'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'b1e4478d0e46e68257a7c8b063468bd49fb4001103a3e856a32b0fdb6240fa9f'
+            '860dcfd8274de42be718d3418d9744459f9c445e5386ea8c52cbc2758b8d3a57'
             '028cb6ad7af536451453fde03316aa3da481726ac39356a1567f4d2670992283'
             '3c1fe46f842d141087b59c6838ec35970be7cc3a2785839e72d32c9971089876'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
