@@ -1,6 +1,6 @@
 
 _major=6.5
-_minor=2
+_minor=3
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="b88068ad4e0c80091c2f046572a0cca8d202207d"
+_cachyos="6f6390a35b8ce59767b2a65f01675694a7835860"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="5e3800a1011978364dc123672edf97a3cdf4c255"
+_patches="9acad4cb097cd06c7c826a895f87b54b31d08fba"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,9 +36,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('2027e14057d568ad3ddc100dadf4c8853a49b031270478a61d88f6011572650f'
+sha256sums=('4cac13f7b17bd8dcf9032ad68f9123ab5313d698c9f59416043165150763eb4f'
             'SKIP'
-            'b672db827fa9b2e3bc6bb3197659c326267f97436a49fe09f2c7f757049596c6'
+            'eec1f88ae64c6a972c17b177ef2c9d150a13ca054c338a172829519fabceb16d'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '11cd77e1eb319eff7676e6ae297786bd7a0572160c9dc36e48d5bc91c9547c54'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
@@ -48,8 +48,8 @@ sha256sums=('2027e14057d568ad3ddc100dadf4c8853a49b031270478a61d88f6011572650f'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '860dcfd8274de42be718d3418d9744459f9c445e5386ea8c52cbc2758b8d3a57'
-            '028cb6ad7af536451453fde03316aa3da481726ac39356a1567f4d2670992283'
+            'a4bfbba3b282246c137c6d2653b16e7082af177bcddfe522f7a170d076ed9d79'
+            '86d9d0f44cc4273eaf35b136b70027583c9df64c1d27e0c72f5647654da7638d'
             '3c1fe46f842d141087b59c6838ec35970be7cc3a2785839e72d32c9971089876'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
 
