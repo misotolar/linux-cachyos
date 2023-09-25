@@ -1,6 +1,6 @@
 
 _major=6.5
-_minor=4
+_minor=5
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="bceddc6d822fef3a4993d9677694424be7c6ac93"
+_cachyos="97ec6edeea4f4fba456e17bbfc49a8d0fdd5bf11"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="3b2d0490c059c470af9e0d70a7bd52bf1a2fce67"
+_patches="3622ac219ae86648806fb7e2ce87736d74858f1d"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,11 +36,11 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('bdf76c15229b241e578046b8486106f09534d754ea4cbf105e0660e551fb1669'
+sha256sums=('8cf10379f7df8ea731e09bff3d0827414e4b643dd41dc99d0af339669646ef95'
             'SKIP'
             'eec1f88ae64c6a972c17b177ef2c9d150a13ca054c338a172829519fabceb16d'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
-            '11cd77e1eb319eff7676e6ae297786bd7a0572160c9dc36e48d5bc91c9547c54'
+            '32dceb4bf187c863fb7481d387bf459c0edd5b2bf82fc69ec723f12d46042cc9'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
@@ -48,7 +48,7 @@ sha256sums=('bdf76c15229b241e578046b8486106f09534d754ea4cbf105e0660e551fb1669'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '452181dbd38a9c83b02827fbecbb4aeb1f4b3e73ff6f47bbab317504c33166b8'
+            'dd628802330a5cb24c8d6fbf9ce7abc99b323d37f421f206c5765307135c3490'
             'ba539028ce0171763bc7d5d7d2e7fdead4256cc09e989731b5a9ee5cfa2505a6'
             '592c04afbf8185333200be1ed972b8119ef56ffcc3ec00cb4af4de34af84de07'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
@@ -64,11 +64,6 @@ export KBUILD_BUILD_FLAGS=(
     LLVM=1
     LLVM_IAS=1
 )
-
-_make() {
-  test -s version
-  make KERNELRELEASE="$(<version)" ${KBUILD_BUILD_FLAGS[*]} "$@"
-}
 
 prepare() {
 
@@ -92,14 +87,11 @@ prepare() {
         echo "-$KBUILD_BUILD_HOST" > localversion.20-pkgname
     fi
 
-    make ${KBUILD_BUILD_FLAGS[*]} defconfig
-    make ${KBUILD_BUILD_FLAGS[*]} -s kernelrelease > version
-    make ${KBUILD_BUILD_FLAGS[*]} mrproper
-
     local src
     for src in "${source[@]}"; do
         src="${src%%::*}"
         src="${src##*/}"
+        src="${src%.zst}"
         [[ $src = *.patch ]] || continue
         echo "Applying patch $src..."
         patch -Nsp1 < "../$src"
@@ -108,9 +100,9 @@ prepare() {
     echo "Setting config..."
     cp ../config .config
 
-    _make olddefconfig
+    make olddefconfig
     if [ -f "$HOME/.config/modprobed.db" ]; then
-        yes "" | _make LSMOD=$HOME/.config/modprobed.db localmodconfig >/dev/null
+        yes "" | make LSMOD=$HOME/.config/modprobed.db localmodconfig >/dev/null
     fi
 
     ### CPU optimization
@@ -126,12 +118,20 @@ prepare() {
         sh $srcdir/config.$KBUILD_BUILD_HOST.sh
     fi
 
+    ### Rewrite configuration
+    echo "Rewrite configuration..."
+    make ${KBUILD_BUILD_FLAGS[*]} prepare
+    yes "" | make ${KBUILD_BUILD_FLAGS[*]} config >/dev/null
+    diff -u ../config .config || :
+
+    ### Prepared version
+    make -s kernelrelease > version
     echo "Prepared $pkgbase version $(<version)"
 }
 
 build() {
     cd $_srcdir
-    _make -j$(nproc) all
+    make ${KBUILD_BUILD_FLAGS[*]} -j$(nproc) all
 }
 
 _package() {
@@ -150,13 +150,14 @@ _package() {
     echo "Installing boot image..."
     # systemd expects to find the kernel here to allow hibernation
     # https://github.com/systemd/systemd/commit/edda44605f06a41fb86b7ab8128dcf99161d2344
-    install -Dm644 "$(_make -s image_name)" "$modulesdir/vmlinuz"
+    install -Dm644 "$(make -s image_name)" "$modulesdir/vmlinuz"
 
     # Used by mkinitcpio to name the kernel
     echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
 
     echo "Installing modules..."
-    _make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 modules_install
+    ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+        DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
     # remove build and source links
     rm "$modulesdir"/{source,build}

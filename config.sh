@@ -22,10 +22,16 @@ scripts/config \
     -e LTO_CLANG \
     -e ARCH_SUPPORTS_LTO_CLANG \
     -e ARCH_SUPPORTS_LTO_CLANG_THIN \
-    -d LTO_NONE \
     -e HAS_LTO_CLANG \
     -e HAVE_GCC_PLUGINS \
+    -d LTO_NONE \
+    -d LTO_CLANG_FULL \
+    -d LTO_CLANG_THIN \
     -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
+
+### KCFI
+scripts/config \
+    -d CFI_CLANG
 
 ### Ticks
 scripts/config \
@@ -37,27 +43,6 @@ scripts/config \
     -d HZ_750 \
     -e "HZ_${_HZ:-500}" \
     --set-val HZ ${_HZ:-500}
-
-### Tickrate
-scripts/config \
-    -d HZ_PERIODIC \
-    -d NO_HZ_IDLE \
-    -d CONTEXT_TRACKING_FORCE \
-    -e NO_HZ_FULL_NODEF \
-    -e NO_HZ_FULL \
-    -e NO_HZ \
-    -e NO_HZ_COMMON \
-    -e CONTEXT_TRACKING
-
-### Preempt
-scripts/config \
-    -e PREEMPT_BUILD \
-    -d PREEMPT_NONE \
-    -d PREEMPT_VOLUNTARY \
-    -e PREEMPT \
-    -e PREEMPT_COUNT \
-    -e PREEMPTION \
-    -e PREEMPT_DYNAMIC
 
 ### NUMA
 scripts/config \
@@ -135,11 +120,6 @@ scripts/config \
 scripts/config \
     -e PER_VMA_LOCK \
     -d PER_VMA_LOCK_STATS
-
-### THP
-scripts/config \
-    -d TRANSPARENT_HUGEPAGE_MADVISE \
-    -e TRANSPARENT_HUGEPAGE_ALWAYS
 
 ### LRNG
 scripts/config \
@@ -234,7 +214,8 @@ scripts/config \
     -d ACPI_DEBUG \
     -d SCHED_DEBUG \
     -d LATENCYTOP \
-    -d DEBUG_PREEMPT
+    -d DEBUG_PREEMPT \
+    -d KMSAN
 
 ### Framebuffer
 scripts/config \
