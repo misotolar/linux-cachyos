@@ -6,14 +6,14 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="97ec6edeea4f4fba456e17bbfc49a8d0fdd5bf11"
+_cachyos="bab43da04692868e126afeac5eace0de011f1213"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="3622ac219ae86648806fb7e2ce87736d74858f1d"
+_patches="f447f1922cf4056010372464db766c86bf8c67f6"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -48,7 +48,7 @@ sha256sums=('8cf10379f7df8ea731e09bff3d0827414e4b643dd41dc99d0af339669646ef95'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'dd628802330a5cb24c8d6fbf9ce7abc99b323d37f421f206c5765307135c3490'
+            'aad8ac1418e221e62ed2e2acd0f5f2364165cad67ee03f44b88bfa73412e2ae1'
             'ba539028ce0171763bc7d5d7d2e7fdead4256cc09e989731b5a9ee5cfa2505a6'
             '592c04afbf8185333200be1ed972b8119ef56ffcc3ec00cb4af4de34af84de07'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')

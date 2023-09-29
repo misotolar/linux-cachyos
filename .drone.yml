@@ -16,16 +16,20 @@ steps:
   - git checkout --quiet $DRONE_COMMIT -b $DRONE_BRANCH
 
 - name: makepkg
-  image: misotolar/makepkg
+  image: misotolar/makepkg-obs
   volumes:
   - name: cache
     path: /tmp
-  commands:
-  - BUILD_PATH=. makepkg.sh
-  - sudo repo-add export/$DRONE_REPO_NAME.db.tar.gz export/*.pkg.tar.zst
+  environment:
+    OBS_PROJECT: home:misotolar:linux-cachyos
+    OBS_PACKAGE: linux-cachyos
+    OBS_USERNAME:
+        from_secret: OBS_USERNAME
+    OBS_PASSWORD:
+        from_secret: OBS_PASSWORD
 
 - name: cleanup
-  image: misotolar/makepkg
+  image: misotolar/makepkg-obs
   volumes:
   - name: cache
     path: /tmp
@@ -36,21 +40,6 @@ steps:
     status:
     - success
     - failure
-
-- name: publish
-  image: misotolar/drone-rsync
-  settings:
-    source: ./export/
-    remote:
-      from_secret: RSYNC_HOST
-    port:
-      from_secret: RSYNC_PORT
-    username:
-      from_secret: RSYNC_USERNAME
-    password:
-      from_secret: RSYNC_PASSWORD
-    target:
-      from_secret: RSYNC_TARGET
 
 volumes:
 - name: cache
