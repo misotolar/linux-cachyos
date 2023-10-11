@@ -1,6 +1,6 @@
 
 _major=6.5
-_minor=6
+_minor=7
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="6150aa9930a480db408f1844396a05b30a037d56"
+_cachyos="f220b40d5dbd590875cd8103bedd667341ed0b17"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="7a9c5136fd51af000b4a994389ff3ef66f30d44c"
+_patches="c68c399074539b4abcb19ea1f23766ea32826e9a"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,9 +36,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('78e36d4214547051c24df2140f4ce09428d6c515ad9a71b38b28e8094a95d2f6'
+sha256sums=('0d09ea448005c9cfe5383e4c72a872b39188b928f8c44e146b03b1b7851fbb8c'
             'SKIP'
-            'eec1f88ae64c6a972c17b177ef2c9d150a13ca054c338a172829519fabceb16d'
+            'f67c9647ebd9c28a92461720bf00a198dc15236cbfd2b2abddac91b0c5e31526'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '32dceb4bf187c863fb7481d387bf459c0edd5b2bf82fc69ec723f12d46042cc9'
             '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
@@ -48,7 +48,7 @@ sha256sums=('78e36d4214547051c24df2140f4ce09428d6c515ad9a71b38b28e8094a95d2f6'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '220c43f61f3fc1bc72481e08979818f9c253b4e8c819831b84315ef4a19726ec'
+            '0fb87b533cae553b22f0c3e40c01501ffb064b41563dbba6dfb31f2e1fe2b1a4'
             'ba539028ce0171763bc7d5d7d2e7fdead4256cc09e989731b5a9ee5cfa2505a6'
             '364956f63c15e62943434f53b24004232535c5d2f6696302977bddb260eca5c1'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
