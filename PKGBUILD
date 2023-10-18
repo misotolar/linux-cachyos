@@ -6,14 +6,14 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="f220b40d5dbd590875cd8103bedd667341ed0b17"
+_cachyos="b0f873c35b7588108b1e253dee638a26b83953bf"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="c68c399074539b4abcb19ea1f23766ea32826e9a"
+_patches="60c90944dbe60dbc30fa9265ab9394e4c0754fad"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -32,8 +32,8 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-        '0102-CACHYOS-EEVDF-cachy.patch'::"$_patches/sched/0001-EEVDF-cachy.patch"
-        '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
+        '0102-CACHYOS-EEVDF-cachy.patch'::"$_patches/sched-dev/0001-EEVDF-cachy.patch"
+        '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched-dev/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
 sha256sums=('0d09ea448005c9cfe5383e4c72a872b39188b928f8c44e146b03b1b7851fbb8c'
@@ -49,8 +49,8 @@ sha256sums=('0d09ea448005c9cfe5383e4c72a872b39188b928f8c44e146b03b1b7851fbb8c'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
             '0fb87b533cae553b22f0c3e40c01501ffb064b41563dbba6dfb31f2e1fe2b1a4'
-            'ba539028ce0171763bc7d5d7d2e7fdead4256cc09e989731b5a9ee5cfa2505a6'
-            '364956f63c15e62943434f53b24004232535c5d2f6696302977bddb260eca5c1'
+            '60120366bc74341ba38f24a71e12a092ab3bc7374f4c4a984a0d2dc605ea2548'
+            'ee003323734385fe9a2a5ae21351c71bea1d4e6ce7206cb5a660cc1d90714ecf'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
