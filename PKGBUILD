@@ -1,19 +1,19 @@
 
 _major=6.5
-_minor=8
+_minor=9
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="64b62f97c29cb218625bcc08c7bd0ccc06c842fd"
+_cachyos="edcb942118dd7702d8be5eaa8f53b20085560620"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="ec5835ca563a583f187d880d90b864fd97066596"
+_patches="854eddae14d90abff47f228c4ed116ca5b30c8bb"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -36,7 +36,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
         '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('299cca897d90deaa176eebec42f0a80eeb7516afed330a45c14da9de086cf717'
+sha256sums=('c6662f64713f56bf30e009c32eac15536fad5fd1c02e8a3daf62a0dc2f058fd5'
             'SKIP'
             'f67c9647ebd9c28a92461720bf00a198dc15236cbfd2b2abddac91b0c5e31526'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
@@ -48,7 +48,7 @@ sha256sums=('299cca897d90deaa176eebec42f0a80eeb7516afed330a45c14da9de086cf717'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'c501312b5d9fe99859de2f80b6fe63d31fe5b95171c1236361204b71285cefdd'
+            '61e54105a69ea6384def2ea8223a572babb9ee1d2c3b0ba264186ca503c52556'
             '2ac51d2b0382514ddd89b71b5e72472e7082a2eda2f92729689f990d16a006dd'
             '674e9247a776bc6c50ad58b0efe56a505cd51e2910fadf501cdc52f5caa4cb66'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
