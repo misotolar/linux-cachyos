@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="edcb942118dd7702d8be5eaa8f53b20085560620"
+_cachyos="1bfedc17e97cb59f50b5cfaa2e4b9921d902a92c"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="854eddae14d90abff47f228c4ed116ca5b30c8bb"
+_patches="e8a6a18db9edac05b0fccf40290f2b9ec3761129"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -50,7 +50,7 @@ sha256sums=('c6662f64713f56bf30e009c32eac15536fad5fd1c02e8a3daf62a0dc2f058fd5'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
             '61e54105a69ea6384def2ea8223a572babb9ee1d2c3b0ba264186ca503c52556'
             '2ac51d2b0382514ddd89b71b5e72472e7082a2eda2f92729689f990d16a006dd'
-            '674e9247a776bc6c50ad58b0efe56a505cd51e2910fadf501cdc52f5caa4cb66'
+            '823689368bc7b07ef746fefdcd9c1d47c061aed50297f2071199f65a297116e7'
             '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
