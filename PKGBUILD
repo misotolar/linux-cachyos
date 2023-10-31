@@ -1,6 +1,6 @@
 
-_major=6.5
-_minor=9
+_major=6.6
+_minor=0
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -8,12 +8,12 @@ pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvem
 pkgver="$_major.$_minor"
 pkgrel=1
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="1bfedc17e97cb59f50b5cfaa2e4b9921d902a92c"
+_cachyos="9f8e9018f168f64750533eb3e4e2cbc8ab3efb58"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e8a6a18db9edac05b0fccf40290f2b9ec3761129"
+_patches="208aceb488c36fd075bd8355e106ebed84e7602f"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -23,7 +23,7 @@ license=('GPL2')
 makedepends=('bc' 'clang' 'cpio' 'libelf' 'lld' 'llvm' 'pahole' 'perl' 'python' 'tar' 'xz' 'zstd')
 options=('!strip')
 
-source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
+source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
         "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
         '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
         '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
@@ -32,26 +32,24 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-        '0102-CACHYOS-EEVDF-cachy.patch'::"$_patches/sched/0001-EEVDF-cachy.patch"
-        '0103-CACHYOS-bore-eevdf.patch'::"$_patches/sched/0001-bore-eevdf.patch"
-        '0104-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
+        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
+        '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('c6662f64713f56bf30e009c32eac15536fad5fd1c02e8a3daf62a0dc2f058fd5'
+sha256sums=('d926a06c63dd8ac7df3f86ee1ffc2ce2a3b81a2d168484e76b5b389aba8e56d0'
             'SKIP'
-            'f67c9647ebd9c28a92461720bf00a198dc15236cbfd2b2abddac91b0c5e31526'
+            '60a232e9dfba0a18b4620926e4e21140a9509a779551bc5e8d34145c50ed9fae'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
             '32dceb4bf187c863fb7481d387bf459c0edd5b2bf82fc69ec723f12d46042cc9'
-            '65c93f050b25c8f95d99501067bff676d8ef8148c78420bb2b71a7fbb7ee19af'
+            'd589a729070b3df31a6bc952220941aec0651ed9034b93ad5d59433586b8301f'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
             'a6c087a8b1efe889663c48a94ad763a2cf20aa587c40b4cc3d2f89c9bce786c0'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '61e54105a69ea6384def2ea8223a572babb9ee1d2c3b0ba264186ca503c52556'
-            '2ac51d2b0382514ddd89b71b5e72472e7082a2eda2f92729689f990d16a006dd'
-            '823689368bc7b07ef746fefdcd9c1d47c061aed50297f2071199f65a297116e7'
-            '18d1a9894e313a013b14436e8df748c318248b75151676811c25d3317f5207d4')
+            '0b777e3bbe6ff80f086cb524bdf08944e1d8b4c8d59b4bc2c3cfed1e0cb422cf'
+            '43d2ab4a3f613798c2006c9fac5e8ced2f96e416f8bc05c9da9cc0957a39b639'
+            'd247a58c9171b1777a4cfbc57e285711cea6f742b7577e0176d1160d51ca8bc5')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
@@ -159,8 +157,8 @@ _package() {
     ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
         DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
-    # remove build and source links
-    rm "$modulesdir"/{source,build}
+    # remove build links
+    rm "$modulesdir"/build
 }
 
 _package-headers() {

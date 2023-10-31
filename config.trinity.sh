@@ -131,7 +131,8 @@ scripts/config \
     -e SND_SOC_SOF_PCI \
     -e SND_SOC_SOF_AMD_TOPLEVEL \
     -e SND_SOC_SOF_AMD_RENOIR \
-    -e SND_SOC_SOF_AMD_REMBRANDT
+    -e SND_SOC_SOF_AMD_REMBRANDT \
+    -e SND_SOC_SOF_AMD_VANGOGH
 
 # Sound (AMD ACP)
 sed -i 's/CONFIG_SND_SOC_AMD_ACP3x=m/CONFIG_SND_SOC_AMD_ACP3x=y/' .config
