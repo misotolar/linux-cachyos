@@ -1,6 +1,6 @@
 
 _major=6.6
-_minor=1
+_minor=2
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="959b6e24c255f33f0510af17154847bfce5478a5"
+_cachyos="846fb1370910072850d2082bf59f586385f10a7c"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="2420eba082f28bd2a82b8d499e436e7b01f9abc1"
+_patches="ba646f453c3b419a6396786dbfb7fb0b3673e199"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -35,11 +35,11 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('da1ed7d47c97ed72c9354091628740aa3c40a3c9cd7382871f3cedbd60588234'
+sha256sums=('73d4f6ad8dd6ac2a41ed52c2928898b7c3f2519ed5dbdb11920209a36999b77e'
             'SKIP'
-            'cc8fbee6c3b442ebe6583f0a76b3340b758308c7e687f61476b5f9f8e007d98a'
+            '39967f135cbae849d5d742ebd27cbd5254ab17d36a85c2a9856fdba2f2a1bc4a'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
-            '32dceb4bf187c863fb7481d387bf459c0edd5b2bf82fc69ec723f12d46042cc9'
+            '70c3fc0417cb8064ed2c9c01205fb562f0361cc2e8dbe376b605e5bcdf784dfa'
             'd589a729070b3df31a6bc952220941aec0651ed9034b93ad5d59433586b8301f'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
@@ -47,8 +47,8 @@ sha256sums=('da1ed7d47c97ed72c9354091628740aa3c40a3c9cd7382871f3cedbd60588234'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '1d26ebced193dd2eb9a787f23da0a7c986188a06ba31b142aa879339dee9accd'
-            '43d2ab4a3f613798c2006c9fac5e8ced2f96e416f8bc05c9da9cc0957a39b639'
+            'c9ddabb7dd06995bebc445d49a69dd034e0da7ae4e1c900a2b1b2a0f54c39eaf'
+            '7f04efa60f6ede668ae98cd75fc49a3f20c92c2d09fdac806780870eebc3d8d0'
             'd247a58c9171b1777a4cfbc57e285711cea6f742b7577e0176d1160d51ca8bc5')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds

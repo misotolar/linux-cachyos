@@ -70,10 +70,6 @@ if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
         --set-val NR_CPUS $(($(nproc)*2))
 fi
 
-### I/O schedulers
-scripts/config \
-    -d MQ_IOSCHED_KYBER
-
 ### Performance governor
 scripts/config \
     -d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL \
