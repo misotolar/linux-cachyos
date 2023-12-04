@@ -1,19 +1,19 @@
 
 _major=6.6
-_minor=3
+_minor=4
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="251ee0b3622a733928b2c4e5c32a769f9412c884"
+_cachyos="4028df9415190ec26653c9b5119834a5d3a75a61"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="988209ed655550a4025a5e1f44c9261a0754ff3c"
+_patches="e2319fa7a02be0ce10ded25e74b853de4d10d63f"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -35,7 +35,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('28edfc3d4f90cd738f2a20f5a2d68510268176d6111f6278d8f495edfd9495a7'
+sha256sums=('49e49660c93d8d6d58f118360d3ca8131695ec34669263ca8f041c876da93e45'
             'SKIP'
             '39967f135cbae849d5d742ebd27cbd5254ab17d36a85c2a9856fdba2f2a1bc4a'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
@@ -47,9 +47,9 @@ sha256sums=('28edfc3d4f90cd738f2a20f5a2d68510268176d6111f6278d8f495edfd9495a7'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '2285549cc8d4bf0898d69122217bcfa4b1b4eb83adb9c16548caaa6a42d7662d'
-            '38f67b40ee26f1800f3605bfef52656d19e9e2aff29be72bd60e4976014bef95'
-            'd247a58c9171b1777a4cfbc57e285711cea6f742b7577e0176d1160d51ca8bc5')
+            '030f54a1eccaf2cf3590f48ac2aea7ee5c7bf54275a930dfca1570381750a895'
+            '3a1af0693d379522d9c1c886c4214576770d1785e042835c4c87a6b1677fa16d'
+            '426fa2dcd26e7a907fd0a6bb6dd61b74a7a35efe5e993c2ff90c27e06b183e93')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
