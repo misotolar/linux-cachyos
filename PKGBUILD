@@ -1,6 +1,6 @@
 
 _major=6.6
-_minor=4
+_minor=6
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=1
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="4028df9415190ec26653c9b5119834a5d3a75a61"
+_cachyos="b35accc2ee2006de3432358f81e522d45ef03c32"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e2319fa7a02be0ce10ded25e74b853de4d10d63f"
+_patches="88340736c82ced1a9fed9baf6a2262f7555ff5ad"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -35,7 +35,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('49e49660c93d8d6d58f118360d3ca8131695ec34669263ca8f041c876da93e45'
+sha256sums=('ebf70a917934b13169e1be5b95c3b6c2fea5bc14e6dc144f1efb8a0016b224c8'
             'SKIP'
             '39967f135cbae849d5d742ebd27cbd5254ab17d36a85c2a9856fdba2f2a1bc4a'
             '41c34759ed248175e905c57a25e2b0ed09b11d054fe1a8783d37459f34984106'
@@ -47,8 +47,8 @@ sha256sums=('49e49660c93d8d6d58f118360d3ca8131695ec34669263ca8f041c876da93e45'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '030f54a1eccaf2cf3590f48ac2aea7ee5c7bf54275a930dfca1570381750a895'
-            '3a1af0693d379522d9c1c886c4214576770d1785e042835c4c87a6b1677fa16d'
+            '267d617ae2ee4c17ad370357cffecfb7e9c4ba9b5c3191bd875d841b19eadc02'
+            '69746bef332a5a0a5026188a0c4110f7b460756cb0942448368d5d7895b3777e'
             '426fa2dcd26e7a907fd0a6bb6dd61b74a7a35efe5e993c2ff90c27e06b183e93')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
