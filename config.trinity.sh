@@ -130,6 +130,7 @@ scripts/config \
     -e SND_SOC_AMD_PS \
     -e SND_SOC_SOF_PCI \
     -e SND_SOC_SOF_AMD_TOPLEVEL \
+    -e SND_SOC_SOF_AMD_ACP63 \
     -e SND_SOC_SOF_AMD_RENOIR \
     -e SND_SOC_SOF_AMD_REMBRANDT \
     -e SND_SOC_SOF_AMD_VANGOGH
