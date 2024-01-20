@@ -1,19 +1,19 @@
 
 _major=6.7
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=4
+pkgrel=2
 
-_srcdir="linux-$_major"
+_srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="4b09f2676215db64cb867097f16ecdf4adadc75b"
+_cachyos="a4622bbdc64e001d35df7a5159756edee05ebf1b"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d18677a993f9d1b54770b19c736adebc0b62e251"
+_patches="93345c020edf4932e10aa035781b2f9dc386af1f"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -23,7 +23,7 @@ license=('GPL2')
 makedepends=('bc' 'clang' 'cpio' 'libelf' 'lld' 'llvm' 'pahole' 'perl' 'python' 'tar' 'xz' 'zstd')
 options=('!strip')
 
-source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
+source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
         '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
         '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
@@ -32,12 +32,12 @@ source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched-dev/0001-bore-cachy.patch"
+        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('ef31144a2576d080d8c31698e83ec9f66bf97c677fa2aaf0d5bbb9f3345b1069'
+sha256sums=('1ecffa568e86a2202ba5533ad9034bc263a9aa14e189597a94f09b3854ad68c3'
             'SKIP'
-            'd6343116c13bf9fd24610fbdb0e6136e473580f0b91914b0e26729796ebd16c9'
+            '97d7a2bf8a0947bf39824d1b05b13bae77ad3a186314ff2e0fb19a56c0075191'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             '70c3fc0417cb8064ed2c9c01205fb562f0361cc2e8dbe376b605e5bcdf784dfa'
             '81ffeea27c75b8e92da6f2ddaaf22dd3ae2e9460ef41153c4086713b3587a044'
@@ -47,8 +47,8 @@ sha256sums=('ef31144a2576d080d8c31698e83ec9f66bf97c677fa2aaf0d5bbb9f3345b1069'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '8bacc19b501122c09d4c3d0df02cba3ba1b35c3c0cc25c5823e30299a3ad4685'
-            '13e4a79e4775c7adf902b7d6a367091749e903c67287ac7be6fb27f430db53f7'
+            '970b19ba434798b3c7baa3c3b1e8cb58189b72990c62fd546b9ee2db6c5c29f7'
+            '852401df68d53a8bf5ced0486f107c540a4ba0c35dd10540e226e30abbbbed9b'
             '759192d9075e65c63f0f4871c575204b07947882dd53cff13a228de3e32737e6')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
