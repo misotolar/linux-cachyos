@@ -1,19 +1,19 @@
 
 _major=6.7
-_minor=2
+_minor=3
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgdesc='Linux EEVDF scheduler Kernel by CachyOS with other patches and improvements'
+pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
 pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="61e2f30833b4391a1d991cb38409a0af4ca214a0"
+_cachyos="36b2622777119a159349219d27c3849599e692d7"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="8b8580ec38effad7efa89a5c27a15ead767a04c5"
+_patches="90d8c4319e2e26af151e56644fc8de4f6e67ea22"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -35,9 +35,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('c34de41baa29c475c0834e88a3171e255ff86cd32d83c6bffc2b797e60bfa671'
+sha256sums=('b7f08c652747574a3aa26e317d7a8f23ffab3fb645e1b1533b215dcfd5742b44'
             'SKIP'
-            '97d7a2bf8a0947bf39824d1b05b13bae77ad3a186314ff2e0fb19a56c0075191'
+            'b85a6146cecb2d78f82a898391388392fba43e6f66862d7ae939383a776d8986'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             '70c3fc0417cb8064ed2c9c01205fb562f0361cc2e8dbe376b605e5bcdf784dfa'
             '81ffeea27c75b8e92da6f2ddaaf22dd3ae2e9460ef41153c4086713b3587a044'
@@ -47,8 +47,8 @@ sha256sums=('c34de41baa29c475c0834e88a3171e255ff86cd32d83c6bffc2b797e60bfa671'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '753d1d393b43552197220def5530180eb3c0abe0ebd06528747c3d2ec52b5edc'
-            '2c33846be25d8059a563e26b7b1a3c67243a3b5abfb44c878c473abc61aee7df'
+            '3ef2272a1019c806c1f21805602c271e696b2d6271cd47426a4e70315de0744e'
+            'ce460dd5004445e4d79b66d09c13c665e0b1e13c759126593c86926b40df8865'
             '5d54009ca0cef4d6688db11d0be31aa9293528ec7389f0b4cedb61dd5e06aaac')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
