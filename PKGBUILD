@@ -1,19 +1,19 @@
 
 _major=6.7
-_minor=3
+_minor=4
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="e67ccda9df2296c6b161e6539988ddcde825ec87"
+_cachyos="89de18b6b0ea9b6b5304675d7f2ccc632d52207e"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="2b5a39b1b34a0686570d0816f8e09a4868eb9604"
+_patches="2fb3c0aac8f069f8dc2e33268e48e43adc81d72d"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -32,10 +32,10 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
         '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched-dev/0001-bore-cachy.patch"
+        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
         '0103-CACHYOS-lrng.patch'::"$_patches/misc/0001-lrng.patch")
 
-sha256sums=('b7f08c652747574a3aa26e317d7a8f23ffab3fb645e1b1533b215dcfd5742b44'
+sha256sums=('f68d9f5ffc0a24f850699b86c8aea8b8687de7384158d5ed3bede37de098d60c'
             'SKIP'
             '650e73391da0a3f3c960d7e585bf7d70ac0846fbd5e62d74aef81ec6d09b5efa'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
