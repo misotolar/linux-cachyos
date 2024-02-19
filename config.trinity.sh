@@ -146,6 +146,15 @@ scripts/config \
     -e MEDIA_SUPPORT \
     -e USB_VIDEO_CLASS
 
+### Debug
+scripts/config \
+    -d DEBUG_INFO \
+    -d DEBUG_INFO_BTF \
+    -d DEBUG_INFO_DWARF4 \
+    -d DEBUG_INFO_DWARF5 \
+    -d PAHOLE_HAS_SPLIT_BTF \
+    -d DEBUG_INFO_BTF_MODULES
+
 # Misc
 scripts/config \
     -e ZRAM \
