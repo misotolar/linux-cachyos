@@ -5,4 +5,4 @@ if [ -f "/sys/firmware/acpi/platform_profile" ]; then
 fi
 
 rm -rf "$PWD"/{makepkg,01*.patch,config,auto-cpu-optimization.sh}
-updpkgsums; makepkg --printsrcinfo > .SRCINFO; BUILDDIR="$PWD/makepkg" _LTO_CLANG="FULL" makepkg -cfisr
+updpkgsums; makepkg --printsrcinfo > .SRCINFO; BUILDDIR="$PWD/makepkg" makepkg -cfisr

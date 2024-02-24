@@ -41,8 +41,8 @@ scripts/config \
     -d HZ_500 \
     -d HZ_600 \
     -d HZ_750 \
-    -e "HZ_${_HZ:-500}" \
-    --set-val HZ ${_HZ:-500}
+    -e "HZ_${_HZ:-1000}" \
+    --set-val HZ ${_HZ:-1000}
 
 ### NUMA
 scripts/config \
@@ -97,14 +97,6 @@ scripts/config \
     -d DEFAULT_BBR2 \
     -e DEFAULT_BBR \
     --set-str DEFAULT_TCP_CONG bbr
-
-### BBR2 fix
-scripts/config \
-    -d NET_SCH_FQ_CODEL \
-    -d DEFAULT_FQ_CODEL \
-    -e NET_SCH_FQ \
-    -e DEFAULT_FQ \
-    --set-str DEFAULT_NET_SCH fq
 
 ### LRU
 scripts/config \

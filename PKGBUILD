@@ -1,6 +1,6 @@
 
 _major=6.7
-_minor=5
+_minor=6
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -11,9 +11,9 @@ pkgrel=2
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="89de18b6b0ea9b6b5304675d7f2ccc632d52207e"
+_cachyos="2833d798a4b07b9163d610fda56f370e0e3fb97b"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="2fb3c0aac8f069f8dc2e33268e48e43adc81d72d"
+_patches="10ed86207d93c531b8d720356907f027352287c3"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -34,20 +34,20 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch")
 
-sha256sums=('29f6464061b8179cbb77fc5591e06a2199324e018c9ed730ca3e6dfb145539ff'
+sha256sums=('e489ec0e1370d089b446d565aded7a698093d2b7c4122a18f21edb6ef93d37d3'
             'SKIP'
-            '650e73391da0a3f3c960d7e585bf7d70ac0846fbd5e62d74aef81ec6d09b5efa'
+            '7fcda8166f918cb686d1370e14881cade2a52625d32dde129c3dc8c24604975d'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
-            'c55e2acf1d733256b3a3fceb8d0f89039dbbf7589a69a7478634c90d74f2471e'
-            '123d6fcab660dcc669e486b43ec83ad3f6f0cc14a939af7c6b8c0a44dc24e065'
+            'a46ea769990ba0147a04ca00556dfdcf4edc1b720e11bd26e541406efea12b2a'
+            'a07680359ac5cb62b07dfc80cf844d59985d47e1b70eff71aedf8354bea810e8'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
             'a6c087a8b1efe889663c48a94ad763a2cf20aa587c40b4cc3d2f89c9bce786c0'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '072a15fc8c530d12757ac226b32ae10a00f7437c8fb6ca46312bb66b164a38da'
-            '8b5124d57d3053c44d512205cb16b3d26e275a5514946a3e52bef651a9822579')
+            'c66ed443c4f74a4013af7fdf530a68a7d0a11f96aeaaac254dfdc36ff557b4f7'
+            '89e7e11a818387b48d4a1cea365db34f34993d4131ab50e0a7f90a74980ad386')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
@@ -128,6 +128,7 @@ prepare() {
 build() {
     cd $_srcdir
     make ${KBUILD_BUILD_FLAGS[*]} -j$(nproc) all
+    make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
 }
 
 _package() {
@@ -167,7 +168,8 @@ _package-headers() {
     local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
 
     echo "Installing build files..."
-    install -Dt "$builddir" -m644 .config Makefile Module.symvers System.map localversion.* version vmlinux
+    install -Dt "$builddir" -m644 .config Makefile Module.symvers System.map \
+        localversion.* version vmlinux tools/bpf/bpftool/vmlinux.h
     install -Dt "$builddir/kernel" -m644 kernel/Makefile
     install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
     cp -t "$builddir" -a scripts

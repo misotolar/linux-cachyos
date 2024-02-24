@@ -15,8 +15,8 @@ EXTRA_FIRMWARE=(
     amdgpu/picasso_sdma.bin
     amdgpu/picasso_vcn.bin
     amdgpu/raven_dmcu.bin
-    intel/ibt-20-1-3.ddc
     intel/ibt-20-1-3.sfi
+    intel/ibt-20-1-3.ddc
     iwlwifi-cc-a0-77.ucode
     regulatory.db.p7s
     regulatory.db
@@ -145,15 +145,6 @@ sed -i 's/CONFIG_SND_SOC_AMD_RPL_ACP6x=m/CONFIG_SND_SOC_AMD_RPL_ACP6x=y/' .confi
 scripts/config \
     -e MEDIA_SUPPORT \
     -e USB_VIDEO_CLASS
-
-### Debug
-scripts/config \
-    -d DEBUG_INFO \
-    -d DEBUG_INFO_BTF \
-    -d DEBUG_INFO_DWARF4 \
-    -d DEBUG_INFO_DWARF5 \
-    -d PAHOLE_HAS_SPLIT_BTF \
-    -d DEBUG_INFO_BTF_MODULES
 
 # Misc
 scripts/config \
