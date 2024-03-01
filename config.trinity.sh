@@ -57,6 +57,7 @@ scripts/config \
 scripts/config \
     -e I2C_HID \
     -e I2C_HID_ACPI \
+    -e HID_GENERIC \
     -e HID_MULTITOUCH \
     -e CONFIG_MAC_EMUMOUSEBTN
 
@@ -156,4 +157,5 @@ scripts/config \
     -e SENSORS_K10TEMP \
     -e USB_XHCI_PCI_RENESAS \
     -e X86_ACPI_CPUFREQ \
+    -e PTP_1588_CLOCK \
     -d DM_INIT
