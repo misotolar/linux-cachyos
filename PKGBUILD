@@ -1,17 +1,17 @@
 
 _major=6.7
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="959f5874fd7d1f1c8c046640a03ac36d2b8c9955"
+_cachyos="9ba550ff2e4186e6173ef0caac8457a957fbec29"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
 _patches="9885d6292ec6d6e572da7766cbca02de94425466"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
@@ -34,7 +34,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch")
 
-sha256sums=('256b8b44570ddbe266eb3ad0c2cba2616f1609b4a3de5014a3da5512907b14d9'
+sha256sums=('469ff46b98685df13b56c98417c64ba7a30f8a45baf34aa99f07935e1bf65c18'
             'SKIP'
             'e7a9c1d173bf541e35293ebf96a5f95aa9dcb6e6dee8d742de9abae9282ebeca'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
