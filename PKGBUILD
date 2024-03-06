@@ -1,19 +1,19 @@
 
 _major=6.7
-_minor=8
+_minor=9
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=1
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="c7da597774abd0f4ebb19d1aaf0febe6341d2fc3"
+_cachyos="6dceacba54c85d79bb6885be0a1e73f2846264ef"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="44300fe16ee1fb28a55749245038a761528e64b5"
+_patches="4588682e124f40118121f43886d68a32d9c60c73"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -34,7 +34,7 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch")
 
-sha256sums=('469ff46b98685df13b56c98417c64ba7a30f8a45baf34aa99f07935e1bf65c18'
+sha256sums=('0fd733fc0778f8da1fdf66df1698d394248807de71eef83a4d1218bcb3dfd346'
             'SKIP'
             'e7a9c1d173bf541e35293ebf96a5f95aa9dcb6e6dee8d742de9abae9282ebeca'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
@@ -46,7 +46,7 @@ sha256sums=('469ff46b98685df13b56c98417c64ba7a30f8a45baf34aa99f07935e1bf65c18'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'e3b321db00706164883c2d98a13e1c27641a0a73a0fe2939b3d1a4f48221feee'
+            '33dbed74b026ba5479be899b63ee6a9cc424a156b144aa38c86944d9ed91f01a'
             '09fd83dc857b7d3a045d49a7dd26af0b01142dadb100ef354458042224d71243')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
