@@ -6,12 +6,12 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="6dceacba54c85d79bb6885be0a1e73f2846264ef"
+_cachyos="d5d786e06c7da97e2296c1264e9d38354a02cde2"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
 _patches="4588682e124f40118121f43886d68a32d9c60c73"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
