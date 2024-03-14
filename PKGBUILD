@@ -1,6 +1,6 @@
 
-_major=6.7
-_minor=9
+_major=6.8
+_minor=0
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -8,12 +8,12 @@ pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and imp
 pkgver="$_major.$_minor"
 pkgrel=2
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="d5d786e06c7da97e2296c1264e9d38354a02cde2"
+_cachyos="ef8a4eb271d6251078ee698b5e9026b4ea7fb35e"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="4588682e124f40118121f43886d68a32d9c60c73"
+_patches="36fb0d105bdc2a2b43f3f53ac639e742331052c3"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 arch=('x86_64' 'x86_64_v3')
@@ -23,7 +23,7 @@ license=('GPL2')
 makedepends=('bc' 'clang' 'cpio' 'libelf' 'lld' 'llvm' 'pahole' 'perl' 'python' 'tar' 'xz' 'zstd')
 options=('!strip')
 
-source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
+source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
         "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
         '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
         '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
@@ -34,9 +34,9 @@ source=("$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
         '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
         '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch")
 
-sha256sums=('0fd733fc0778f8da1fdf66df1698d394248807de71eef83a4d1218bcb3dfd346'
+sha256sums=('c969dea4e8bb6be991bbf7c010ba0e0a5643a3a8d8fb0a2aaa053406f1e965f3'
             'SKIP'
-            'e7a9c1d173bf541e35293ebf96a5f95aa9dcb6e6dee8d742de9abae9282ebeca'
+            '56db65e3a21ec87507fc313ff87e7cd58ddbdc1235f5b1a78d2970e45ffcaafc'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             'a46ea769990ba0147a04ca00556dfdcf4edc1b720e11bd26e541406efea12b2a'
             'c6a66df559d105ce17e9571c96b9bffbd1fdc309b8476f9ee6bdc19baa68a4c8'
@@ -46,8 +46,8 @@ sha256sums=('0fd733fc0778f8da1fdf66df1698d394248807de71eef83a4d1218bcb3dfd346'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '33dbed74b026ba5479be899b63ee6a9cc424a156b144aa38c86944d9ed91f01a'
-            '09fd83dc857b7d3a045d49a7dd26af0b01142dadb100ef354458042224d71243')
+            '98697769413015b25fa1314e5f86a843aa5263e49fa06bf725d0e20df4571e93'
+            'b6d3a6ac4c2f149cc02541e62d1aa691bdc63a5e940c5deb96245f7c0f2fe867')
 
 validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
               '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
