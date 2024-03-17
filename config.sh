@@ -104,11 +104,6 @@ scripts/config \
     -e LRU_GEN_ENABLED \
     -d LRU_GEN_STATS
 
-### VMA
-scripts/config \
-    -e PER_VMA_LOCK \
-    -d PER_VMA_LOCK_STATS
-
 ### ZSTD
 scripts/config \
     --set-val ZSTD_COMPRESSION_LEVEL 3 \

@@ -1,6 +1,6 @@
 
 _major=6.8
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -8,37 +8,64 @@ pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and imp
 pkgver="$_major.$_minor"
 pkgrel=2
 
-_srcdir="linux-$_major"
-_kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
-
-_cachyos="ef8a4eb271d6251078ee698b5e9026b4ea7fb35e"
-_cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="36fb0d105bdc2a2b43f3f53ac639e742331052c3"
-_patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
-
-arch=('x86_64' 'x86_64_v3')
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
+arch=(
+    x86_64
+    x86_64_v3
+)
 
-makedepends=('bc' 'clang' 'cpio' 'libelf' 'lld' 'llvm' 'pahole' 'perl' 'python' 'tar' 'xz' 'zstd')
-options=('!strip')
+_srcdir="linux-$pkgver"
+_kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-source=("$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
-        "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
-        '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
-        '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
-        '0003-x86-save-restore-TSC-counter-value-during-sleep-wake.patch'
-        '0004-x86-only-restore-TSC-if-we-have-IA32_TSC_ADJUST-or-d.patch'
-        '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
-        '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
-        '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-        '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch")
+_cachyos="957e43819cbfc804b12f2a421e97702b74439351"
+_cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
+_patches="e9e9b8ab5f60f70261418a2110dd7f2104271603"
+_patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
-sha256sums=('c969dea4e8bb6be991bbf7c010ba0e0a5643a3a8d8fb0a2aaa053406f1e965f3'
+makedepends=(
+    bc
+    clang
+    cpio
+    libelf
+    lld
+    llvm
+    pahole
+    perl
+    python
+    tar
+    xz
+    zstd
+)
+
+options=(
+    !debug
+    !strip
+)
+
+source=(
+    "$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
+    "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
+    '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
+    '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
+    '0003-x86-save-restore-TSC-counter-value-during-sleep-wake.patch'
+    '0004-x86-only-restore-TSC-if-we-have-IA32_TSC_ADJUST-or-d.patch'
+    '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
+    '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
+    '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
+    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
+)
+
+validpgpkeys=(
+    ABAF11C65A2970B130ABE3C479BE3E4300411886 # Linus Torvalds
+    647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
+)
+
+sha256sums=('8d0c8936e3140a0fbdf511ad7a9f21121598f3656743898f47bb9052d37cff68'
             'SKIP'
-            '56db65e3a21ec87507fc313ff87e7cd58ddbdc1235f5b1a78d2970e45ffcaafc'
+            'c54d2c2887a1ed320ff37efae8c1a0c93039b6b0fa9d1e56e6ffca983c7f1ebb'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
-            'a46ea769990ba0147a04ca00556dfdcf4edc1b720e11bd26e541406efea12b2a'
+            'af7350582682cd365a2ddb0e4b1303a3617d2797ecb9543de9a3f0c09494f68e'
             'c6a66df559d105ce17e9571c96b9bffbd1fdc309b8476f9ee6bdc19baa68a4c8'
             '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
             'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
@@ -46,11 +73,8 @@ sha256sums=('c969dea4e8bb6be991bbf7c010ba0e0a5643a3a8d8fb0a2aaa053406f1e965f3'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            '98697769413015b25fa1314e5f86a843aa5263e49fa06bf725d0e20df4571e93'
+            'a36683ddb91b39b2136c5767916000bfd30b20980d6d73cb9b32c1187d85ef89'
             'b6d3a6ac4c2f149cc02541e62d1aa691bdc63a5e940c5deb96245f7c0f2fe867')
-
-validpgpkeys=('ABAF11C65A2970B130ABE3C479BE3E4300411886'   # Linus Torvalds
-              '647F28654894E3BD457199BE38DBBDC86092693E')  # Greg Kroah-Hartman
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
