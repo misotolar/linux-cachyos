@@ -70,11 +70,6 @@ if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
         --set-val NR_CPUS $(($(nproc)*2))
 fi
 
-### Performance governor
-scripts/config \
-    -d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL \
-    -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
-
 ### TCP congestion control
 scripts/config \
     -d TCP_CONG_BIC \

@@ -46,6 +46,15 @@ scripts/config \
 scripts/config --set-str EXTRA_FIRMWARE "${EXTRA_FIRMWARE_STR}"
 scripts/config --set-str EXTRA_FIRMWARE_DIR "${EXTRA_FIRMWARE_DIR}"
 
+### Governor
+scripts/config \
+    -d CPU_FREQ_GOV_CONSERVATIVE \
+    -d CPU_FREQ_GOV_ONDEMAND \
+    -d CPU_FREQ_GOV_POWERSAVE \
+    -d CPU_FREQ_GOV_USERSPACE \
+    -d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL \
+    -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+
 # Input
 scripts/config \
     -e KEYBOARD_ATKBD \
