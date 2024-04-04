@@ -17,9 +17,6 @@ steps:
 
 - name: makepkg
   image: misotolar/makepkg-obs
-  volumes:
-  - name: cache
-    path: /tmp
   environment:
     OBS_PROJECT: home:misotolar:linux-cachyos
     OBS_PACKAGE: linux-cachyos
@@ -27,21 +24,3 @@ steps:
         from_secret: OBS_USERNAME
     OBS_PASSWORD:
         from_secret: OBS_PASSWORD
-
-- name: cleanup
-  image: misotolar/makepkg-obs
-  volumes:
-  - name: cache
-    path: /tmp
-  commands:
-  - rm -rf /tmp/build
-  - rm -rf /tmp/tmp.*
-  when:
-    status:
-    - success
-    - failure
-
-volumes:
-- name: cache
-  host:
-    path: /mnt/cache

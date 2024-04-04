@@ -1,12 +1,12 @@
 
 _major=6.8
-_minor=1
+_minor=3
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=4
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="41787ef66db219d860fb71c84f474947b2b8b820"
+_cachyos="105ae4f883bbded6803eaa8be078eb5ecbbfa58a"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="2cf3c7133592bf7abb7bb808ee8f8f0e6f91bfcb"
+_patches="1be22a4306f1de81e9cbfb7c38b3f162ce272c67"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -53,7 +53,7 @@ source=(
     '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
     '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched-dev/0001-bore-cachy.patch"
+    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
 )
 
 validpgpkeys=(
@@ -61,9 +61,9 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('8d0c8936e3140a0fbdf511ad7a9f21121598f3656743898f47bb9052d37cff68'
+sha256sums=('db7eb56d5014ee9a7fac0c715053155d92798d98d9197a2173eef1f0a496c986'
             'SKIP'
-            'c54d2c2887a1ed320ff37efae8c1a0c93039b6b0fa9d1e56e6ffca983c7f1ebb'
+            '09abc555c5e7771fec4645ba8ce0387e159c4cc7e88bcd421ac173df84fd14e8'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             '47a3e1b13cb41b5215c7f296daed83fa94313fa4b231eaa645509f01c642d9ae'
             'd494966fb290686a5703fbf13296e7f1da96909da7e9a054324858d5a62eaa54'
@@ -73,8 +73,8 @@ sha256sums=('8d0c8936e3140a0fbdf511ad7a9f21121598f3656743898f47bb9052d37cff68'
             'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
             'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
             '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'e3315fe639f36fd92c3ff4b5269c52021d1d6d7454f90c55635b8329881dc2e8'
-            '111b5b023bd99c5d3d9bed3e88b7e754807b5bdbce291d7c081dbf2f02a715c8')
+            '87bbd2fa2fce6b8a2b692f5c3a7f6102b452162ce911a69920b26fa2ec0d881f'
+            '93d487948398dd3bc0a575891dafaae891e0ba7ef6ffaf76062d1fb3e78b4c1c')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
