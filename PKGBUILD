@@ -1,6 +1,6 @@
 
 _major=6.8
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="b47828feffdd60e7d478cc2ab2d603f17dc6ae3e"
+_cachyos="37578fd0d9f7cf54380d4e2f6797a9f0f5f152d4"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="4cf1f88d73f7743a4e99c253224105a2ab86324b"
+_patches="e1b6dfe6aa6fea7e996260a89ecf269d5cc39bdf"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -46,12 +46,6 @@ options=(
 source=(
     "$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
-    '0001-x86-implement-tsc-directsync-for-systems-without-IA3.patch'
-    '0002-x86-touch-clocksource-watchdog-after-syncing-TSCs.patch'
-    '0003-x86-save-restore-TSC-counter-value-during-sleep-wake.patch'
-    '0004-x86-only-restore-TSC-if-we-have-IA32_TSC_ADJUST-or-d.patch'
-    '0005-x86-don-t-check-for-random-warps-if-using-direct-syn.patch'
-    '0006-x86-disable-tsc-watchdog-if-using-direct-sync.patch'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
 )
@@ -61,20 +55,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('291d1a1faf4e87b3b0ea9729080db887aafd1ff2fac1430ceca921e46bc22fae'
+sha256sums=('1c4cdcb9d560fad1fb95db2cb8afbedc922f9ead848371fe40363b13f9f631ba'
             'SKIP'
-            'd61b49ef6cff6c6319674d13798a6a0f83ae45c850b364a1b96e338adbb5b4fc'
+            'b815cb084c52e73a3e17291ff32021b6d500f7d9d6cab6ae512b9f02bd174069'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             '47a3e1b13cb41b5215c7f296daed83fa94313fa4b231eaa645509f01c642d9ae'
-            'd494966fb290686a5703fbf13296e7f1da96909da7e9a054324858d5a62eaa54'
-            '980b2108bca4d97acbb8bd962695acac012c8846294486104e25994f059b3594'
-            'd66f2487a84875aea6dd81038a2b806ffb8af2f4c7e4366df0db44c1e3c17b5d'
-            'a6c087a8b1efe889663c48a94ad763a2cf20aa587c40b4cc3d2f89c9bce786c0'
-            'ce17045b4d29519d20920ae7ef33f82757e00b1e189ecbda6ab63782f1318759'
-            'd27a2acec2e65df2226d2025ab255a74acd01ed2162e00907362464e5a2636fc'
-            '3f51da3f1ed5a0d115e69047ef9fd1cfb36adf48d0e6d812fbf449b61db5d373'
-            'bca334729bb3452a748f9c82aa8a21eec5c1a15817bc5f69ecb62d3a3a5b62b8'
-            '93d487948398dd3bc0a575891dafaae891e0ba7ef6ffaf76062d1fb3e78b4c1c')
+            '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
+            'd0b27acdf27dbde3aca05749068122b9d84ffa462a5c173e21b801b178686833'
+            '10516e51c1bb29c45536c30fff0f7cb38ed1be8c3bcc5ae1578e7d30795d67f7')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
@@ -142,7 +130,6 @@ prepare() {
     echo "Rewrite configuration..."
     make ${KBUILD_BUILD_FLAGS[*]} prepare
     yes "" | make ${KBUILD_BUILD_FLAGS[*]} config >/dev/null
-    diff -u ../config .config || :
 
     ### Prepared version
     make -s kernelrelease > version
