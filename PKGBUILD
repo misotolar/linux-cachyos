@@ -6,7 +6,7 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=4
+pkgrel=6
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="022279c8ed8c99c22865fd14d24742a172f2c389"
+_cachyos="9561889dfc6effd454305b846ba0acb846841ec1"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="c6e17e01f6475a1ce29b03827091a9d757a7a7b2"
+_patches="d3d17e7efad2759dead001076ba3094d40bacb97"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -63,7 +63,7 @@ sha256sums=('f905f1238ea7a8e85314bacf283302e8097006010d25fcea726d0de0ea5bc9b6'
             '47a3e1b13cb41b5215c7f296daed83fa94313fa4b231eaa645509f01c642d9ae'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
             '11823f5c5a4768d6a6a2e6a8b016b396d285b1352b0f769e1facdf5f551437bb'
-            '66d37f3a751fbd79de2ab168f03acbf27954ca8fa92de11a879b1b17f367b733'
+            '5c2062cb794ede9dd6f56c2a8d357e668cfd1eddb5971d721c5d7ae5c7de1fec'
             '4c41b5bda474be6567c4cb4a8ff4cad3fdf46f991c5cb5908223a59d51efd3dd')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
