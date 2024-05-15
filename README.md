@@ -1,5 +1,5 @@
 # CachyOS Kernel Arch Linux package
-[![Build Status](https://drone02.sotolar.net/api/badges/misotolar/linux-cachyos/status.svg)](https://drone02.sotolar.net/misotolar/linux-cachyos)
+[![status-badge](https://build02.sotolar.net/api/badges/5/status.svg)](https://build02.sotolar.net/repos/5)
 
 Improved [CachyOS Kernel](https://github.com/cachyos/linux-cachyos) with custom config:
 

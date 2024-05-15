@@ -1,12 +1,12 @@
 
-_major=6.8
-_minor=9
+_major=6.9
+_minor=0
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux EEVDF-BORE scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=7
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -15,12 +15,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="9561889dfc6effd454305b846ba0acb846841ec1"
+_cachyos="0262f03c42d3aec2e5ff8134678a2b57a07a6e02"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d3d17e7efad2759dead001076ba3094d40bacb97"
+_patches="308013ec169b169b67b3ef2a111649fc6448126e"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -44,9 +44,8 @@ options=(
 )
 
 source=(
-    "$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
+    "$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
-    '0001-iwl-net-v1-1-1-e1000e-change-usleep_range-to-udelay-in-PHY-mdic-access.patch'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
 )
@@ -56,15 +55,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('f905f1238ea7a8e85314bacf283302e8097006010d25fcea726d0de0ea5bc9b6'
+sha256sums=('24fa01fb989c7a3e28453f117799168713766e119c5381dac30115f18f268149'
             'SKIP'
-            'c502ec4ac58a6b479dec60050d7c48cb2fe7024c4bd0c417d5e38008da866ec6'
+            'bb481c55b4efeb43111010897250a5457e8eba06c83ddba4d2550e81db5fad16'
             '3f3233256725683aa95c29ee423932a5bcc74c0653e09d502240601387c3edec'
             '47a3e1b13cb41b5215c7f296daed83fa94313fa4b231eaa645509f01c642d9ae'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '11823f5c5a4768d6a6a2e6a8b016b396d285b1352b0f769e1facdf5f551437bb'
-            '5c2062cb794ede9dd6f56c2a8d357e668cfd1eddb5971d721c5d7ae5c7de1fec'
-            '4c41b5bda474be6567c4cb4a8ff4cad3fdf46f991c5cb5908223a59d51efd3dd')
+            '2566a0891b62c0a80cd53b5cb246b30fe9ac4cc61892ddfee33fa8f6f55e29cd'
+            '215ced6ca0821568f1f7117ec0e09d2958d980781d15822a02d88170c1092279')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"

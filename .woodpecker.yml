@@ -1,0 +1,27 @@
+when:
+
+  - event: push
+
+clone:
+
+  - name: clone
+    image: alpine/git
+    pull: true
+    commands:
+      - git init --quiet
+      - git remote add origin ${CI_REPO_CLONE_URL}
+      - git fetch --quiet --depth=1 origin "+refs/heads/${CI_COMMIT_BRANCH}:"
+      - git checkout ${CI_COMMIT_SHA} -b ${CI_COMMIT_BRANCH}
+
+steps:
+
+  - name: makepkg
+    image: misotolar/makepkg-obs
+    pull: true
+    environment:
+      OBS_PACKAGE: linux-cachyos
+      OBS_PROJECT: home:misotolar:linux-cachyos
+      OBS_USERNAME:
+          from_secret: OBS_USERNAME
+      OBS_PASSWORD:
+          from_secret: OBS_PASSWORD
