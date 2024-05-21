@@ -93,11 +93,26 @@ scripts/config \
     -e DEFAULT_BBR \
     --set-str DEFAULT_TCP_CONG bbr
 
-### LRU
+### Tickrate
 scripts/config \
-    -e LRU_GEN \
-    -e LRU_GEN_ENABLED \
-    -d LRU_GEN_STATS
+    -d HZ_PERIODIC \
+    -d NO_HZ_IDLE \
+    -d CONTEXT_TRACKING_FORCE \
+    -e NO_HZ_FULL_NODEF \
+    -e NO_HZ_FULL \
+    -e NO_HZ \
+    -e NO_HZ_COMMON \
+    -e CONTEXT_TRACKING
+
+### Preempt
+scripts/config \
+    -e PREEMPT_BUILD \
+    -d PREEMPT_NONE \
+    -d PREEMPT_VOLUNTARY \
+    -e PREEMPT \
+    -e PREEMPT_COUNT \
+    -e PREEMPTION \
+    -e PREEMPT_DYNAMIC
 
 ### ZSTD
 scripts/config \
