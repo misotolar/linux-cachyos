@@ -1,6 +1,6 @@
 
 _major=6.9
-_minor=5
+_minor=6
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="e973bc80ce671155bbacb89ea39d1fd90906ec8f"
+_cachyos="5f0b8639b592d80f3fce63a573610ff57372562d"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="af0a0661d7ca863978a617dc118d093319e1123e"
+_patches="b2265a031cd053e5316d424c902075aa8caddc5f"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -55,13 +55,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('a51fb4ab5003a6149bd9bf4c18c9b1f0f4945c272549095ab154b9d1052f95b1'
+sha256sums=('5d4366e2b89998f274abe03557ef3bc78b58e47fc62c102d51e6f49e5ed96b4b'
             'SKIP'
             '021c772b922dae1ec26a3feb70f1c1754051ff6b3f1327acff3f36c7ab2d4d84'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '42f0f4588f23642c48cf8ddf231af61ae8ea0e3bddd4ad5b05dfb217a7b22cf8'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            'e5821b32856c2914263df6622027f3b922750820ced768d49f1d21d7009ddc59'
+            'e54a55ee8603cc23a9ddc1ccfcbaa7091cfef7487117076d3deb80b68817da25'
             '9539445cfd4e204204fa66cc1a62abae1e4bebb92aa1edc78fcef1ec2e53d1d7')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
