@@ -1,12 +1,12 @@
 
 _major=6.9
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux BORE + Cachy Sauce scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="cbd4ee0a2b67ecafb5fa164be5db0538cdc420c0"
+_cachyos="d60380a4f011d7b1cbd06f7b0ee75482f88682bd"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="822679af2ebc0b577050546896ed608697973195"
+_patches="685cd13f7ecf3b3f70d9b8f2cb2f6c93d2cf2c5c"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -55,14 +55,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('e4f588cd91eef9d461e5e14fdf9415feff8a72fbcc274089a0f768a58de001f8'
+sha256sums=('f048267b7b88316c9ca708c68d15a9ae802dcfc943c3188c1273eb958c433281'
             'SKIP'
-            '1ecc3438ba59830ee5248d02de0a9c7ddcfc26d6236ee7c13eac10f0a90ec293'
+            '8b5b6222e1317ff21e970a252f836ef2e966217bfceeff5269372336610d89d1'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '42f0f4588f23642c48cf8ddf231af61ae8ea0e3bddd4ad5b05dfb217a7b22cf8'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '5b366db5c1293918d634018e39d0e5a6251175beb12768df04dd8455f7e5d37e'
-            '9539445cfd4e204204fa66cc1a62abae1e4bebb92aa1edc78fcef1ec2e53d1d7')
+            'c990a4348c69dac4e9856af0a2040e3bc6ba62b273adb928ef65e3ce369606f9'
+            '594eef847101881188a7ea06f7fb11ecae2934cee60c854b5759adf93a853a24')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
