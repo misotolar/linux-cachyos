@@ -6,7 +6,7 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux BORE + Cachy Sauce scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=4
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="e3c2d349dc9ac8b02312524c83fb9e67d638d871"
+_cachyos="1c3fc9959075f2af524fcbe1499dcf4c5c1c02c7"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="f1aa1ead49603fcae629345b1cb78481593ae046"
+_patches="d89e025009e09aa477123548a4bb22a7853024bf"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -47,7 +47,7 @@ source=(
     "$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
+    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched-dev/0001-bore-cachy.patch"
 )
 
 validpgpkeys=(
@@ -57,12 +57,12 @@ validpgpkeys=(
 
 sha256sums=('774698422ee54c5f1e704456f37c65c06b51b4e9a8b0866f34580d86fef8e226'
             'SKIP'
-            '34b362f360ca851ac665dc28da6008e6622a311363df52921217c852ccb93c09'
+            '2260a906a2735c904c7e22992d10a75e15f0e19184d4c33f6d898115eea401c4'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '42f0f4588f23642c48cf8ddf231af61ae8ea0e3bddd4ad5b05dfb217a7b22cf8'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
             '004e74cc44ffe159ecfdb96a934dd42058f285480aa118a307ba0fbd245bb93f'
-            '1619fc0d32ec9c6f191a3ebe0a6af2bf9402ef61ec33fabd99f49b11e51e63f2')
+            'a9244f59332c46281342968458feac86b9487e469e473fcb9bf5e0598050c1b1')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
