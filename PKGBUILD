@@ -6,7 +6,7 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux BORE + Cachy Sauce scheduler Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=3
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="a18fcf750a4d3031f872f2c30815513687330d57"
+_cachyos="2a71c29a3ff1f718cbe78f87dc4fdc630cffb773"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="191926134258604305c668f095e727f7beddbb4d"
+_patches="65b6a87e16674f1a22638e7d33883a214e1dce44"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
