@@ -1,6 +1,6 @@
 
-_major=6.10
-_minor=9
+_major=6.11
+_minor=1
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -15,12 +15,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="1e7cf9a67855ff0481d0596dbfaaa62e6799c3b5"
+_cachyos="9de83922742a57a1c23c0e0533076a20e88999fd"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="93e6ac87c7fd60cef2971cf9b53d6ca3942d409c"
+_patches="168986ed56fa48061ec89d77a0f124c049a9699b"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -33,6 +33,9 @@ makedepends=(
     pahole
     perl
     python
+    rust
+    rust-bindgen
+    rust-src
     tar
     xz
     zstd
@@ -44,7 +47,7 @@ options=(
 )
 
 source=(
-    "$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
+    "$_kernel/linux-$_major.tar.xz" "$_kernel/linux-$_major.tar.sign"
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
@@ -55,14 +58,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('a4489b70e0a7c2dc8f501b9cd7fc76989be2febb5519e163ecf816064f2f6858'
+sha256sums=('55d2c6c025ebc27810c748d66325dd5bc601e8d32f8581d9e77673529bdacb2e'
             'SKIP'
-            '93c879aad4f32286dd36b2a1b52d0e914b105799b7ec30a11eacccb0e8bc1e93'
+            'ddee4faa970363aae1cadb1f58a473db6e62f4257f9899fc49c7d50b53074b15'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
-            '42f0f4588f23642c48cf8ddf231af61ae8ea0e3bddd4ad5b05dfb217a7b22cf8'
+            'e8535032648f3214dc32c5b774ce3d66729c567b99af6e9d48b637b7c004299e'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            'f73ea79fb23192e55b418a658a6a0e04592e8377910ea072c0388ca3d3d46ecc'
-            '9ac733aa0af265425051cd69bc70503ff410b8ff7d889006362f82715993258c')
+            '765893fcde155c1f22ad766c76689217676061e30cd6ffdc44968eae7d315630'
+            '5633294d486b5717faf56c0c2954035ba56d95e7f7af4b4e9008dc0ef7662333')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"

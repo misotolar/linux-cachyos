@@ -29,6 +29,10 @@ scripts/config \
     -d LTO_CLANG_THIN \
     -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
 
+### Rust
+scripts/config \
+    -d RUST
+
 ### KCFI
 scripts/config \
     -d CFI_CLANG
@@ -118,6 +122,12 @@ scripts/config \
 scripts/config \
     --set-val ZSTD_COMPRESSION_LEVEL 3 \
     --set-val MODULE_COMPRESS_ZSTD_LEVEL 3
+
+### Hardening
+scripts/config \
+    -d CONFIG_RANDSTRUCT_FULL \
+    -d CONFIG_RANDSTRUCT_PERFORMANCE \
+    -e CONFIG_RANDSTRUCT_NONE
 
 ### Debug
 scripts/config \
