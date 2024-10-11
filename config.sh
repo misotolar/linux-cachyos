@@ -14,6 +14,7 @@ scripts/config \
 
 ### Scheduler
 scripts/config  \
+    -e SCHED_CLASS_EXT \
     -e SCHED_BORE
 
 ### LLVM level
