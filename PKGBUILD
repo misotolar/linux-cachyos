@@ -1,12 +1,12 @@
 
 _major=6.11
-_minor=3
+_minor=4
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='The Linux SCHED-EXT + BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements kernel and modules'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="87d7f31e9072d47240337461a8ba3059505a4235"
+_cachyos="0d6c2f72faf435fefeaa0f8eec55eac158dfe464"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="03b544a12677b9c217dabf49498cd2eda56b72f1"
+_patches="accdaec92cd48370e79dacea1015f4f0bcea7528"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -59,13 +59,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('057263d0afc17d5253794afd3d239ba4da4aa734b22fa36c1665f41b95449b73'
+sha256sums=('bd54b0a0a46574919706698b1411ec48cf2a58345c4d8990e414acc4730e8f55'
             'SKIP'
-            'c76dc2df73e59522e60521c9f2408d1aba09dcbdd4dac6275405c4d4506e1534'
+            '2636d93938120bcdfd49ff38fbe1aa9b4ee1a613b0cf7e592d8eaeaf471b6fd8'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            'a89d00ddf0a3842961e8f8e0dcd39d39bdf1adb28cb80d04c29b77a20b55d84b'
+            '903f91fa69bb43b8998954b6f21894502bd0278172c131225b085853a63f7a1a'
             '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
             'dccf8a547bbbb32fc75727494c1fb6f3f21acfd9abe7c1174b3de1d0198f8d40')
 
@@ -154,7 +154,7 @@ _package() {
                 'linux-firmware: firmware images needed for some devices'
                 'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
                 'uksmd: userspace KSM helper daemon')
-    provides=(KSMBD-MODULE UKSMD-BUILTIN VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+    provides=(KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
     replaces=()
 
     cd $_srcdir
