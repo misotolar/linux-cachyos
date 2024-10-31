@@ -6,7 +6,7 @@ pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='The Linux SCHED-EXT + BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements kernel and modules'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=3
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -20,7 +20,7 @@ _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
 _cachyos="4b03aa3f0c1e3380fe9ada0b86c903aa1a933def"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="6134af19c17071a297b76e19f9bdbc674897c659"
+_patches="b7980f97f1b88029af0cee9e3ab17c76857e335d"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -51,7 +51,7 @@ source=(
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-sched-ext.patch'::"$_patches/sched/0001-sched-ext.patch"
-    '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched/0001-bore-cachy-ext.patch"
+    '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched-dev/0001-bore-cachy-ext.patch"
 )
 
 validpgpkeys=(
@@ -65,9 +65,9 @@ sha256sums=('471485b3b7f2fb637bd8fe3d00944c4c135c7d8ee02f357f33690baab0752a07'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '5698704fff772109cf7ad69b9b652e3d6fae2d5aa8dda1b60bce922c22986230'
+            '4170adb32e931dc168fc2b6975749fd83c4cfadea18583c31d667d73da797da5'
             '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
-            'dccf8a547bbbb32fc75727494c1fb6f3f21acfd9abe7c1174b3de1d0198f8d40')
+            'f4a58d3a290d31f5e55c6b8d9252cd7009c69e3291e4806bdd6f70fcd52e6d8c')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
