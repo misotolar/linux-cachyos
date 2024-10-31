@@ -1,12 +1,12 @@
 
 _major=6.11
-_minor=4
+_minor=5
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='The Linux SCHED-EXT + BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements kernel and modules'
 pkgver="$_major.$_minor"
-pkgrel=5
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="09e013c94deb83c04783ca3bdf24f43cda012c8f"
+_cachyos="4b03aa3f0c1e3380fe9ada0b86c903aa1a933def"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e89f332a77abdc44271088242e55a13e9b07bc02"
+_patches="6134af19c17071a297b76e19f9bdbc674897c659"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -59,13 +59,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('bd54b0a0a46574919706698b1411ec48cf2a58345c4d8990e414acc4730e8f55'
+sha256sums=('471485b3b7f2fb637bd8fe3d00944c4c135c7d8ee02f357f33690baab0752a07'
             'SKIP'
             'aa9407e0cbf9cfbe9a338d30b214d263800029fe9a6a5687c1d6c12e4ac946a6'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            'aac1a955066652aaeaaa27ef184dcd11ddf65ae95b25065917aa5514a0182482'
+            '5698704fff772109cf7ad69b9b652e3d6fae2d5aa8dda1b60bce922c22986230'
             '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
             'dccf8a547bbbb32fc75727494c1fb6f3f21acfd9abe7c1174b3de1d0198f8d40')
 
