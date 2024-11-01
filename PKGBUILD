@@ -1,12 +1,12 @@
 
 _major=6.11
-_minor=5
+_minor=6
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='The Linux SCHED-EXT + BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements kernel and modules'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="4b03aa3f0c1e3380fe9ada0b86c903aa1a933def"
+_cachyos="450048a1621bd7a3d965e00f32901dbe1c8f1a3f"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="b7980f97f1b88029af0cee9e3ab17c76857e335d"
+_patches="b493c88643bcba9fa0eb18216130b1dd0d6e0191"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -51,7 +51,7 @@ source=(
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-sched-ext.patch'::"$_patches/sched/0001-sched-ext.patch"
-    '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched-dev/0001-bore-cachy-ext.patch"
+    '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched/0001-bore-cachy-ext.patch"
 )
 
 validpgpkeys=(
@@ -59,13 +59,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('471485b3b7f2fb637bd8fe3d00944c4c135c7d8ee02f357f33690baab0752a07'
+sha256sums=('c954f60197008f1e1f32a1e77293903cf3801d2543ec4bf521f5651eb7f133ce'
             'SKIP'
-            'aa9407e0cbf9cfbe9a338d30b214d263800029fe9a6a5687c1d6c12e4ac946a6'
+            'ff03b27d5f7700bd6084ee08159e906a4a7bfa186dafad2be17876d7a7a8dd27'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '4170adb32e931dc168fc2b6975749fd83c4cfadea18583c31d667d73da797da5'
+            'a13af40929e49463399b5afaae226ae8997625286d60bf689ff966f2edc87bef'
             '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
             'f4a58d3a290d31f5e55c6b8d9252cd7009c69e3291e4806bdd6f70fcd52e6d8c')
 
