@@ -1,6 +1,6 @@
 
 _major=6.11
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="87397251123612ccf0dbfd4c18b59fee52dcb474"
+_cachyos="58a991089c301fd14a302116d3e1b1767553ddaa"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="a67f3e9c12346eb45dc29b7fad1b2aa3b8b24efd"
+_patches="667133c40cccf39bed04e54ba5b9ee5e97d3878b"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -52,6 +52,7 @@ source=(
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-sched-ext.patch'::"$_patches/sched/0001-sched-ext.patch"
     '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched/0001-bore-cachy-ext.patch"
+    '0104-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
 )
 
 validpgpkeys=(
@@ -59,15 +60,16 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('0bf5ec644817d7928920f763581311f5bf258a92759cf2f30985da743af3ebb2'
+sha256sums=('aee8a844fe152420bece70ffae8525b9b23089aa4da31fa32f30e1859bf93c3d'
             'SKIP'
-            'ff03b27d5f7700bd6084ee08159e906a4a7bfa186dafad2be17876d7a7a8dd27'
+            'aaa800e6475738ff5919172a2e5393a6008a08080a8f471de07702a0716538c4'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
             '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '5d87dc755a838044c655d6f21bf0c99db6fba3ce2c1f830efcfd549984e579f8'
+            '013c8cf10f3294de088f7e0667b9a34ade45f8b74590bc8ff4512fd83b259813'
             '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
-            '73142c6839385f340e925787772e05989d2c8ab61b3c78fa8a4120a539e6bc3e')
+            '73142c6839385f340e925787772e05989d2c8ab61b3c78fa8a4120a539e6bc3e'
+            '65b5745c2e07d93495a5aa1ff7269c89e7aef42acff0d018ab05663560bdf8f7')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
