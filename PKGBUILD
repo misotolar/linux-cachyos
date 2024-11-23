@@ -1,10 +1,10 @@
 
-_major=6.11
-_minor=9
+_major=6.12
+_minor=1
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
-pkgdesc='The Linux SCHED-EXT + BORE + Cachy Sauce Kernel by CachyOS with other patches and improvements kernel and modules'
+pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
 pkgrel=2
 
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="c6d6a8f9f3a4947eb7453104947186e26261d840"
+_cachyos="08704123924b85d938e4d46f05273bf36a83fbf7"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e54b1e7dfd090479c21372dad3f4917d1a1dfa89"
+_patches="27962ea0a427d4a36c74be49e58bb0e070337e78"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -50,9 +50,8 @@ source=(
     "$_kernel/linux-$pkgver.tar.xz" "$_kernel/linux-$pkgver.tar.sign"
     "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-    '0102-CACHYOS-sched-ext.patch'::"$_patches/sched/0001-sched-ext.patch"
-    '0103-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched/0001-bore-cachy-ext.patch"
-    '0104-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
+    '0102-CACHYOS-bore-cachy-ext.patch'::"$_patches/sched/0001-bore-cachy.patch"
+    '0103-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
 )
 
 validpgpkeys=(
@@ -60,15 +59,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('75658a7aa3bd9598c96ee1e5862c5e1d34fced75c28d825c727a1510a6f384b4'
+sha256sums=('0193b1d86dd372ec891bae799f6da20deef16fc199f30080a4ea9de8cef0c619'
             'SKIP'
-            'aaa800e6475738ff5919172a2e5393a6008a08080a8f471de07702a0716538c4'
+            '8e582aca15dd8b15acc3493df96c217734f548b5d86c02cfffa60b6bc3e06403'
             'a91249420d61edb17b8659ab3feca86d24cf3b1c941b14f232c47064fa4f4ce7'
-            '85c45570567273d8816211fdde19d14749ee2c5e3550dc229260c9ec87ddfac2'
+            '9fe3768b829812bde6c061c0a5e0db1221064aa81c2653465e1a52434161746e'
             '678b3e986971e6696aeab4e85d8d2027f2feba2531993afd3cb1f487f8014d48'
-            '91c62ff8e2616239f6fd37f1c2c38abdcbc683dde92a9b6ebc7b99db2d6af28e'
-            '3aa68d896dd588ead5f8fc723adc9e595ebfc1b613e915c84f7ab92f6a63d8b6'
-            '73142c6839385f340e925787772e05989d2c8ab61b3c78fa8a4120a539e6bc3e'
+            '91ca3753409f289651645836c316c141b9846cc16cc91e8b58fce0cce34d9933'
+            '4fe54c0e52a53b4fe162e2ff6158cbc0bc9de38aa8053150394c5fcab22c9bfe'
             '65b5745c2e07d93495a5aa1ff7269c89e7aef42acff0d018ab05663560bdf8f7')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"

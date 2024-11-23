@@ -30,6 +30,10 @@ scripts/config \
     -d LTO_CLANG_THIN \
     -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
 
+### AutoFDO
+scripts/config \
+    -d AUTOFDO_CLANG
+
 ### Rust
 scripts/config \
     -d RUST
@@ -132,14 +136,12 @@ scripts/config \
 
 ### Debug
 scripts/config \
-    -d SLUB_DEBUG \
     -d PM_DEBUG \
-    -d PM_ADVANCED_DEBUG \
     -d PM_SLEEP_DEBUG \
-    -d ACPI_DEBUG \
-    -d SCHED_DEBUG \
-    -d LATENCYTOP \
     -d DEBUG_PREEMPT \
+    -d SCHED_DEBUG \
+    -d SLUB_DEBUG \
+    -d ACPI_DEBUG \
     -d KMSAN
 
 ### Framebuffer
