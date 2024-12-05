@@ -188,6 +188,7 @@ scripts/config \
     -e PERF_EVENTS_INTEL_UNCORE \
     -e SENSORS_CORETEMP \
     -e PTP_1588_CLOCK \
-    -e EEPROM_EE1004
+    -e EEPROM_EE1004 \
+    -e NTSYNC
 
 exit 0

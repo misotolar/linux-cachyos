@@ -102,6 +102,13 @@ scripts/config \
     -e DEFAULT_BBR \
     --set-str DEFAULT_TCP_CONG bbr
 
+### Packet scheduler
+scripts/config \
+    -d NET_SCH_FQ_CODEL \
+    -e NET_SCH_FQ \
+    -d CONFIG_DEFAULT_FQ_CODEL \
+    -e CONFIG_DEFAULT_FQ
+
 ### Tickrate
 scripts/config \
     -d HZ_PERIODIC \
