@@ -79,36 +79,6 @@ if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
         --set-val NR_CPUS $(($(nproc)*2))
 fi
 
-### TCP congestion control
-scripts/config \
-    -d TCP_CONG_BIC \
-    -d TCP_CONG_CUBIC \
-    -d TCP_CONG_WESTWOOD \
-    -d TCP_CONG_HTCP \
-    -d TCP_CONG_HSTCP \
-    -d TCP_CONG_HYBLA \
-    -d TCP_CONG_VEGAS \
-    -d TCP_CONG_NV \
-    -d TCP_CONG_SCALABLE \
-    -d TCP_CONG_LP \
-    -d TCP_CONG_VENO \
-    -d TCP_CONG_YEAH \
-    -d TCP_CONG_ILLINOIS \
-    -d TCP_CONG_DCTCP \
-    -d TCP_CONG_CDG \
-    -d TCP_CONG_BBR2 \
-    -e TCP_CONG_BBR \
-    -d DEFAULT_BBR2 \
-    -e DEFAULT_BBR \
-    --set-str DEFAULT_TCP_CONG bbr
-
-### Packet scheduler
-scripts/config \
-    -d NET_SCH_FQ_CODEL \
-    -e NET_SCH_FQ \
-    -d CONFIG_DEFAULT_FQ_CODEL \
-    -e CONFIG_DEFAULT_FQ
-
 ### Tickrate
 scripts/config \
     -d HZ_PERIODIC \

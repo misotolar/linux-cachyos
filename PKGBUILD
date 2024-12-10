@@ -1,12 +1,12 @@
 
 _major=6.12
-_minor=3
+_minor=4
 
 pkgbase=linux-cachyos
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -18,9 +18,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="e70c925e652b00a089c130e26a8687f13f7a2c78"
+_cachyos="8fb665eaca5e58bc1252d70c2410490b2dc827b3"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d0c6a41a9c38b7a189d9d487ffb8a4ccc744e53d"
+_patches="af40666868cb026503f29f6b1de8a9209b13cffd"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -59,14 +59,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('c89809cc777d50f1ea484a118630281a26383707a0e752c96fd834f6e765deae'
+sha256sums=('6f35f821433d8421be7167990747c7c4a0c451958fb96883446301af13d71152'
             'SKIP'
-            '110699edd583373f2e721a80f6a219d7b6f37063238bd25678c22218812317ed'
+            '8f837a3b302cc1949e35f8b752af13cfaa1945b22b967f14f0e3fd0ff355ffae'
             '1a7747d5b4ccd427d643e3f548cd99c09d0f05b108fc530a581e28a41c5533c9'
-            'dc68079f015345723f204f3bcc703d3d4c0f9a8650be4e97b28834c3428e66cd'
+            'fc08fec00e5ae0c79d132dec06c893e27a833de408e311ab3837f53496830b60'
             'f087282dc6dc6f8c2e4de4313374c23d755630a1fdab338c5d16b94487ae6f77'
-            '85af1032821b3375574473f35c6addcbc88f52560a4f880299e0ed62f807735c'
-            'd28c64469dc555a6a69907b8c3058127621eca6083dde3c7af06d4992a7021ef'
+            '4454ad80c987893df03e1ea1da9cc15f05cef94af3bfa8fdf6858a5d889716a5'
+            'fa8e290be24447fcd0387612a3550f7cedad293a86d905ca1706d95165192d47'
             '65b5745c2e07d93495a5aa1ff7269c89e7aef42acff0d018ab05663560bdf8f7')
 
 export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
