@@ -32,7 +32,8 @@ scripts/config \
 
 ### AutoFDO
 scripts/config \
-    -d AUTOFDO_CLANG
+    -d AUTOFDO_CLANG \
+    -d PROPELLER_CLANG
 
 ### Rust
 scripts/config \
