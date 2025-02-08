@@ -1,12 +1,16 @@
 
 _major=6.13
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
+if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
+    pkgbase="linux-cachyos-$KBUILD_BUILD_HOST"
+fi
+
 pkgname=("$pkgbase" "$pkgbase-headers")
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -15,7 +19,7 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$_major"
+_srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
 _cachyos="9d3c1e0fb88e73e74c60c4b4c3805f36734c3c38"
@@ -59,17 +63,18 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-sha256sums=('e79dcc6eb86695c6babfb07c2861912b635d5075c6cd1cd0567d1ea155f80d6e'
-            'SKIP'
-            'd491dd830bb45f899a2ab807164ab6932716fb3c6757ebb529297eebef01cb8b'
-            '1a7747d5b4ccd427d643e3f548cd99c09d0f05b108fc530a581e28a41c5533c9'
-            '6819789ee88b0d0f134d5a115fa3938fb04c38467d2f2d1432b744fb2feedc1e'
-            'f087282dc6dc6f8c2e4de4313374c23d755630a1fdab338c5d16b94487ae6f77'
-            '2119c8c79bf8a754a65815a7b8652083145563a0a579ebec5f264a16516fbcf5'
-            '0a1a07c0a850bb80d8ed273bc4116cca27bcca4b476532bbb8f01e10ae8d100b'
-            '65b5745c2e07d93495a5aa1ff7269c89e7aef42acff0d018ab05663560bdf8f7')
+b2sums=('995981373f283f606a35ce4f5add4a44c9baa4dbf4caefbedc9037d1c736efbb9af43a48787d8a8515aaef59926962a076a87f0504d8733956f321c8bb241cfc'
+        'SKIP'
+        'e14bfa4e92fe8b49a01173263af1318d12c04d4963f4bd0352008c32d536663d6f014b171bd4f6cf777bcc10d46d353a5d3fea0f9865bb5ef92fb9972e4c9024'
+        '390c7b80608e9017f752b18660cc18ad1ec69f0aab41a2edfcfc26621dcccf5c7051c9d233d9bdf1df63d5f1589549ee0ba3a30e43148509d27dafa9102c19ab'
+        '791be1003553dab5d9fb2ed629759b294f790bc8e1d60e373213ab055e2c5b94a3904727beb0f4e7847a4b2c6cc8ca1074540ed3c7752bf1b4b1062b4334a778'
+        '3e70505754eeba8379ff54d993ff602fcef80f46f2766d486f7a0a48c7675e01f9cf4500578b61717a8c83a1022bb340b2e5253216435a2ce995a5d3a6932e5b'
+        '31a981030bfab628f50a73242c48c6beb92fe265df8365af4b77afa43931846678856f46b71cfca861b941f798a6978382ed6fd5f835f5bbd1e4e11f5ec34e20'
+        '3ae7a58a83c5f36d02a7b5822628fea9a5513ec41e66966678fe17ef9a96af9356b21da4cf5e492188af19747b142e532fe79582062132901e3b8cc80bc5cdd3'
+        'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
-export KBUILD_BUILD_HOST="$(hostname 2>/dev/null || echo -n archlinux)"
+export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
+export KBUILD_BUILD_HOST="${KBUILD_BUILD_HOST:-archlinux}"
 export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 export KBUILD_BUILD_FLAGS=(
     CC=clang
@@ -80,7 +85,6 @@ export KBUILD_BUILD_FLAGS=(
 
 prepare() {
 
-    ### Arch-SKM
     if [ -d /usr/src/certs-local ]; then
         echo "Rebuilding local signing key..."
         cp -rf /usr/src/certs-local ../
@@ -113,18 +117,18 @@ prepare() {
     echo "Setting config..."
     cp ../config .config
 
-    make olddefconfig
-    if [ -f "$HOME/.config/modprobed.db" ]; then
-        yes "" | make LSMOD=$HOME/.config/modprobed.db localmodconfig >/dev/null
-    fi
+    ### Configuration
+    sh $srcdir/config.sh
 
     ### CPU optimization
     if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
         sh $srcdir/auto-cpu-optimization.sh >/dev/null
     fi
 
-    ### Default configuration
-    sh $srcdir/config.sh >/dev/null
+    ### Modprobed-db
+    if [ -f "$HOME/.config/modprobed.db" ]; then
+        yes "" | make ${KBUILD_BUILD_FLAGS[*]} LSMOD=$HOME/.config/modprobed.db localmodconfig >/dev/null
+    fi
 
     ### Build host configuration
     if [ -f "$srcdir/config.$KBUILD_BUILD_HOST.sh" ]; then
@@ -154,7 +158,7 @@ _package() {
                 'linux-firmware: firmware images needed for some devices'
                 'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
                 'uksmd: userspace KSM helper daemon')
-    provides=(KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+    provides=(KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VHBA-MODULE VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
     replaces=()
 
     cd $_srcdir
@@ -178,7 +182,7 @@ _package() {
 
 _package-headers() {
     pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
-    depends=('pahole')
+    depends=("${pkgbase}" 'clang' 'llvm' 'lld' 'pahole')
 
     cd $_srcdir
     local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
@@ -259,6 +263,7 @@ _package-headers() {
     mkdir -p "$pkgdir/usr/src"
     ln -sr "$builddir" "$pkgdir/usr/src/$pkgbase"
 
+    # Out-of-tree module signing
     if [ -d /usr/src/certs-local ]; then
         echo "Local signing certs for out-of-tree modules..."
 

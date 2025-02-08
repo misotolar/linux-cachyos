@@ -14,4 +14,4 @@ srcinfo:
 	makepkg --printsrcinfo > .SRCINFO
 
 world:
-	BUILDDIR="$(PWD)makepkg" makepkg -cfisr
+	BUILDDIR="$(PWD)makepkg" KBUILD_BUILD_USER="$(shell whoami)" KBUILD_BUILD_HOST="$(shell hostname)" makepkg -cfisr

@@ -5,7 +5,7 @@ Improved [CachyOS Kernel](https://github.com/cachyos/linux-cachyos) with custom 
 
 - LLVM/LTO build
 - [BORE](https://github.com/firelzrd/bore-scheduler) scheduler
-- DKMS kernel module signing with [Arch-SKM](https://aur.archlinux.org/packages/arch-sign-modules)
+- [Arch-SKM](https://aur.archlinux.org/packages/arch-sign-modules) module signing
 
 ```
 [linux-cachyos]

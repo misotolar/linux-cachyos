@@ -4,55 +4,76 @@
 scripts/config \
     -e CACHY
 
-### Hostname
-scripts/config \
-    --set-str DEFAULT_HOSTNAME "$KBUILD_BUILD_HOST"
-
-### RCU priority
-scripts/config \
-    --set-val RCU_BOOST_DELAY 331
-
 ### Scheduler
 scripts/config  \
-    -e SCHED_CLASS_EXT \
     -e SCHED_BORE
-
-### LLVM level
-scripts/config \
-    -e LTO \
-    -e LTO_CLANG \
-    -e ARCH_SUPPORTS_LTO_CLANG \
-    -e ARCH_SUPPORTS_LTO_CLANG_THIN \
-    -e HAS_LTO_CLANG \
-    -e HAVE_GCC_PLUGINS \
-    -d LTO_NONE \
-    -d LTO_CLANG_FULL \
-    -d LTO_CLANG_THIN \
-    -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
-
-### AutoFDO
-scripts/config \
-    -d AUTOFDO_CLANG \
-    -d PROPELLER_CLANG
-
-### Rust
-scripts/config \
-    -d RUST
 
 ### KCFI
 scripts/config \
     -d CFI_CLANG
 
-### Ticks
+### LLVM level
 scripts/config \
-    -d HZ_100 \
-    -d HZ_250 \
+    -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
+
+### Tick rate
+scripts/config \
     -d HZ_300 \
-    -d HZ_500 \
-    -d HZ_600 \
-    -d HZ_750 \
     -e "HZ_${_HZ:-1000}" \
     --set-val HZ ${_HZ:-1000}
+
+### Governor
+scripts/config \
+    -d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL \
+    -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+
+### Tick type
+scripts/config \
+    -d HZ_PERIODIC \
+    -d NO_HZ_IDLE \
+    -d CONTEXT_TRACKING_FORCE \
+    -e NO_HZ_FULL_NODEF \
+    -e NO_HZ_FULL \
+    -e NO_HZ \
+    -e NO_HZ_COMMON \
+    -e CONTEXT_TRACKING
+
+### Preempt
+scripts/config \
+    -e PREEMPT_DYNAMIC \
+    -e PREEMPT \
+    -d PREEMPT_LAZY \
+    -d PREEMPT_NONE
+
+### O3
+scripts/config \
+    -d CC_OPTIMIZE_FOR_PERFORMANCE \
+    -e CC_OPTIMIZE_FOR_PERFORMANCE_O3
+
+### THP
+scripts/config \
+    -d TRANSPARENT_HUGEPAGE_MADVISE \
+    -e TRANSPARENT_HUGEPAGE_ALWAYS
+
+### AutoFDO
+scripts/config \
+    -d AUTOFDO_CLANG
+
+### Propeller
+scripts/config \
+    -d PROPELLER_CLANG
+
+### USER_NS
+scripts/config \
+    -e USER_NS
+
+### Hostname
+scripts/config \
+    --set-str DEFAULT_HOSTNAME "$KBUILD_BUILD_HOST"
+
+### Framebuffer
+scripts/config \
+    -e SYSFB_SIMPLEFB
 
 ### NUMA
 scripts/config \
@@ -70,47 +91,18 @@ scripts/config \
     -d NUMA_BALANCING \
     -d NUMA_BALANCING_DEFAULT_ENABLED
 
-### PSI
-scripts/config \
-    -d PSI
-
 ### Maximum number of CPUs
 if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
     scripts/config \
         --set-val NR_CPUS $(($(nproc)*2))
 fi
 
-### Tickrate
-scripts/config \
-    -d HZ_PERIODIC \
-    -d NO_HZ_IDLE \
-    -d CONTEXT_TRACKING_FORCE \
-    -e NO_HZ_FULL_NODEF \
-    -e NO_HZ_FULL \
-    -e NO_HZ \
-    -e NO_HZ_COMMON \
-    -e CONTEXT_TRACKING
-
-### Preempt
-scripts/config \
-    -e PREEMPT_BUILD \
-    -d PREEMPT_NONE \
-    -d PREEMPT_VOLUNTARY \
-    -e PREEMPT \
-    -e PREEMPT_COUNT \
-    -e PREEMPTION \
-    -e PREEMPT_DYNAMIC
-
-### ZSTD
-scripts/config \
-    --set-val ZSTD_COMPRESSION_LEVEL 3 \
-    --set-val MODULE_COMPRESS_ZSTD_LEVEL 3
-
-### Hardening
-scripts/config \
-    -d CONFIG_RANDSTRUCT_FULL \
-    -d CONFIG_RANDSTRUCT_PERFORMANCE \
-    -e CONFIG_RANDSTRUCT_NONE
+### Module signing
+if [ -d /usr/src/certs-local ]; then
+    scripts/config \
+        -e MODULE_SIG_FORCE \
+        -d MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS
+fi
 
 ### Debug
 scripts/config \
@@ -122,18 +114,10 @@ scripts/config \
     -d ACPI_DEBUG \
     -d KMSAN
 
-### Framebuffer
-scripts/config \
-    -e SYSFB_SIMPLEFB
-
 ### Cleanup
 scripts/config \
     -d ACPI_PRMT \
-    -d HYPERVISOR_GUEST
+    -d HYPERVISOR_GUEST \
+    -d PSI
 
-### Arch-SKM
-if [ -d /usr/src/certs-local ]; then
-    scripts/config \
-        -e MODULE_SIG_FORCE \
-        -d MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS
-fi
+exit 0
