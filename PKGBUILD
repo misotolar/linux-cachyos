@@ -1,6 +1,6 @@
 
 _major=6.13
-_minor=6
+_minor=7
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -22,9 +22,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="8c9578834f2f1a3f1abad2ac3d06d55982727107"
+_cachyos="c2c0e37f988e56878b930a0ad14830e9e2387b0d"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="aa2e0b59622de52da59b82eac96fdf39379f6794"
+_patches="17a908b99d5f581bc9d2c8d5504b0edc6a745b80"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -63,13 +63,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('5a216c56c77efaee1a3f5c9198ade9180e4640ffcde39662ccf85c2a5945a08c5f362220fb0906369c72a3ea8bdc16fdd24d3e1dbc0f51fc831f3f724ed73300'
+b2sums=('dc9e71842d7e9d2e016ca2c6e791d627790c87cd445b404c73745dc565eb89617ec69f1150b228d7853a595ea7f6daf6acdb74f8383088af30d42bb4c062a129'
         'SKIP'
         '65c2e2baa4d84198496f8a2d5d490313749fccdd40bfb010cdeff11e44b64bccee9aab3de57985b3056711b2048c29671f1323b45f01477bf460a84017e18bed'
         '390c7b80608e9017f752b18660cc18ad1ec69f0aab41a2edfcfc26621dcccf5c7051c9d233d9bdf1df63d5f1589549ee0ba3a30e43148509d27dafa9102c19ab'
         '179d0abd0fc25dbd68a890c9604c8fcf5791ad1227eaab45b2e6a50eff6d80350fc7dbe9980cf09220ea3be83d49bee3d684dca1dd7b125f6f635d398eec011c'
         '3e70505754eeba8379ff54d993ff602fcef80f46f2766d486f7a0a48c7675e01f9cf4500578b61717a8c83a1022bb340b2e5253216435a2ce995a5d3a6932e5b'
-        '214a3102c010e182e9afde359aa3e419518af9746711f63b957545ce7d1f321c312bc732b0a3a7784f58866d5b8774af55c61fb7862d8c5ec3b549084aa7c90d'
+        '28e2e78b5c079f5d5cc46c978e1b0ccf5538ae0e1ba7a976c5324fb2eb9f6ca3528183199e913a255a69f313ecd2b871c3799bcd4f7f86742e1b6990a395070d'
         '3ae7a58a83c5f36d02a7b5822628fea9a5513ec41e66966678fe17ef9a96af9356b21da4cf5e492188af19747b142e532fe79582062132901e3b8cc80bc5cdd3'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
