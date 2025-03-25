@@ -1,6 +1,6 @@
 
-_major=6.13
-_minor=7
+_major=6.14
+_minor=0
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -19,12 +19,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="c2c0e37f988e56878b930a0ad14830e9e2387b0d"
+_cachyos="0fda5053aa86ea80022401e359ae6c92d6972253"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="17a908b99d5f581bc9d2c8d5504b0edc6a745b80"
+_patches="ecdddc5d427f92113ca07dd3f9ed0a2b8da7b613"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -63,14 +63,14 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('dc9e71842d7e9d2e016ca2c6e791d627790c87cd445b404c73745dc565eb89617ec69f1150b228d7853a595ea7f6daf6acdb74f8383088af30d42bb4c062a129'
+b2sums=('11835719804b406fe281ea1c276a84dc0cbaa808552ddcca9233d3eaeb1c001d0455c7205379b02de8e8db758c1bae6fe7ceb6697e63e3cf9ae7187dc7a9715e'
         'SKIP'
-        '65c2e2baa4d84198496f8a2d5d490313749fccdd40bfb010cdeff11e44b64bccee9aab3de57985b3056711b2048c29671f1323b45f01477bf460a84017e18bed'
+        '49f51c9ae64eb5210542a7b5e2cfa58c051c768bca1250969bc51f7efa6b54550e0c221357eb31c01a5e5184e79d87fa6772a8986c77effb431164c9b1266a0e'
         '390c7b80608e9017f752b18660cc18ad1ec69f0aab41a2edfcfc26621dcccf5c7051c9d233d9bdf1df63d5f1589549ee0ba3a30e43148509d27dafa9102c19ab'
         '179d0abd0fc25dbd68a890c9604c8fcf5791ad1227eaab45b2e6a50eff6d80350fc7dbe9980cf09220ea3be83d49bee3d684dca1dd7b125f6f635d398eec011c'
         '3e70505754eeba8379ff54d993ff602fcef80f46f2766d486f7a0a48c7675e01f9cf4500578b61717a8c83a1022bb340b2e5253216435a2ce995a5d3a6932e5b'
-        '28e2e78b5c079f5d5cc46c978e1b0ccf5538ae0e1ba7a976c5324fb2eb9f6ca3528183199e913a255a69f313ecd2b871c3799bcd4f7f86742e1b6990a395070d'
-        '3ae7a58a83c5f36d02a7b5822628fea9a5513ec41e66966678fe17ef9a96af9356b21da4cf5e492188af19747b142e532fe79582062132901e3b8cc80bc5cdd3'
+        '83460f7c8da099f97cbee7dd7c724eec7be1b8e72640209a6a00c860d0c780b6672a8fa574270c0048f7f2da886ce4b8aacd2a433d871fcdbbaac07a48857312'
+        'b8b3feb90888363c4eab359db05e120572d3ac25c18eb27fef5714d609c7cb895243d45585a150438fec0a2d595931b10966322cd956818dbd3a9b3ef412d1e8'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
