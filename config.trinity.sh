@@ -83,6 +83,15 @@ scripts/config \
     -e NLS_ISO8859_1 \
     -e NLS_UTF8
 
+### ZRAM
+scripts/config \
+    -d ZRAM_BACKEND_842 \
+    -d ZRAM_BACKEND_DEFLATE \
+    -d ZRAM_BACKEND_LZ4HC \
+    -d ZRAM_BACKEND_LZO \
+    -e ZRAM \
+    -e LZ4
+
 # USB
 scripts/config \
     -e USB_UAS \
@@ -186,6 +195,7 @@ scripts/config \
     -e PERF_EVENTS_INTEL_CSTATE \
     -e PERF_EVENTS_INTEL_RAPL \
     -e PERF_EVENTS_INTEL_UNCORE \
+    -d HYPERVISOR_GUEST \
     -e SENSORS_CORETEMP \
     -e PTP_1588_CLOCK \
     -e EEPROM_EE1004 \

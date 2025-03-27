@@ -56,12 +56,10 @@ scripts/config \
     -e TRANSPARENT_HUGEPAGE_ALWAYS
 
 ### AutoFDO
-scripts/config \
-    -d AUTOFDO_CLANG
+scripts/config -d AUTOFDO_CLANG
 
 ### Propeller
-scripts/config \
-    -d PROPELLER_CLANG
+scripts/config -d PROPELLER_CLANG
 
 ### USER_NS
 scripts/config \
@@ -104,20 +102,11 @@ if [ -d /usr/src/certs-local ]; then
         -d MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS
 fi
 
-### Debug
-scripts/config \
-    -d PM_DEBUG \
-    -d PM_SLEEP_DEBUG \
-    -d DEBUG_PREEMPT \
-    -d SCHED_DEBUG \
-    -d SLUB_DEBUG \
-    -d ACPI_DEBUG \
-    -d KMSAN
-
 ### Cleanup
 scripts/config \
     -d ACPI_PRMT \
-    -d HYPERVISOR_GUEST \
+    -d KMSAN \
+    -d ZSWAP \
     -d PSI
 
 exit 0
