@@ -14,7 +14,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=4
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="49f51dcb174f1a7f3e7d56a08d5fd15e8785e31b"
+_cachyos="20ad7b1f46afefc9800e63e16552bbac2e12706c"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="306a13fa1740ddec35c68455e99eaf714ae81ad4"
+_patches="776b4648d9244605d66e6b2595158858ca693f0a"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -69,11 +69,11 @@ validpgpkeys=(
 
 b2sums=('11835719804b406fe281ea1c276a84dc0cbaa808552ddcca9233d3eaeb1c001d0455c7205379b02de8e8db758c1bae6fe7ceb6697e63e3cf9ae7187dc7a9715e'
         'SKIP'
-        '49f51c9ae64eb5210542a7b5e2cfa58c051c768bca1250969bc51f7efa6b54550e0c221357eb31c01a5e5184e79d87fa6772a8986c77effb431164c9b1266a0e'
+        'e3be0879af3f0d5ce19f1f6df50e2dc747a46cb31d3bf8dabd3af2691aa66b2fae872816c7049588aeff0b5e5020236c36d6cf693c918b0a92a67cea89f527e5'
         '390c7b80608e9017f752b18660cc18ad1ec69f0aab41a2edfcfc26621dcccf5c7051c9d233d9bdf1df63d5f1589549ee0ba3a30e43148509d27dafa9102c19ab'
         '85b101845cf17a0ba607752944778fddf593c37e00b5aa16bcd65e237e28766fde89962f07c672701ceb31fc975672828ca5b0c2a82d15b37e121f992154d84a'
         '740fd7a219987a1038f23a2bdfa64995467031c945d3374a04259c450d6d838bbce8c84a549ea125fe94cce8ed7ed1889a1642d83ead12cb1938a5353678637e'
-        '42052b073f6e5a678e97456c0ccb85b62b6aba123ecffe1c78b69162c55c677815fe490fa58aacf1f1f5ea8b610df44e36e7e0dc9eea7a2bd4602525d27e6005'
+        'ad6a1866ce73aae653c87fbb76f1b95a5dd189abb45b246b9e38ea9fa7a36d2f32a5522eb8dcb8381ae7d6920f5335c327ad4708c5bb74d528b8f11f4c7ce042'
         'b8b3feb90888363c4eab359db05e120572d3ac25c18eb27fef5714d609c7cb895243d45585a150438fec0a2d595931b10966322cd956818dbd3a9b3ef412d1e8'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
