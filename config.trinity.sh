@@ -8,7 +8,6 @@ EXTRA_FIRMWARE=(
     i915/kbl_huc_4.0.0.bin
     intel/ibt-12-16.sfi
     intel/ibt-12-16.ddc
-    rtl_nic/rtl8153a-3.fw
     iwlwifi-8265-36.ucode
     regulatory.db.p7s
     regulatory.db
@@ -16,7 +15,7 @@ EXTRA_FIRMWARE=(
 
 for BLOB in "${EXTRA_FIRMWARE[@]}"; do
     EXTRA_FIRMWARE_STR="${EXTRA_FIRMWARE_STR} ${BLOB}"
-    mkdir -p "${EXTRA_FIRMWARE_DIR}/$(dirname ${BLOB})"
+    mkdir -p "${EXTRA_FIRMWARE_DIR}/$(dirname "${BLOB}")"
     if [ -f "/lib/firmware/${BLOB}" ]; then
         cp -v "/lib/firmware/${BLOB}" "${EXTRA_FIRMWARE_DIR}/${BLOB}"
     elif [ -f "/lib/firmware/${BLOB}.xz" ]; then

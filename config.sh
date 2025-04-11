@@ -20,7 +20,7 @@ scripts/config \
 scripts/config \
     -d HZ_300 \
     -e "HZ_${_HZ:-1000}" \
-    --set-val HZ ${_HZ:-1000}
+    --set-val HZ "${_HZ:-1000}"
 
 ### Governor
 scripts/config \

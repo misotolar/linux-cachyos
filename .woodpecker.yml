@@ -15,6 +15,12 @@ clone:
 
 steps:
 
+  - name: shellcheck
+    image: kokuwaio/shellcheck
+    pull: true
+    settings:
+      shell: bash
+
   - name: makepkg
     image: misotolar/makepkg-obs
     pull: true
