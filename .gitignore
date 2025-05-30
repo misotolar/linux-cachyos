@@ -1,6 +1,7 @@
 autofdo
-makepkg
-auto-cpu-optimization.sh
+certs-local
+src
+pkg
 01*.patch
 config
 *.part

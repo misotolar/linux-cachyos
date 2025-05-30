@@ -1,6 +1,6 @@
 
-_major=6.14
-_minor=4
+_major=6.15
+_minor=0
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -23,12 +23,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="7337274fcb2b8bfd6238660d3b3fb3fc375159ee"
+_cachyos="b9fd92d4a07915fbc9f888842db811f2db2f34ff"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="b2f31795ab58ef9d3b9e26e7687d77d249eb740b"
+_patches="2c277d5b830a43c4321d2ae53e97912be37a8884"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -56,7 +56,7 @@ options=(
 
 source=(
     "$_kernel/$_srcdir.tar.xz" "$_kernel/$_srcdir.tar.sign"
-    "$_cachyos/config" "$_cachyos/auto-cpu-optimization.sh" 'config.sh' 'config.trinity.sh'
+    "$_cachyos/config" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
     '0103-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
@@ -67,14 +67,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('8f5f44fa6f7b2a964a3fb14afd10dc0c6cc5ec73eb3b6dba24d35664f7083546b70eff7a3d5a9b3ba3c8b84785518c6df91aff0ed948cd538ff0b3b0484fd613'
+b2sums=('465596c6dc053ff3a3966302a906d3edb4f7ee1ef82f8c20b96360196d3414f5b1deeafa67b8340fcdecd3617280ba9b756d7073ad15c707865e256397b4af53'
         'SKIP'
-        'd5752eff0a695850c92224fac67dfa28d7572c1833896e2a8aa9b3dfd0a393c28f8141996cab52b314e59313c3e747af4d279d21b25e32d3221402c47f9c1ee9'
-        '390c7b80608e9017f752b18660cc18ad1ec69f0aab41a2edfcfc26621dcccf5c7051c9d233d9bdf1df63d5f1589549ee0ba3a30e43148509d27dafa9102c19ab'
-        '964b7c5aa383b530574841ca365a7584b1bde41f5dadb4a029cad61ffd345205aa27be2db46260b314ff40cb0ed33a6260e83e8ae2d7226af6f6b57f057203d0'
-        'd9bef12a4d1b3aac695714336f72f4214220745b7aacf54209722050ee7d4a06e65e33db424a01c6ea98f9676197293b5f6841d1ea1c1f8519454d7c5b34580f'
-        '4379f5d815485f9b4643edbfd1b5be9cb73bbdb07f600a4ecff2900d6cf88ad7c62d907848cced25e971b79cd870ac705593588ccd3ade586f8eac0b877f0c00'
-        'd684dd248a32c12befddfed7355a4b008ceb5ed1b37d992d91654eb1924e513495bfd681dc8e518e145184e021e3aabae8b8a9d2e4444cc12454c08edc5b770e'
+        '314fc1f56f6c812592b4b74a42bd7ba48a8b2c4a3d0a36c21486023b5fec907ff9ce97c6e8e0f73ede2ea6743750b912f2c236fe2788e36980c160ad23838258'
+        '45993d8a178b5892f0ecbc043dc836cf8e16cd2884e67e3522582f81562c12601e1b01c445d497cd1127dcd3fe05e030397129dc0e174e72ddc60ff13dc8c83d'
+        '97970912e2eb3baf8cd08b50bc699000d80bd502fa6ef1403481390d05ab3b355ae058fba44faa31f4038c7c0ee47bb5b2c53ecb28136788a6267414cecc281e'
+        '9547fe59559c2d620054e9170db21edbda60cb68fc9363a87c41a907f39f817c3f974e06702779212f5f9c6dea0743cb6f7da16ae763e866df49721ff22a26b9'
+        '162130c38d315b06fdb9f0b08d1df6b63c1cc44ee140df044665ff693ab3cde4f55117eed12253504184ccd379fc7f9142aa91c5334dff1a42dbd009f43d8897'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
@@ -124,11 +123,6 @@ prepare() {
     ### Configuration
     sh $srcdir/config.sh
 
-    ### CPU optimization
-    if [[ "archlinux" != "$KBUILD_BUILD_HOST" ]]; then
-        sh $srcdir/auto-cpu-optimization.sh >/dev/null
-    fi
-
     ### AutoFDO
     if [ ! -z KBUILD_BUILD_DEBUG ] || [ ! -z KBUILD_AUTOFDO_PROFILE ]; then
         scripts/config -e AUTOFDO_CLANG
@@ -177,8 +171,8 @@ _package() {
     optdepends=('wireless-regdb: to set the correct wireless channels of your country'
                 'linux-firmware: firmware images needed for some devices'
                 'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
-                'uksmd: userspace KSM helper daemon')
-    provides=(KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VHBA-MODULE VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+                'scx-scheds: to use sched-ext schedulers')
+    provides=(ADIOS-MODULE KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VHBA-MODULE VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
     replaces=()
 
     cd $_srcdir
@@ -193,7 +187,7 @@ _package() {
     echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
 
     echo "Installing modules..."
-    ZSTD_CLEVEL=19 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+    ZSTD_CLEVEL=1 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
         DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
     # remove build links
@@ -213,6 +207,7 @@ _package-headers() {
     install -Dt "$builddir/kernel" -m644 kernel/Makefile
     install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
     cp -t "$builddir" -a scripts
+    ln -srt "$builddir" "$builddir/scripts/gdb/vmlinux-gdb.py"
 
     # required when STACK_VALIDATION is enabled
     install -Dt "$builddir/tools/objtool" tools/objtool/objtool
@@ -244,6 +239,10 @@ _package-headers() {
     echo "Installing KConfig files..."
     find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
 
+    echo "Installing unstripped VDSO..."
+    make INSTALL_MOD_PATH="$pkgdir/usr" vdso_install \
+      link=  # Suppress build-id symlinks
+
     echo "Removing unneeded architectures..."
     local arch
     for arch in "$builddir"/arch/*/; do
@@ -264,16 +263,16 @@ _package-headers() {
     echo "Stripping build tools..."
     local file
     while read -rd '' file; do
-    case "$(file -Sib "$file")" in
-        application/x-sharedlib\;*)      # Libraries (.so)
-            strip -v $STRIP_SHARED "$file" ;;
-        application/x-archive\;*)        # Libraries (.a)
-            strip -v $STRIP_STATIC "$file" ;;
-        application/x-executable\;*)     # Binaries
-            strip -v $STRIP_BINARIES "$file" ;;
-        application/x-pie-executable\;*) # Relocatable binaries
-            strip -v $STRIP_SHARED "$file" ;;
-    esac
+        case "$(file -Sib "$file")" in
+            application/x-sharedlib\;*)      # Libraries (.so)
+                strip -v $STRIP_SHARED "$file" ;;
+            application/x-archive\;*)        # Libraries (.a)
+                strip -v $STRIP_STATIC "$file" ;;
+            application/x-executable\;*)     # Binaries
+                strip -v $STRIP_BINARIES "$file" ;;
+            application/x-pie-executable\;*) # Relocatable binaries
+                strip -v $STRIP_SHARED "$file" ;;
+        esac
     done < <(find "$builddir" -type f -perm -u+x ! -name vmlinux -print0)
 
     echo "Stripping vmlinux..."

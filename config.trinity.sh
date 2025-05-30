@@ -3,12 +3,9 @@
 EXTRA_FIRMWARE_DIR="$(mktemp -d)";
 EXTRA_FIRMWARE_STR=""
 EXTRA_FIRMWARE=(
-    i915/kbl_dmc_ver1_04.bin
-    i915/kbl_guc_70.1.1.bin
-    i915/kbl_huc_4.0.0.bin
-    intel/ibt-12-16.sfi
-    intel/ibt-12-16.ddc
-    iwlwifi-8265-36.ucode
+    intel/ibt-17-16-1.sfi
+    intel/ibt-17-16-1.ddc
+    iwlwifi-9000-pu-b0-jf-b0-46.ucode
     regulatory.db.p7s
     regulatory.db
 )
@@ -27,177 +24,197 @@ for BLOB in "${EXTRA_FIRMWARE[@]}"; do
     fi
 done
 
-# Standalone
+# Processor
 scripts/config \
-    -d BOOTTIME_TRACING \
-    -d BOOT_CONFIG \
-    -d BLK_DEV_INITRD
+    -d HYPERVISOR_GUEST \
+    -d GENERIC_CPU \
+    -d MZEN4 \
+    -e X86_NATIVE_CPU \
+    -e PERF_EVENTS_INTEL_UNCORE \
+    -e PERF_EVENTS_INTEL_RAPL \
+    -e PERF_EVENTS_INTEL_CSTATE
+
+# Power
+scripts/config \
+    -e ACPI_PROCESSOR_AGGREGATOR
+
+# Virtualization
+scripts/config \
+    -e KVM \
+    -e KVM_INTEL
+
+# Networking
+scripts/config \
+    -e BT \
+    -e BT_HCIBTUSB \
+    -e CFG80211 \
+    -e MAC80211 \
+    -e RFKILL
 
 # Firmware
-scripts/config --set-str EXTRA_FIRMWARE "${EXTRA_FIRMWARE_STR}"
-scripts/config --set-str EXTRA_FIRMWARE_DIR "${EXTRA_FIRMWARE_DIR}"
-
-### Governor
 scripts/config \
-    -d CPU_FREQ_GOV_USERSPACE \
-    -d CPU_FREQ_GOV_ONDEMAND \
-    -d CPU_FREQ_GOV_CONSERVATIVE \
-    -d CPU_FREQ_GOV_SCHEDUTIL \
-    -d CPU_FREQ_DEFAULT_GOV_SCHEDUTIL \
-    -e CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+    --set-str EXTRA_FIRMWARE "${EXTRA_FIRMWARE_STR}" \
+    --set-str EXTRA_FIRMWARE_DIR "${EXTRA_FIRMWARE_DIR}"
 
-# ACPI
+# MTD
 scripts/config \
-    -e THINKPAD_ACPI \
-    -e ACPI_PROCESSOR_AGGREGATOR \
-    -e INT340X_THERMAL
+    -e MTD \
+    -e MTD_SPI_NOR
 
-# Input
+# Block
 scripts/config \
-    -e KEYBOARD_ATKBD \
-    -e MOUSE_PS2 \
-    -e INPUT_MOUSEDEV \
-    -e INPUT_JOYDEV \
-    -e SERIO_RAW \
-    -e RMI4_CORE \
-    -e RMI4_SMB
-
-# HID
-scripts/config \
-    -e CONFIG_MAC_EMUMOUSEBTN
-
-# Graphics
-scripts/config \
-    -e DRM_I915
-
-# Storage
-scripts/config \
-    -e BLK_DEV_DM \
-    -e DM_INIT \
-    -e BLK_DEV_LOOP \
-    -e BLK_DEV_NVME \
-    -e EXT4_FS \
-    -e VFAT_FS \
-    -e FUSE_FS \
-    -e NLS_ISO8859_1 \
-    -e NLS_UTF8
-
-### ZRAM
-scripts/config \
-    -d ZRAM_BACKEND_842 \
-    -d ZRAM_BACKEND_DEFLATE \
     -d ZRAM_BACKEND_LZ4HC \
+    -d ZRAM_BACKEND_DEFLATE \
+    -d ZRAM_BACKEND_842 \
     -d ZRAM_BACKEND_LZO \
     -e ZRAM \
-    -e LZ4
+    -e BLK_DEV_LOOP
 
-# USB
+# NVME
 scripts/config \
-    -e USB_UAS \
-    -e USB_STORAGE \
-    -e USB_ROLE_SWITCH \
-    -e USB_ROLES_INTEL_XHCI \
-    -e USB_XHCI_PCI_RENESAS \
-    -e TYPEC \
-    -e TYPEC_UCSI \
-    -e TYPEC_DP_ALTMODE \
-    -e UCSI_ACPI
+    -e BLK_DEV_NVME
 
-# I2C
+# Misc
 scripts/config \
-    -e I2C_I801
+    -e NTSYNC \
+    -e EEPROM_EE1004 \
+    -e INTEL_MEI \
+    -e INTEL_MEI_ME \
+    -e INTEL_MEI_HDCP \
+    -e INTEL_MEI_PXP \
+    -e MISC_RTSX_PCI
+
+# RAID/LVM
+scripts/config \
+    -e BLK_DEV_DM \
+    -e DM_INIT
+
+# Macintosh
+scripts/config \
+    -e CONFIG_MAC_EMUMOUSEBTN
 
 # Network
 scripts/config \
     -e E1000E \
-    -e RFKILL \
-    -e CFG80211 \
-    -e MAC80211 \
     -e IWLWIFI \
     -e IWLMVM
 
-# Bluetooth
+# Input
 scripts/config \
-    -e BT \
-    -e BT_BNEP \
-    -e BT_RFCOMM \
-    -e BT_HCIBTUSB
+    -e INPUT_MOUSEDEV \
+    -e INPUT_JOYDEV \
+    -e KEYBOARD_ATKBD \
+    -e MOUSE_PS2 \
+    -e MOUSE_ELAN_I2C \
+    -e SERIO_RAW
 
-# Media
+# Character
 scripts/config \
-    -e MEDIA_SUPPORT \
-    -e USB_VIDEO_CLASS
+    -e SERIAL_8250_DW
 
-# Sound
+# I2C
 scripts/config \
-    -e SOUND \
-    -e SND \
-    -e SND_HRTIMER \
-    -e SND_SEQUENCER \
-    -e SND_SEQ_DUMMY \
-    -e SND_HDA_INTEL \
-    -e SND_HDA_CODEC_HDMI \
-    -e SND_HDA_CODEC_REALTEK \
-    -e SND_HDA_CODEC_GENERIC \
-    -e SND_SOC \
-    -e SND_SOC_HDA \
-    -e SND_SOC_INTEL_AVS
+    -e I2C_CHARDEV \
+    -e I2C_I801
+
+# SPI
+scripts/config \
+    -e SPI_INTEL_PCI
+
+# PTP
+scripts/config \
+    -e PTP_1588_CLOCK
+
+# Monitoring
+scripts/config \
+    -e SENSORS_CORETEMP
 
 # Thermal
 scripts/config \
     -e INTEL_POWERCLAMP \
     -e X86_PKG_TEMP_THERMAL \
+    -e INT340X_THERMAL \
     -e INTEL_PCH_THERMAL \
     -e INTEL_TCC_COOLING
 
-# KVM
+# Watchdog
 scripts/config \
-    -e KVM \
-    -e KVM_INTEL
+    -e INTEL_MEI_WDT
+
+# Multifunction
+scripts/config \
+    -e MFD_INTEL_LPSS_PCI
+
+# Multimedia
+scripts/config \
+    -e MEDIA_SUPPORT \
+    -e USB_VIDEO_CLASS
+
+# Graphics
+scripts/config \
+    -e DRM_I915
+
+# Sound
+scripts/config \
+    -e SOUND \
+    -e SND \
+    -e SND_HDA_INTEL \
+    -e SND_HDA_CODEC_REALTEK \
+    -e SND_HDA_CODEC_HDMI \
+    -e SND_SOC \
+    -e SND_SOC_INTEL_AVS \
+    -e SND_SOC_SOF_PCI \
+    -e SND_SOC_SOF_CANNONLAKE
+
+# USB
+scripts/config \
+    -e TYPEC \
+    -e TYPEC_UCSI \
+    -e UCSI_ACPI \
+    -e TYPEC_DP_ALTMODE \
+    -e USB_ROLE_SWITCH
+
+# SD/MMC
+scripts/config \
+    -e MMC \
+    -e MMC_REALTEK_PCI
+
+# DMA
+scripts/config \
+    -e INTEL_IDMA64
 
 # Platform
 scripts/config \
-    -e INTEL_VSEC \
-    -e INTEL_PMC_CORE \
-    -e INTEL_PMT_CLASS \
-    -e INTEL_PMT_TELEMETRY \
-    -e INTEL_UNCORE_FREQ_CONTROL \
     -e WMI_BMOF \
+    -e THINKPAD_ACPI \
+    -e THINKPAD_LMI \
+    -e INTEL_PMC_CORE \
+    -e INTEL_PMT_TELEMETRY \
     -e INTEL_WMI_THUNDERBOLT \
-    -e THINKPAD_LMI
+    -e INTEL_UNCORE_FREQ_CONTROL \
+    -e INTEL_VSEC
+
+# Powercap
+scripts/config \
+    -e INTEL_RAPL
+
+# Pinctrl
+scripts/config \
+    -e PINCTRL_CANNONLAKE
+
+# Filesystems
+scripts/config \
+    -e VFAT_FS
 
 # Crypto
 scripts/config \
-    -e CRYPTO_SIMD \
     -e CRYPTO_USER \
-    -e CRYPTO_USER_API_HASH \
-    -e CRYPTO_USER_API_SKCIPHER \
-    -e CRYPTO_CRC32_PCLMUL \
-    -e CRYPTO_CRCT10DIF_PCLMUL \
-    -e CRYPTO_POLYVAL \
-    -e CRYPTO_POLYVAL_CLMUL_NI \
-    -e CRYPTO_CRC32C_INTEL \
+    -e CRYPTO_LZ4 \
     -e CRYPTO_AES_NI_INTEL \
-    -e CRYPTO_GHASH_CLMUL_NI_INTEL \
+    -e CRYPTO_POLYVAL_CLMUL_NI \
     -e CRYPTO_SHA1_SSSE3 \
     -e CRYPTO_SHA256_SSSE3 \
-    -e CRYPTO_SHA512_SSSE3
-
-# Misc
-scripts/config \
-    -e INTEL_MEI \
-    -e INTEL_MEI_ME \
-    -e INTEL_MEI_WDT \
-    -e INTEL_MEI_HDCP \
-    -e INTEL_MEI_PXP \
-    -e INTEL_RAPL \
-    -e PERF_EVENTS_INTEL_CSTATE \
-    -e PERF_EVENTS_INTEL_RAPL \
-    -e PERF_EVENTS_INTEL_UNCORE \
-    -d HYPERVISOR_GUEST \
-    -e SENSORS_CORETEMP \
-    -e PTP_1588_CLOCK \
-    -e EEPROM_EE1004 \
-    -e NTSYNC
+    -e CRYPTO_SHA512_SSSE3 \
+    -e CRYPTO_GHASH_CLMUL_NI_INTEL
 
 exit 0

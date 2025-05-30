@@ -17,7 +17,7 @@ endif
 all: clean update srcinfo world
 
 clean:
-	rm -rf $(PWD){makepkg,01*.patch,config,auto-cpu-optimization.sh}
+	rm -rf $(PWD){src,config,auto-cpu-optimization.sh,01*.patch}
 
 update:
 	updpkgsums
@@ -26,7 +26,6 @@ srcinfo:
 	makepkg --printsrcinfo > .SRCINFO
 
 world:
-	BUILDDIR="$(PWD)makepkg" \
 	KBUILD_BUILD_USER="$(shell whoami)" \
 	KBUILD_BUILD_HOST="$(shell hostname)" \
 	KBUILD_AUTOFDO_PROFILE="$(AUTOFDO_PROFILE)" \

@@ -1,5 +1,30 @@
 #!/bin/sh
 
+### CPU
+if [ -n "$_MARCH" ]; then
+    case "${_MARCH^^}" in
+        GENERIC_V[1-4])
+            scripts/config \
+                -e GENERIC_CPU \
+                -d MZEN4 \
+                -d X86_NATIVE_CPU \
+                --set-val X86_64_VERSION "${_MARCH//GENERIC_V}"
+            ;;
+        ZEN4)
+            scripts/config \
+                -d GENERIC_CPU \
+                -e MZEN4 \
+                -d X86_NATIVE_CPU
+            ;;
+        NATIVE)
+            scripts/config \
+                -d GENERIC_CPU \
+                -d MZEN4 \
+                -e X86_NATIVE_CPU
+            ;;
+    esac
+fi
+
 ### CachyOS
 scripts/config \
     -e CACHY
@@ -8,13 +33,9 @@ scripts/config \
 scripts/config  \
     -e SCHED_BORE
 
-### KCFI
-scripts/config \
-    -d CFI_CLANG
-
 ### LLVM level
 scripts/config \
-    -e "LTO_CLANG_${_LTO_CLANG:-THIN}"
+    -e "LTO_CLANG_${_LTO_CLANG:-FULL}"
 
 ### Tick rate
 scripts/config \
@@ -42,10 +63,11 @@ scripts/config \
 scripts/config \
     -e PREEMPT_DYNAMIC \
     -e PREEMPT \
+    -d PREEMPT_VOLUNTARY \
     -d PREEMPT_LAZY \
     -d PREEMPT_NONE
 
-### O3
+### Enable O3
 scripts/config \
     -d CC_OPTIMIZE_FOR_PERFORMANCE \
     -e CC_OPTIMIZE_FOR_PERFORMANCE_O3
