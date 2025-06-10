@@ -14,7 +14,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="768a5ec1b4885b0c3b1e7610bf520b77eeb57e5e"
+_cachyos="54ccc7445b5591d2532c756be86375e16ed9815f"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="06b5d7be085196ba1411b1ef74dabb3ced321f98"
+_patches="2fe8ecbbcf8244cdf5990d32211d0beba04db8f4"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -69,7 +69,7 @@ validpgpkeys=(
 
 b2sums=('bce19089e6c7b7e6f905855940b69a6edb68818caa25de866a3673082ec9e8ad95f842689db185a9271eac5cccd122212c05711f99b4d0c2e0a1b7abc895bc24'
         'SKIP'
-        '314fc1f56f6c812592b4b74a42bd7ba48a8b2c4a3d0a36c21486023b5fec907ff9ce97c6e8e0f73ede2ea6743750b912f2c236fe2788e36980c160ad23838258'
+        '70a439d79f704a26a9811909ba8c40315da48426d164c02027f43a50ddf3d72ac02b942aa80a8555aa737be2c46167ab326aa7318ce9ceecb61832ffc866503f'
         '45993d8a178b5892f0ecbc043dc836cf8e16cd2884e67e3522582f81562c12601e1b01c445d497cd1127dcd3fe05e030397129dc0e174e72ddc60ff13dc8c83d'
         '97970912e2eb3baf8cd08b50bc699000d80bd502fa6ef1403481390d05ab3b355ae058fba44faa31f4038c7c0ee47bb5b2c53ecb28136788a6267414cecc281e'
         '5660ed3bdbad6030acc683c4d0df61cb4d0ceb2aabce0dcefc7b2a955915bacb29033988ca1953e123b7f85b81e4f056c510c7734fd2c7ced90e74ee644702e8'
