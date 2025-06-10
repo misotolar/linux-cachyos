@@ -1,6 +1,6 @@
 
 _major=6.15
-_minor=1
+_minor=2
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -14,7 +14,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=2
+pkgrel=1
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="54ccc7445b5591d2532c756be86375e16ed9815f"
+_cachyos="3c480434cf0ac7a4d1f6f17cbdbd6759ee7e6a67"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="2fe8ecbbcf8244cdf5990d32211d0beba04db8f4"
+_patches="b9641f7e1eb23f6d0e7ccc3f29ff88d61eca0f37"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -67,12 +67,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('bce19089e6c7b7e6f905855940b69a6edb68818caa25de866a3673082ec9e8ad95f842689db185a9271eac5cccd122212c05711f99b4d0c2e0a1b7abc895bc24'
+b2sums=('c2b23abc39af6d2cf67f5963121f16d4a231869203d3915ed6260d6f39ef0d7dbd5c86abac9cc6f9af5b00f8ad6c754f212bdde1d670e60e3a91866718980799'
         'SKIP'
-        '70a439d79f704a26a9811909ba8c40315da48426d164c02027f43a50ddf3d72ac02b942aa80a8555aa737be2c46167ab326aa7318ce9ceecb61832ffc866503f'
+        '1791c5e3de43e3bba57bb673cfe460bebfd0a283bac59a7729c19508db088bf0207252dbffd85a9d563c8344b22fa3ba60d88e376d346feef14b28f8ca358ea5'
         '45993d8a178b5892f0ecbc043dc836cf8e16cd2884e67e3522582f81562c12601e1b01c445d497cd1127dcd3fe05e030397129dc0e174e72ddc60ff13dc8c83d'
         '97970912e2eb3baf8cd08b50bc699000d80bd502fa6ef1403481390d05ab3b355ae058fba44faa31f4038c7c0ee47bb5b2c53ecb28136788a6267414cecc281e'
-        '5660ed3bdbad6030acc683c4d0df61cb4d0ceb2aabce0dcefc7b2a955915bacb29033988ca1953e123b7f85b81e4f056c510c7734fd2c7ced90e74ee644702e8'
+        'fb302faa13cfe7b16a3a1b61126bde031d155b2247b10648dea47111f95fc49f4e8d8cd623c699fcf1290028b00348a2e936c5c5a898139277ddccb8a3e45638'
         '162130c38d315b06fdb9f0b08d1df6b63c1cc44ee140df044665ff693ab3cde4f55117eed12253504184ccd379fc7f9142aa91c5334dff1a42dbd009f43d8897'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
