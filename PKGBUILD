@@ -1,6 +1,6 @@
 
 _major=6.15
-_minor=2
+_minor=3
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="3c480434cf0ac7a4d1f6f17cbdbd6759ee7e6a67"
+_cachyos="a1507ee2ab6db23b9e2e27b3103da715c09b559f"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="b9641f7e1eb23f6d0e7ccc3f29ff88d61eca0f37"
+_patches="21495c7488fadefff3e7e04ed90ba4852262ce50"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -55,7 +55,8 @@ options=(
 )
 
 source=(
-    "$_kernel/$_srcdir.tar.xz" "$_kernel/$_srcdir.tar.sign"
+    "$_kernel/$_srcdir.tar.xz"
+    "$_kernel/$_srcdir.tar.sign"
     "$_cachyos/config" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
     '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
@@ -67,12 +68,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('c2b23abc39af6d2cf67f5963121f16d4a231869203d3915ed6260d6f39ef0d7dbd5c86abac9cc6f9af5b00f8ad6c754f212bdde1d670e60e3a91866718980799'
+b2sums=('a37548adb40b1800f41dd3980d8a2c6d16955548a8c8e02213e2f93b7e57b7320d1ed29749a818635bc8df0c8fe169f9ad3895a64db3a8c9109506682c155790'
         'SKIP'
         '1791c5e3de43e3bba57bb673cfe460bebfd0a283bac59a7729c19508db088bf0207252dbffd85a9d563c8344b22fa3ba60d88e376d346feef14b28f8ca358ea5'
         '45993d8a178b5892f0ecbc043dc836cf8e16cd2884e67e3522582f81562c12601e1b01c445d497cd1127dcd3fe05e030397129dc0e174e72ddc60ff13dc8c83d'
         '97970912e2eb3baf8cd08b50bc699000d80bd502fa6ef1403481390d05ab3b355ae058fba44faa31f4038c7c0ee47bb5b2c53ecb28136788a6267414cecc281e'
-        'fb302faa13cfe7b16a3a1b61126bde031d155b2247b10648dea47111f95fc49f4e8d8cd623c699fcf1290028b00348a2e936c5c5a898139277ddccb8a3e45638'
+        '2456e96608b0db4832b8ca613a869b5aaf6f7dd16cac2e535241dd48ef8818571f1fb7e865cb54d56e664e630c34a00dc3912e99a31c67b3d05d9aa6d735a936'
         '162130c38d315b06fdb9f0b08d1df6b63c1cc44ee140df044665ff693ab3cde4f55117eed12253504184ccd379fc7f9142aa91c5334dff1a42dbd009f43d8897'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 

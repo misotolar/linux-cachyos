@@ -17,7 +17,7 @@ endif
 all: clean update srcinfo world
 
 clean:
-	rm -rf $(PWD){src,config,auto-cpu-optimization.sh,01*.patch}
+	rm -rf $(PWD){src,config,01*.patch}
 
 update:
 	updpkgsums
