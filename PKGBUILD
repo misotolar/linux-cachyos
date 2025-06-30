@@ -1,6 +1,6 @@
 
 _major=6.15
-_minor=3
+_minor=4
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="a1507ee2ab6db23b9e2e27b3103da715c09b559f"
+_cachyos="df91b3c096e14c75e72b966daa01eafe0234d7f7"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="21495c7488fadefff3e7e04ed90ba4852262ce50"
+_patches="865e7c9b83309b8e78b4539f26b4e13b604beed6"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,12 +68,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('a37548adb40b1800f41dd3980d8a2c6d16955548a8c8e02213e2f93b7e57b7320d1ed29749a818635bc8df0c8fe169f9ad3895a64db3a8c9109506682c155790'
+b2sums=('926cbb770f3928263414b444f63790606376f9a48ee006e85d15f877ed04444c6de889be7ccde8d25ffc650f98de78fd04639c11bf4540182244366440b6ccaa'
         'SKIP'
-        '1791c5e3de43e3bba57bb673cfe460bebfd0a283bac59a7729c19508db088bf0207252dbffd85a9d563c8344b22fa3ba60d88e376d346feef14b28f8ca358ea5'
+        '588e8aeefc7536dd6befa9990b3ae240c8399db508573c55efb21d1a70a8c96245f7b246718740734b48f2695dc7b012e96fe78ffcda7e806f1a428fc558e068'
         '45993d8a178b5892f0ecbc043dc836cf8e16cd2884e67e3522582f81562c12601e1b01c445d497cd1127dcd3fe05e030397129dc0e174e72ddc60ff13dc8c83d'
-        '97970912e2eb3baf8cd08b50bc699000d80bd502fa6ef1403481390d05ab3b355ae058fba44faa31f4038c7c0ee47bb5b2c53ecb28136788a6267414cecc281e'
-        '2456e96608b0db4832b8ca613a869b5aaf6f7dd16cac2e535241dd48ef8818571f1fb7e865cb54d56e664e630c34a00dc3912e99a31c67b3d05d9aa6d735a936'
+        '94329ef1a9fd0f6b478e1741ac39b5455075b22ae2346711bac4595c027bc85ac4ba3d915aa6a8d57f60b9a29dcfc7ae0bc7ef95910a9ddbe40eec0275422a52'
+        'ef729f6e8265970f9c0ed381f4b325fd0d7648077c054d9a49ac10afbea3c01bba1d4d0066714f6be66b4005077c0c39475e03c8b307ddf8f03c023a0018c330'
         '162130c38d315b06fdb9f0b08d1df6b63c1cc44ee140df044665ff693ab3cde4f55117eed12253504184ccd379fc7f9142aa91c5334dff1a42dbd009f43d8897'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
@@ -239,6 +239,16 @@ _package-headers() {
 
     echo "Installing KConfig files..."
     find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
+
+    # Install .rmeta files if they exist
+    if compgen -G "rust/*.rmeta" 1>/dev/null; then
+        install -Dt "$builddir/rust" -m644 rust/*.rmeta
+    fi
+
+    # Install .so files if they exist
+    if compgen -G "rust/*.so" 1>/dev/null; then
+        install -Dt "$builddir/rust" rust/*.so
+    fi
 
     echo "Installing unstripped VDSO..."
     make INSTALL_MOD_PATH="$pkgdir/usr" vdso_install \

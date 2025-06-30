@@ -3,9 +3,12 @@
 EXTRA_FIRMWARE_DIR="$(mktemp -d)";
 EXTRA_FIRMWARE_STR=""
 EXTRA_FIRMWARE=(
+    i915/kbl_dmc_ver1_04.bin
+    i915/kbl_guc_70.1.1.bin
+    i915/kbl_huc_4.0.0.bin
+    iwlwifi-9000-pu-b0-jf-b0-46.ucode
     intel/ibt-17-16-1.sfi
     intel/ibt-17-16-1.ddc
-    iwlwifi-9000-pu-b0-jf-b0-46.ucode
     regulatory.db.p7s
     regulatory.db
 )
