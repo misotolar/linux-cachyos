@@ -72,6 +72,17 @@ scripts/config \
     -d CC_OPTIMIZE_FOR_PERFORMANCE \
     -e CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
+### BBRv3
+scripts/config \
+    -d DEFAULT_CUBIC \
+    -d DEFAULT_FQ_CODEL \
+    -e TCP_CONG_BBR \
+    -e DEFAULT_BBR \
+    --set-str DEFAULT_TCP_CONG bbr \
+    -e NET_SCH_FQ \
+    -d NET_SCH_FQ_CODEL \
+    -e DEFAULT_FQ
+
 ### THP
 scripts/config \
     -d TRANSPARENT_HUGEPAGE_MADVISE \
