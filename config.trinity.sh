@@ -9,6 +9,7 @@ EXTRA_FIRMWARE=(
     iwlwifi-9000-pu-b0-jf-b0-46.ucode
     intel/ibt-17-16-1.sfi
     intel/ibt-17-16-1.ddc
+    intel-ucode/06-9e-0a
     regulatory.db.p7s
     regulatory.db
 )
@@ -26,6 +27,11 @@ for BLOB in "${EXTRA_FIRMWARE[@]}"; do
         zstd -qd "${EXTRA_FIRMWARE_DIR}/${BLOB}.zst"
     fi
 done
+
+# General
+scripts/config \
+    -d BOOT_CONFIG \
+    -d BLK_DEV_INITRD
 
 # Processor
 scripts/config \
@@ -49,6 +55,7 @@ scripts/config \
 # Networking
 scripts/config \
     -e BT \
+    -e BT_BNEP \
     -e BT_HCIBTUSB \
     -e CFG80211 \
     -e MAC80211 \
@@ -212,6 +219,8 @@ scripts/config \
 # Crypto
 scripts/config \
     -e CRYPTO_USER \
+    -e CRYPTO_USER_API_HASH \
+    -e CRYPTO_USER_API_SKCIPHER \
     -e CRYPTO_LZ4 \
     -e CRYPTO_AES_NI_INTEL \
     -e CRYPTO_POLYVAL_CLMUL_NI \
@@ -219,5 +228,9 @@ scripts/config \
     -e CRYPTO_SHA256_SSSE3 \
     -e CRYPTO_SHA512_SSSE3 \
     -e CRYPTO_GHASH_CLMUL_NI_INTEL
+
+# Hacking
+scripts/config \
+    -d BOOTTIME_TRACING
 
 exit 0

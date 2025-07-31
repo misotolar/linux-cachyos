@@ -1,6 +1,6 @@
 
-_major=6.15
-_minor=7
+_major=6.16
+_minor=0
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -23,12 +23,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
+_srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="72abad2d6e246d8d3a764ff78e4e54b626ec3995"
+_cachyos="2da5dafac29b3565143978f0a5b131f83bd6d615"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="723563c04f9b843979d2a3ff5a92335b625b3035"
+_patches="e2ef18d699e76ea1681848cfb23903ebec7b5aaf"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,13 +68,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('da0d7e22e88e5d46636bc53ebaaccbb986b98d41ee786fe87bff6777dd15426b3fdb254e628674871c679c7942971e9ad10ebdfed6666e7127dfb292f60125ff'
+b2sums=('87bc4da7e89cc8265aebffea7ec6c09f711be24fee87cb1c03a264c03fd5a538d66aa806640835aa5103926e612cdfbc52d7c861d7f7065f1a8bb11d893b0921'
         'SKIP'
-        '96d5bc8af80416d25bcba4151419ccd933756994bf1834dae269bd9354695a543409764af7f77eb274b7c395c2ea325fd3744056c2554d98a2ae73ad039b6393'
+        'e323923f3029a69272f6d895cedf8375e06a89de1b1663b63220997edfb64b0c9922751240fc130b3f32e811b4b5a7f02c354b89413fa84c4cf0f5d11c0f253b'
         'abee5bab595c7833c8dbbc7e7fd09c4f83cb13c6fbffc854492f311a1c9b0d694787746381586aa1ddc1fd2c55b3c6e6119f480f2b8e8b65156d2dd0118071d2'
-        '94329ef1a9fd0f6b478e1741ac39b5455075b22ae2346711bac4595c027bc85ac4ba3d915aa6a8d57f60b9a29dcfc7ae0bc7ef95910a9ddbe40eec0275422a52'
-        '4a3aa49eba146b9d79bf83dd6296ffbe86d155c752a672eb765e19f6d97cea40cfd604843c459f92ed8a0ce0bd565a1e79f7d9a43385760efb6afeafb322e438'
-        '8d2b4fafc68b7f318843d9c9d348bf19f3457cd08023061493aa50508dcc9951f424afdc853d40495c2c7cd79864c8bdbe3366a9e8b77986cb494aab999b0423'
+        '608e87935fe350ee80ca460a6fe78f6dd333f037c29cb2d83722dc732dbcd36f1e17ee4b33dbb47a2ac7f254310804bf24e441206421a363b6bdddbaceba30a2'
+        'c90b59e37b9cbc3b6809247e3c6fd785d1803c33f8fe32e8fb0b44f17652e3ea23b9e8ef34773c123000bfed9e51ac5981b615cc8f4f351031d4751a658b2a4a'
+        'dfda2c44baec52d4fc904d02dd9afe54fad51d5048d96f0ddc5668eb71f82b06fabc74d9db23db884377d6a69476290bfeba061483b7709cfa56ded247587ff9'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
@@ -173,7 +173,7 @@ _package() {
                 'linux-firmware: firmware images needed for some devices'
                 'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
                 'scx-scheds: to use sched-ext schedulers')
-    provides=(ADIOS-MODULE KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VHBA-MODULE VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE)
+    provides=(ADIOS-MODULE KSMBD-MODULE NTSYNC-MODULE UKSMD-BUILTIN VHBA-MODULE VIRTUALBOX-GUEST-MODULES V4L2LOOPBACK-MODULE WIREGUARD-MODULE)
     replaces=()
 
     cd $_srcdir
@@ -188,7 +188,7 @@ _package() {
     echo "$pkgbase" | install -Dm644 /dev/stdin "$modulesdir/pkgbase"
 
     echo "Installing modules..."
-    ZSTD_CLEVEL=1 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
+    ZSTD_CLEVEL=-1 make INSTALL_MOD_PATH="$pkgdir/usr" INSTALL_MOD_STRIP=1 \
         DEPMOD=/doesnt/exist modules_install  # Suppress depmod
 
     # remove build links
