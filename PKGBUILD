@@ -14,7 +14,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel=2
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$_major"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="2da5dafac29b3565143978f0a5b131f83bd6d615"
+_cachyos="deb9a00348df87aa69b2d18bc391a2c6d075ef25"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="e2ef18d699e76ea1681848cfb23903ebec7b5aaf"
+_patches="67ccfdfcc745d0ecb257f60c4c3f6787d91c4119"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -70,10 +70,10 @@ validpgpkeys=(
 
 b2sums=('87bc4da7e89cc8265aebffea7ec6c09f711be24fee87cb1c03a264c03fd5a538d66aa806640835aa5103926e612cdfbc52d7c861d7f7065f1a8bb11d893b0921'
         'SKIP'
-        'e323923f3029a69272f6d895cedf8375e06a89de1b1663b63220997edfb64b0c9922751240fc130b3f32e811b4b5a7f02c354b89413fa84c4cf0f5d11c0f253b'
+        'ffaff366e98fe4c93ba1fcfd3d19c11a3f88ae7df1045dfb2c9e6972fe046ffeb4b46a242aef69f72129439700aefff47ae6cc651003ea963f59a522e3896179'
         'abee5bab595c7833c8dbbc7e7fd09c4f83cb13c6fbffc854492f311a1c9b0d694787746381586aa1ddc1fd2c55b3c6e6119f480f2b8e8b65156d2dd0118071d2'
         '608e87935fe350ee80ca460a6fe78f6dd333f037c29cb2d83722dc732dbcd36f1e17ee4b33dbb47a2ac7f254310804bf24e441206421a363b6bdddbaceba30a2'
-        'c90b59e37b9cbc3b6809247e3c6fd785d1803c33f8fe32e8fb0b44f17652e3ea23b9e8ef34773c123000bfed9e51ac5981b615cc8f4f351031d4751a658b2a4a'
+        '45e0e15040d2d2577e10a8ab5e03ac861ab7faaf5081da590f5378268f5d54391e457aa3a91d0e0cb318749871372fee7f7f95a6557d6db762f2999419c98312'
         'dfda2c44baec52d4fc904d02dd9afe54fad51d5048d96f0ddc5668eb71f82b06fabc74d9db23db884377d6a69476290bfeba061483b7709cfa56ded247587ff9'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
