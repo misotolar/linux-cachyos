@@ -1,6 +1,6 @@
 
 _major=6.16
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -14,7 +14,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=3
+pkgrel=1
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -23,12 +23,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$_major"
+_srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="deb9a00348df87aa69b2d18bc391a2c6d075ef25"
+_cachyos="a21451e0b25b93d4902b7159195f63cc86a36392"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="d37e9d3c8dbe2ea44a65d1c1ad4981ba3065d9bf"
+_patches="28e3bd8b232005a81775697a734e93bdb0f339c7"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,13 +68,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('87bc4da7e89cc8265aebffea7ec6c09f711be24fee87cb1c03a264c03fd5a538d66aa806640835aa5103926e612cdfbc52d7c861d7f7065f1a8bb11d893b0921'
+b2sums=('280386f483f3f181fd0e45789815621f6f6bed208b7c10b05a7e2c2eed102d53928ce3f0e28cdd58d1e3c69f9977f60f7b6e832c3a00c0f4524aa45f83ec9491'
         'SKIP'
-        'ffaff366e98fe4c93ba1fcfd3d19c11a3f88ae7df1045dfb2c9e6972fe046ffeb4b46a242aef69f72129439700aefff47ae6cc651003ea963f59a522e3896179'
+        '08e0162b75c1b78f523efb71afbc06f2d37e5b8e73731517c5eec2b3663e5cf48a1ad4577304e7bf2eee270e5a9ee381cab8209c3104c8598653dce9cbcbb056'
         'abee5bab595c7833c8dbbc7e7fd09c4f83cb13c6fbffc854492f311a1c9b0d694787746381586aa1ddc1fd2c55b3c6e6119f480f2b8e8b65156d2dd0118071d2'
-        '608e87935fe350ee80ca460a6fe78f6dd333f037c29cb2d83722dc732dbcd36f1e17ee4b33dbb47a2ac7f254310804bf24e441206421a363b6bdddbaceba30a2'
-        '3b19a2dbf90196854c6f4cdc540721b974f61e6a1884a8114d036dc71e28e2eb21939aad058b355a9550ceaa3a0be92216f19699b352da9847d6d423c637db38'
-        'dfda2c44baec52d4fc904d02dd9afe54fad51d5048d96f0ddc5668eb71f82b06fabc74d9db23db884377d6a69476290bfeba061483b7709cfa56ded247587ff9'
+        'ecbe5ff6d2e0b39c89996e522b103506bb60138e64c019d2a20f61b3fbf8dafa6a2d1a4686f62f8be9c600908df4504cbfd8339d5fa42ddee984669aba27dc08'
+        '9ded1dae30b2ecf1bf2e6d811e1ead4518b185d318d70e3aa8cdc355c49adf5203b413346dcbe999a27c9765e770951b209d740f9824d3343a2881127b9ef1b1'
+        'b8d0a52afbe6545c1d300e1a8ee2c74dcf97316a691cd5902b3356dc5f9ed28255b2515218ae2282a0a0bbd092b1cbb4a7f9cf04f786bf7df7067b0c72f7e4d3'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
