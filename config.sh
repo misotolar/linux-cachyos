@@ -135,6 +135,10 @@ if [ -d /usr/src/certs-local ]; then
         -d MODULE_ALLOW_MISSING_NAMESPACE_IMPORTS
 fi
 
+### ADIOS
+scripts/config \
+    -e MQ_IOSCHED_DEFAULT_ADIOS
+
 ### Cleanup
 scripts/config \
     -d ACPI_PRMT \

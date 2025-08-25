@@ -52,6 +52,12 @@ scripts/config \
     -e KVM \
     -e KVM_INTEL
 
+# Block layer
+scripts/config \
+    -d MQ_IOSCHED_DEADLINE \
+    -d MQ_IOSCHED_KYBER \
+    -e MQ_IOSCHED_ADIOS
+
 # Networking
 scripts/config \
     -e BT \

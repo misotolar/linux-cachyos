@@ -4,6 +4,7 @@
 Improved [CachyOS Kernel](https://github.com/cachyos/linux-cachyos) with custom config:
 
 - LLVM/LTO build
-- [BORE](https://github.com/firelzrd/bore-scheduler) scheduler
+- [BORE](https://github.com/firelzrd/bore-scheduler) CPU Scheduler
+- [ADIOS](https://github.com/firelzrd/adios) Adaptive Deadline I/O Scheduler
 - [Arch-SKM](https://aur.archlinux.org/packages/arch-sign-modules) module signing
 - [OBS Setup instructions](https://software.opensuse.org/download.html?project=home:misotolar:linux-cachyos&package=linux-cachyos)

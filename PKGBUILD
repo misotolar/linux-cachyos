@@ -1,6 +1,6 @@
 
 _major=6.16
-_minor=2
+_minor=3
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="73e81ec0674cbb4cb3fa92954248ec3541dfa821"
+_cachyos="218fb3cd8e34bdfdba1468acce5b4432807745c5"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="819096a02ed3f64c5f491171e7d93bf3e7de0751"
+_patches="5fa8a55ebcc1f87d22ae2cee888ecf39b377c2b5"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,12 +68,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('9585d9abd085707cf5b7f3917ee41ff234083b941863fc5fa9eb7e81ed486da5fc58cd756020359f8784d29fcdac96720cc1dec2c10bef9a5c061cd2222f1680'
+b2sums=('3053226fdec6b69c3bb0a4c9cae0a2595c05a74e99a78d5a0fd9f5d016d192a3b057e72b8cb8471e5f4d021d7a1887bcd7713d33b00ba02ea7eee5f6a981db19'
         'SKIP'
-        '08e0162b75c1b78f523efb71afbc06f2d37e5b8e73731517c5eec2b3663e5cf48a1ad4577304e7bf2eee270e5a9ee381cab8209c3104c8598653dce9cbcbb056'
+        'd337d07f1bb4f144f1ce18d8a349c482fc241e301d73ed53dda0beb2495789161ba664cce54ac013bf41c1779b4fee0220d4605ceb23f282766414789bce5b86'
         'abee5bab595c7833c8dbbc7e7fd09c4f83cb13c6fbffc854492f311a1c9b0d694787746381586aa1ddc1fd2c55b3c6e6119f480f2b8e8b65156d2dd0118071d2'
-        'ecbe5ff6d2e0b39c89996e522b103506bb60138e64c019d2a20f61b3fbf8dafa6a2d1a4686f62f8be9c600908df4504cbfd8339d5fa42ddee984669aba27dc08'
-        '54752f141a1807bf231d8991760ca75fe8e88bc0550b540c0adf07b33a1d46df234cf04310e21085a1e13a8fec0656b70958eb0408e8238ffbd5095c724ac995'
+        '3ec3659317c5380ba2ca5fcacd46b05bb284b10151e4573ad8981f3c880fd2a3119285463865c18f4f0bc1dc6ddeb7128d10a022aaf735a45afa5cf2caa19ef3'
+        'ec8dae237d7c05f331cf41b0e484c94698a91aa57d913e4899b7acffbbe67551c1e40a2d6e871498fc8992e74484f1bd85114a9535e2cc199bd5a6cf642f20b0'
         '9cd868f95e189c9cee66500bf47e3b5b215f036ffb08b8fa9b9d979728d3757c88d1c4e00feb25a18afcfe92b9e64e87b9ae8fe0d27ef432813cc00541f1c37b'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
