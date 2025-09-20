@@ -1,6 +1,6 @@
 
 _major=6.16
-_minor=7
+_minor=8
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -26,9 +26,9 @@ arch=(
 _srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="d592004feaae12b13a1311b922b2936278c83e66"
+_cachyos="498cedd3d9604dff94672ce48c59dfe802116886"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="a6659635a7ec2426b8f7ef280e9a405a2325f556"
+_patches="210dda79d0344696b6759f555c5b0f782e6639ac"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,13 +68,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('5a88c591468ab2afc708475c76b87c1028c184208c0c4c9c4f7fb481b5e724bdd3ef7a0c9f46d079009832010cd3131a5dbe6902e970359a0fde9a820bf76a04'
+b2sums=('bef910dbda65c45d5b5722277aa1199aa09bf3684ed3703512c384becedc394fa35c8f0813ed21071ad4f9462fcd17e5b2080d165d785a1181dec6e0aee66303'
         'SKIP'
         '9c48a38f5985523a35cf4d495ba3b06faa72d006194b16c30bb5b0f69fe5fd249244f39b8ce8f56437085a35ac341d91065055ce67cc26d8327c3d745f7a7079'
         'e20d1013d5870a2dfd6ab30aa5c0978ddf052570f518b7a8c4cad8e2a1a9c0f18e4eb033091baf017a751e196dc86286d28c19252aa2f4b078d54915da424d5d'
         'd3db1c54c1e3e530bff681d0bf806e05c2dcef8387857e15c92d9f8fdd755fed3c9ca135330e5db0bcba0fbdc999885292477ed43c689b190d4f410583511683'
-        '776cd6368077a6504e781b2a5db3c9b82b1b0fa496bef9f24ba417dfea0d192bf9664f0dcce9822050f6bf064f991ea3883683536f74a808c3b76d4bfa364028'
-        'c7f5b2e6c1f95ec961666c338057501a41f3e8de584f0985021b4c5c0ce5ddf738b56f2c50fe33d879a9cddd2236c26fb995c03445cab93580379d2e2c4669cc'
+        '06356360229123de607261705f64e6c7c1b903a48536161070a233121808c736407518b49b3088c13acdfecfda37ffcc21da216c67494293ec0846964005805b'
+        '032384c26aab85ff40d9e51a995d7670ddb40f34342163e162f14c9c0fd521b6405585087666666defe30b170615f9c4cb8523f0ae81ef6cacf71349bb710710'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
