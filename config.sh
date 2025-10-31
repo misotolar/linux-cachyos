@@ -141,6 +141,7 @@ scripts/config \
 
 ### Cleanup
 scripts/config \
+    -d KSTACK_ERASE \
     -d ACPI_PRMT \
     -d KMSAN \
     -d ZSWAP \
