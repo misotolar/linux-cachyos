@@ -1,6 +1,6 @@
 
 _major=6.18
-_minor=0
+_minor=1
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -23,12 +23,12 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$_major"
+_srcdir="linux-$pkgver"
 _kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
 
-_cachyos="acf85ecb3d8a03fb9fd3160ce6d9bdb05ef1c124"
+_cachyos="278762fc5eb743b8bf9f819fdf6506306685b101"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="0ac7e72d6b9f973a1682806d0166042869aa4144"
+_patches="8a5e89d346af4221d7426b45da65a677a1ff5582"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -68,12 +68,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('b94b7b9bf18aca0c3e50baf79b009a1448fc6cd9c3ee019f641cc247dcf53a4abef4274ee0608ad8cd4943af69854363a95d26e117ff23620bb07dccb158859f'
+b2sums=('6ea6a7235ee59f876b015c6fda0f2772980c6ea58240689ce581182262387cbef3aed3c95ced66cdb56479cbd83961fbcbdfdff09f049941c3daf047710adb61'
         'SKIP'
-        'e39b09a43f94c626b7788d437fb1e26dfcd719c184581405e91546bd9231bb9de2b97bc6d8b2c0ce017ed67d946a16ab146ffbdd87fc0161426b8ecde0027469'
+        '4193034f32392fe6c551080b2afab61d7efbb3a7205daf73490a102d2649b1fa54e0e91dcd3b99afd29795dbf11c1d1a17e0f9b7fd9747b90d296977f2a7bb77'
         'e20d1013d5870a2dfd6ab30aa5c0978ddf052570f518b7a8c4cad8e2a1a9c0f18e4eb033091baf017a751e196dc86286d28c19252aa2f4b078d54915da424d5d'
         'd3db1c54c1e3e530bff681d0bf806e05c2dcef8387857e15c92d9f8fdd755fed3c9ca135330e5db0bcba0fbdc999885292477ed43c689b190d4f410583511683'
-        'bf61130d27b16f3ac7129dc57095103efba918d6468d2726d0ed73982c99967e05c7ca2e62e269f9e2e7433c416a231cb7f8af2afc507e336da39cbb82202977'
+        '7b839b9a94345b95a782c380394536e492de16716649e6913ddde6cf82b857873994f88aecb78d3164c87684519fbda69c1a49ce76449baee36c50e9071e0feb'
         'bfd5d4cdfe8f2c2e7466d7095befe40f95049ef8190e2ba01d7ba853903741d6ccb54087e8af72f4dad1790faf6d341d7b55b14eb00405d54bd4f62c772b880d'
         'c7294a689f70b2a44b0c4e9f00c61dbd59dd7063ecbe18655c4e7f12e21ed7c5bb4f5169f5aa8623b1c59de7b2667facb024913ecb9f4c650dabce4e8a7e5452')
 
