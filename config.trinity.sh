@@ -119,6 +119,7 @@ scripts/config \
 scripts/config \
     -e INPUT_MOUSEDEV \
     -e INPUT_JOYDEV \
+    -e INPUT_UINPUT \
     -e KEYBOARD_ATKBD \
     -e MOUSE_PS2 \
     -e MOUSE_ELAN_I2C \
