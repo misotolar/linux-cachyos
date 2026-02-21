@@ -60,12 +60,18 @@ scripts/config \
 
 # Networking
 scripts/config \
+    -e NF_TABLES \
     -e BT \
     -e BT_BNEP \
+    -e BT_RFCOMM \
     -e BT_HCIBTUSB \
     -e CFG80211 \
     -e MAC80211 \
     -e RFKILL
+
+# Drivers
+scripts/config \
+    -e TEE
 
 # Firmware
 scripts/config \
@@ -103,6 +109,7 @@ scripts/config \
 # RAID/LVM
 scripts/config \
     -e BLK_DEV_DM \
+    -e DM_CRYPT \
     -e DM_INIT
 
 # Macintosh
@@ -169,12 +176,16 @@ scripts/config \
 
 # Graphics
 scripts/config \
-    -e DRM_I915
+    -e DRM_I915 \
+    -e DRM_XE
 
 # Sound
 scripts/config \
     -e SOUND \
     -e SND \
+    -e SND_HRTIMER \
+    -e SND_SEQUENCER \
+    -e SND_SEQ_DUMMY \
     -e SND_HDA_INTEL \
     -e SND_HDA_CODEC_REALTEK \
     -e SND_HDA_CODEC_HDMI \
@@ -223,6 +234,11 @@ scripts/config \
 scripts/config \
     -e VFAT_FS
 
+# Security
+scripts/config \
+    -e TRUSTED_KEYS \
+    -e ENCRYPTED_KEYS
+
 # Crypto
 scripts/config \
     -e CRYPTO_USER \
@@ -230,7 +246,6 @@ scripts/config \
     -e CRYPTO_USER_API_SKCIPHER \
     -e CRYPTO_LZ4 \
     -e CRYPTO_AES_NI_INTEL \
-    -e CRYPTO_POLYVAL_CLMUL_NI \
     -e CRYPTO_SHA1_SSSE3 \
     -e CRYPTO_SHA512_SSSE3 \
     -e CRYPTO_GHASH_CLMUL_NI_INTEL
