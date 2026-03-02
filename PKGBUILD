@@ -1,6 +1,7 @@
 
 _major=6.19
-_minor=3
+_minor=5
+_cachy=2
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -14,7 +15,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel=1
+pkgrel="$_cachy.1"
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -23,12 +24,13 @@ arch=(
     x86_64_v3
 )
 
-_srcdir="linux-$pkgver"
-_kernel="https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x"
+_srctag="cachyos-$_major.${_minor}-${_cachy}"
+_kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
+_srcdir="$_srctag"
 
-_cachyos="39737576a25091a3c4ca00729b769a1f92ec98d5"
+_cachyos="4a363451cc86ff5304514c8bf25eac42eb46b8c8"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="505aef2086e584ba683a5ac1cb8ed8252fea2cfd"
+_patches="6e2a0214de28cf0af1b72a2076bbfc77d12d96e8"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -55,12 +57,10 @@ options=(
 )
 
 source=(
-    "$_kernel/$_srcdir.tar.xz"
-    "$_kernel/$_srcdir.tar.sign"
+    "$_kernel/$_srctag.tar.gz"
     "$_cachyos/config" 'config.sh' 'config.trinity.sh'
-    '0101-CACHYOS-cachyos-base-all.patch'::"$_patches/all/0001-cachyos-base-all.patch"
-    '0102-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
-    '0103-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
+    '0101-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
+    '0102-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
 )
 
 validpgpkeys=(
@@ -68,12 +68,10 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('a6026d06097726bfafc19c83c94949c15bee5578bb7a872612a13a9ddbbdc871e18395832da27350aa476ba947c7e8904b1161c455b8bdf4a5fe9127c32c6818'
-        'SKIP'
-        '3c42413a19aa5c51d25c1dd414d21a2cd9fe9dbc904ad8679927a8dd1c733e0d62e2f74290c02faae3f04eac70a4e3caff0870b65c44647f3f523ee8d187b18f'
+b2sums=('ea5e3675a448bc3de664008bea3539ea7c74f562c87739cc62e8278c9e228df521012cdf608694930a68db2bedb96e94b95387675885528f86bc147a230e38cd'
+        '5070693f911739fe6375656b5612b5372c8ea9d289672e7ff535d7d2df18e4e7252370b1a1c865f44574cf933266f83ee6b2e24e7dd4674ba500f63f9a8100a5'
         'e20d1013d5870a2dfd6ab30aa5c0978ddf052570f518b7a8c4cad8e2a1a9c0f18e4eb033091baf017a751e196dc86286d28c19252aa2f4b078d54915da424d5d'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
-        'd2ff199e5bbc87379f44738058ffa16290077f89bf5d4f5a91e6b4df9b88fdeeae7492e15fd0bec1356a3d5280384fb872f1a637070eb6e49a3bca57658667b3'
         '226c64dd989ec0c4c444d048707e5d56be4a7ffa59ada31f197015c65a87e7935c8a0a1d6a9d35947e60f90505e5cffb3df9824aec71b2f188bcaa2e89403e0b'
         'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96')
 
