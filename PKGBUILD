@@ -1,6 +1,6 @@
 
 _major=6.19
-_minor=6
+_minor=8
 _cachy=1
 
 pkgbase=linux-cachyos
@@ -28,9 +28,9 @@ _srctag="cachyos-$_major.${_minor}-${_cachy}"
 _kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
 _srcdir="$_srctag"
 
-_cachyos="fce577750ec855408ecdf31cf1bfed087db36b03"
+_cachyos="3b9ae1ae5d4ee95e1509d350b65c0777dde97628"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="776ee4906c343ffb826afc390a923b0958617383"
+_patches="217d964190c29f3785ed379977074ac54248ba8e"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -61,6 +61,7 @@ source=(
     "$_cachyos/config" 'config.sh' 'config.trinity.sh'
     '0101-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
     '0102-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
+    '0103-CACHYOS-bbr3.revert'::"$_patches/0002-bbr3.patch"
 )
 
 validpgpkeys=(
@@ -68,12 +69,13 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('a0885a688e8ea83da755115a86926134f8795b93c7d2eb1c00baff521ed10ba0aeb2691ad26454da20f2cecb169b6d655705b7e11fa6d108428ca1d2c0e5d696'
+b2sums=('d8c96783843a65b20cb466faf6f3ede6d661e5b2485aadee938c4c65c1cadf490479fd711e41b8dcd1e12334362788987ad1b62b32b3834176fd3940edba1c49'
         'b55556d1ebec83a529359f74e7231d48d85066be80a472591c3e8c8f258050ce3132e277e367f793d0d93896224ec4bd6e0ebf3fdb0ae674b23141d66802dc16'
-        'e20d1013d5870a2dfd6ab30aa5c0978ddf052570f518b7a8c4cad8e2a1a9c0f18e4eb033091baf017a751e196dc86286d28c19252aa2f4b078d54915da424d5d'
+        '14c75c3927467be7f3304dfed2cad71f4e9dd5c298d549f56ec450d5276e2a989573cfd0ee9793765d54137117fb90eed4497d5b7b4d05fc91e752a513924a94'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
-        '226c64dd989ec0c4c444d048707e5d56be4a7ffa59ada31f197015c65a87e7935c8a0a1d6a9d35947e60f90505e5cffb3df9824aec71b2f188bcaa2e89403e0b'
-        'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96')
+        '1f19f560470887c3236c33a7ed23f43e05a4c1ff7f3cd939e01979596bf8504926a9c30dda2470b72fde3f05d6eeae834128e9fb4cc63dde2f839005cddcf7c3'
+        'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96'
+        '4c427d7fc10937cac2784486c6b9884a564ef7a375ca3fb5cc888ff3ca29abdc4865a21f1c9bbd0286dd8799996275d3bef4b88dc9ff4bb99e4352e2396a3744')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
 export KBUILD_BUILD_HOST="${KBUILD_BUILD_HOST:-archlinux}"
@@ -111,9 +113,13 @@ prepare() {
         src="${src%%::*}"
         src="${src##*/}"
         src="${src%.zst}"
-        [[ $src = *.patch ]] || continue
-        echo "Applying patch $src..."
-        patch -Nsp1 < "../$src"
+        if [[ $src = *.patch ]]; then
+            echo "Applying patch $src..."
+            patch -Nsp1 < "../$src"
+        elif [[ $src = *.revert ]]; then
+            echo "Reverting patch $src..."
+            patch -NRsp1 < "../$src"
+        fi
     done
 
     echo "Setting config..."
@@ -196,6 +202,7 @@ _package() {
 _package-headers() {
     pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
     depends=("${pkgbase}" 'clang' 'llvm' 'lld' 'pahole')
+    provides=(LINUX-HEADERS)
 
     cd $_srcdir
     local builddir="$pkgdir/usr/lib/modules/$(<version)/build"

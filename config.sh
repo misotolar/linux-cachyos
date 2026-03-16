@@ -72,7 +72,7 @@ scripts/config \
     -d CC_OPTIMIZE_FOR_PERFORMANCE \
     -e CC_OPTIMIZE_FOR_PERFORMANCE_O3
 
-### BBRv3
+### BBR
 scripts/config \
     -d DEFAULT_CUBIC \
     -d DEFAULT_FQ_CODEL \

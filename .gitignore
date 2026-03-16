@@ -3,6 +3,7 @@ certs-local
 src
 pkg
 01*.patch
+01*.revert
 config
 *.part
 *.sign
