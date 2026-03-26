@@ -1,6 +1,6 @@
 
 _major=6.19
-_minor=9
+_minor=10
 _cachy=1
 
 pkgbase=linux-cachyos
@@ -28,7 +28,7 @@ _srctag="cachyos-$_major.${_minor}-${_cachy}"
 _kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
 _srcdir="$_srctag"
 
-_cachyos="1a16027954e609b509977288ea4f5ad5cb314cec"
+_cachyos="de746a9cd1caa808e95805641a9117029e173b34"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
 _patches="749983abd1d78492ef0b8bc7f23d92540077b62c"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
@@ -69,8 +69,8 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('8a7650304ef95ebdba8dca6f161e6e6dc98d8d9edde4d34507e2f69bafa099b656d6334cd57cfc96681c896ed60d8373e19f53b5c58d5b0b67ab43cac92b2b9e'
-        'b55556d1ebec83a529359f74e7231d48d85066be80a472591c3e8c8f258050ce3132e277e367f793d0d93896224ec4bd6e0ebf3fdb0ae674b23141d66802dc16'
+b2sums=('847c8880077da33ae9c896293ba0e587ad4c3cd187e2be0c35616bc25c9115cbfa07263345d8e6100b00becb668c23cb7ee4dac457eead21795823eae25a287b'
+        'c5a9e9c21351a31201f790a6c2389938e593d9228043aa031897537d3da17a149886acb2de73fbb7c1e8ffecfd71bf548ca800ee87b02ca306b92bf38a4e74a8'
         '14c75c3927467be7f3304dfed2cad71f4e9dd5c298d549f56ec450d5276e2a989573cfd0ee9793765d54137117fb90eed4497d5b7b4d05fc91e752a513924a94'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
         'd22b4d57707bfd94469e006ee6b43f09fc3b52bf41463b8ec33d1de14d71cea7fc8b3df8d5d9db57aacf69711209bc602a7868939e553f4972e0c6753e734333'
