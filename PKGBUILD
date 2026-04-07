@@ -15,7 +15,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel="$_cachy.1"
+pkgrel="$_cachy.2"
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -30,7 +30,7 @@ _srcdir="$_srctag"
 
 _cachyos="b91624f68ceaf5394ef1571f60290dca6ba22b45"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="a7814065cceb0be29f645ac8ebfcc4b373e9f917"
+_patches="b953e9a0044ab79b30abccee243afebfc185b622"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -59,9 +59,9 @@ options=(
 source=(
     "$_kernel/$_srctag.tar.gz"
     "$_cachyos/config" 'config.sh' 'config.trinity.sh'
+    '0001-CACHYOS-bbr3.revert'
     '0101-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
     '0102-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
-    '0103-CACHYOS-bbr3.revert'::"$_patches/0002-bbr3.patch"
 )
 
 validpgpkeys=(
@@ -73,9 +73,9 @@ b2sums=('b38be031a72888d32ffd1c95ac36417836e373e95d7f86d33d9e32f4583b4acc86de19c
         'c5a9e9c21351a31201f790a6c2389938e593d9228043aa031897537d3da17a149886acb2de73fbb7c1e8ffecfd71bf548ca800ee87b02ca306b92bf38a4e74a8'
         '14c75c3927467be7f3304dfed2cad71f4e9dd5c298d549f56ec450d5276e2a989573cfd0ee9793765d54137117fb90eed4497d5b7b4d05fc91e752a513924a94'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
+        '4c427d7fc10937cac2784486c6b9884a564ef7a375ca3fb5cc888ff3ca29abdc4865a21f1c9bbd0286dd8799996275d3bef4b88dc9ff4bb99e4352e2396a3744'
         'd22b4d57707bfd94469e006ee6b43f09fc3b52bf41463b8ec33d1de14d71cea7fc8b3df8d5d9db57aacf69711209bc602a7868939e553f4972e0c6753e734333'
-        'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96'
-        '4c427d7fc10937cac2784486c6b9884a564ef7a375ca3fb5cc888ff3ca29abdc4865a21f1c9bbd0286dd8799996275d3bef4b88dc9ff4bb99e4352e2396a3744')
+        'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
 export KBUILD_BUILD_HOST="${KBUILD_BUILD_HOST:-archlinux}"
