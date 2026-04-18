@@ -1,6 +1,6 @@
 
-_major=6.19
-_minor=12
+_major=7.0
+_minor=0
 _cachy=2
 
 pkgbase=linux-cachyos
@@ -28,18 +28,23 @@ _srctag="cachyos-$_major.${_minor}-${_cachy}"
 _kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
 _srcdir="$_srctag"
 
-_cachyos="5797b5250467510a45567c632fd695ed9e6c266b"
+_cachyos="4224303b6d7a50dd1cc3ffa78864050cc9536eec"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="6912bf294e75c2c649784e07e1bee8e9e3c360de"
+_patches="fcd21edaf0ff9b69f9d32ea8590002d6acd1c503"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
     bc
+    binutils
     clang
     cpio
+    gettext
+    glibc
     libelf
+    libgcc
     lld
     llvm
+    openssl
     pahole
     perl
     python
@@ -47,7 +52,9 @@ makedepends=(
     rust-bindgen
     rust-src
     tar
+    xxhash
     xz
+    zlib
     zstd
 )
 
@@ -59,7 +66,6 @@ options=(
 source=(
     "$_kernel/$_srctag.tar.gz"
     "$_cachyos/config" 'config.sh' 'config.trinity.sh'
-    '0001-CACHYOS-bbr3.revert'
     '0101-CACHYOS-bore-cachy.patch'::"$_patches/sched/0001-bore-cachy.patch"
     '0102-CACHYOS-dkms-clang.patch'::"$_patches/misc/dkms-clang.patch"
 )
@@ -69,13 +75,12 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('fcc2e23cd0bc55ad638216e5326b8a823f6091bde09388b9933dda6be37237ffb9193d0bdc6d2540ce7d1bfc21ccb9b4901b86543c2c4c4c3aef761b1069c645'
-        'c5a9e9c21351a31201f790a6c2389938e593d9228043aa031897537d3da17a149886acb2de73fbb7c1e8ffecfd71bf548ca800ee87b02ca306b92bf38a4e74a8'
-        '14c75c3927467be7f3304dfed2cad71f4e9dd5c298d549f56ec450d5276e2a989573cfd0ee9793765d54137117fb90eed4497d5b7b4d05fc91e752a513924a94'
+b2sums=('40fefc434872c4ec8af8c780b2926d959ad74f1a3d94ad454d0f889caa67ab913cac3e5109f28c69c27acc4fc033c6c478128ba799447edbb207252923a63943'
+        'b247fa1ddea7d6124348fa66438715b1eb7afe279fd0d073cf9a366deecd322dbfea3843de0c61356f0d88b242cec42dbb6b2b2344d4ae9042335118c0c31e81'
+        '47109808f90c24575c25c5175d56f9c8ae2a8ac3171cbec8bd053e4573be49b2c6510eb9fe1383524ab9f69022e0f12e8b21c248930347fd838e3cfdbd48d559'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
-        '4c427d7fc10937cac2784486c6b9884a564ef7a375ca3fb5cc888ff3ca29abdc4865a21f1c9bbd0286dd8799996275d3bef4b88dc9ff4bb99e4352e2396a3744'
-        'd22b4d57707bfd94469e006ee6b43f09fc3b52bf41463b8ec33d1de14d71cea7fc8b3df8d5d9db57aacf69711209bc602a7868939e553f4972e0c6753e734333'
-        'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96')
+        '9dc1a5a46d8ecf606323926f22b4ce0aaf910dc47fd9ab9b8d08d1600e0bb45109babf7098f390562d8d8456239bb44b7db13b175fe2f529b9784a603dc11fbe'
+        'c992567bd7dd8553432be496ffa1c17e2f5ebe9c7edb51945cf977e1b742dd6517c210d8843bb82744ca705efd07f8027cd7dde41b50215ebd707a34aa81462e')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
 export KBUILD_BUILD_HOST="${KBUILD_BUILD_HOST:-archlinux}"
@@ -201,7 +206,18 @@ _package() {
 
 _package-headers() {
     pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
-    depends=("${pkgbase}" 'clang' 'llvm' 'lld' 'pahole')
+    depends=(
+        "${pkgbase}"
+        binutils
+        glibc
+        libelf
+        libgcc
+        openssl
+        pahole
+        xxhash
+        zlib
+        zstd
+    )
     provides=(LINUX-HEADERS)
 
     cd $_srcdir

@@ -63,7 +63,6 @@ scripts/config \
 scripts/config \
     -e PREEMPT_DYNAMIC \
     -e PREEMPT \
-    -d PREEMPT_VOLUNTARY \
     -d PREEMPT_LAZY \
     -d PREEMPT_NONE
 
