@@ -1,6 +1,6 @@
 
 _major=6.19
-_minor=11
+_minor=12
 _cachy=2
 
 pkgbase=linux-cachyos
@@ -15,7 +15,7 @@ fi
 
 pkgdesc='Linux BORE + LTO + Cachy Sauce Kernel by CachyOS with other patches and improvements'
 pkgver="$_major.$_minor"
-pkgrel="$_cachy.2"
+pkgrel="$_cachy.1"
 
 url="https://github.com/misotolar/linux-cachyos"
 license=('GPL2')
@@ -28,9 +28,9 @@ _srctag="cachyos-$_major.${_minor}-${_cachy}"
 _kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
 _srcdir="$_srctag"
 
-_cachyos="b91624f68ceaf5394ef1571f60290dca6ba22b45"
+_cachyos="5797b5250467510a45567c632fd695ed9e6c266b"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="b953e9a0044ab79b30abccee243afebfc185b622"
+_patches="6912bf294e75c2c649784e07e1bee8e9e3c360de"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -69,7 +69,7 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('b38be031a72888d32ffd1c95ac36417836e373e95d7f86d33d9e32f4583b4acc86de19c6e62294a1836d8ebb8410e27c714b5580f2101b4b0e88ba2d9eecb13b'
+b2sums=('fcc2e23cd0bc55ad638216e5326b8a823f6091bde09388b9933dda6be37237ffb9193d0bdc6d2540ce7d1bfc21ccb9b4901b86543c2c4c4c3aef761b1069c645'
         'c5a9e9c21351a31201f790a6c2389938e593d9228043aa031897537d3da17a149886acb2de73fbb7c1e8ffecfd71bf548ca800ee87b02ca306b92bf38a4e74a8'
         '14c75c3927467be7f3304dfed2cad71f4e9dd5c298d549f56ec450d5276e2a989573cfd0ee9793765d54137117fb90eed4497d5b7b4d05fc91e752a513924a94'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
