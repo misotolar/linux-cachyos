@@ -1,7 +1,7 @@
 
 _major=7.1
-_minor=4
-_cachy=2
+_minor=5
+_cachy=1
 
 pkgbase=linux-cachyos
 if [[ ! -z "$KBUILD_BUILD_HOST" ]]; then
@@ -28,9 +28,9 @@ _srctag="cachyos-$_major.${_minor}-${_cachy}"
 _kernel="https://github.com/CachyOS/linux/releases/download/$_srctag"
 _srcdir="$_srctag"
 
-_cachyos="5ca2493c51b1cadec102c9c549345b43f669960b"
+_cachyos="fc29f6a9d1e48e0d5db29b4d53e0dbfadd0d75b0"
 _cachyos="https://raw.githubusercontent.com/cachyos/linux-cachyos/$_cachyos/linux-cachyos"
-_patches="b78bb3c1eedee2ef6653ae03c39772aa9d60a31c"
+_patches="0fbc4adfec58c056d07adfc78d0e09bd32162853"
 _patches="https://raw.githubusercontent.com/cachyos/kernel-patches/$_patches/$_major"
 
 makedepends=(
@@ -75,11 +75,11 @@ validpgpkeys=(
     647F28654894E3BD457199BE38DBBDC86092693E # Greg Kroah-Hartman
 )
 
-b2sums=('9ae56887d6b95bcb39dee4ab057efb76c3d203af5178215fd60723b009282a5fd9c2ff6c61e6eef0dfb7fdebc15dc602318752064e8dfbb28e2b76a625a20a5a'
+b2sums=('d7f63f5c0926d98d27dd9f405dbdcdd0d8cbcf0d07185615edbe62b242a09f2f0074bedfc466e3a43d8e12b15d0d1860f5a6ff89a4b583b81ca677b33d3c0072'
         'a81b1a49b7fd277a8a1395e38696c435489808399527dc49436c9b36940d5c652c523622efe68d34dd191669d8838ab4c041000331279ccf77cdc11dc4baaca2'
         '47109808f90c24575c25c5175d56f9c8ae2a8ac3171cbec8bd053e4573be49b2c6510eb9fe1383524ab9f69022e0f12e8b21c248930347fd838e3cfdbd48d559'
         '8d43fb196ae2175b13f3a0646301d1a72e513b547175d44eb77cc278883ecbd5cbf579ce62df2f7ca1d1bc481597f4749b85865052497b2aec0f900dff1bb681'
-        '5a2311d5b672ad36a67d7f83b2ae1d5cbd6878386d502c6093f8e7ba37c5392152095ae737bf0c1dfdf4efb513c2bd0d6ebed2f29e212225a2494e6f18cb103f'
+        'c7b49a1ea71f1d837027680bb79688a201940101fdec1efa2cf9f103ba301530fdb0b82da465fa1f0ff095836640491d8e18fe7a732a6a3a75095d784eb4689d'
         'c992567bd7dd8553432be496ffa1c17e2f5ebe9c7edb51945cf977e1b742dd6517c210d8843bb82744ca705efd07f8027cd7dde41b50215ebd707a34aa81462e')
 
 export KBUILD_BUILD_USER="${KBUILD_BUILD_USER:-$pkgbase}"
